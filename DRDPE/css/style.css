@@ -1,0 +1,52 @@
+﻿body {
+	background-color: #343A40;
+	color:#FFFFFF;
+	width:80%;
+	margin:auto;
+}
+.card-deck{
+    width:100%;
+    padding:2em;
+}
+.card {
+    min-width:15em;
+    max-width:20%;
+    margin-bottom:1em;
+}
+.card-body {
+	background-color: #343A40;
+}
+.card-footer {
+	background-color: #343A40;
+	text-align:center;
+}
+@media (min-width: 1px) {
+	.custom-search-box {
+		width: 100%;
+	}
+}
+@media (min-width: 576px) {
+	.custom-search-box {
+		width:100%;
+	}
+}
+@media (min-width:0px) {
+	.custom-search-box {
+		width: 100%;
+	}
+}
+@media (min-width: 768px) {
+	.custom-search-box {
+		width: 100%;
+	}
+}
+@media (min-width: 992px) {
+	.custom-search-box {
+		width: 25%;
+	}
+}
+@media (min-width: 1200px) {
+	.custom-search-box {
+		width: 25%;
+	}
+}

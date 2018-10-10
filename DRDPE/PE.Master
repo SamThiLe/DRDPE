@@ -1,0 +1,61 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="PE.master.cs" Inherits="DRDPE.PE" %>
+
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <header>
+            <nav class="navbar  navbar-expand-lg navbar-dark bg-dark">
+              <a class="navbar-brand" href="index.aspx">Pastry Emporium</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Products</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                  </li>
+                    
+                </ul>
+                  <label>Any&nbsp;</label><asp:Checkbox ID="chkKeywords" runat="server" Checked="false"/>&emsp;
+                <asp:TextBox ID="txtSearch" runat="server" type="text" class="form-control mr-sm-2  custom-search-box" placeholder="Search" name="q"></asp:TextBox>
+                <asp:button id="btnSearch"  class="btn btn-outline-light my-2 my-sm-0" type="submit" runat="server" Text="Search"></asp:button>
+                  &emsp;
+                    <a id="shoppingCart" href="#"><img src="images/icons/shopping_cart_yellow.png" width="20"/></a>
+              </div>                 
+            </nav>
+        </header>
+        <hr />
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        <footer class=" modal-footer">
+            <hr class="bg-light" />
+          <asp:Label ID="lblDate" runat="server"></asp:Label>
+          <br />
+          Copyright &copy; <%= DateTime.Now.Year %> Department of Redundancy Department
+          <br /><br />
+          <a href="#" class="btn btn-outline-light">Admin login</a><br />
+          <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
+        </footer>
+    </form>
+    <script src="js/jquery-3.3.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>

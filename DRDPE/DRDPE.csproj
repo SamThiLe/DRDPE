@@ -67,17 +67,144 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\index.aspx" />
+    <Content Include="Admin\ManageProducts.aspx" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\style.css" />
     <Content Include="Global.asax" />
+    <Content Include="images\almondcroissant.jpg" />
+    <Content Include="images\angelfoodcake.jpg" />
+    <Content Include="images\baconcroissant.jpg" />
+    <Content Include="images\blackforestcake.jpg" />
+    <Content Include="images\blueberrydanish.jpg" />
+    <Content Include="images\blueberryfilleddonut.jpg" />
+    <Content Include="images\blueberrymuffin.jpg" />
+    <Content Include="images\blueberrysquare.jpg" />
+    <Content Include="images\bostoncreamdonut.jpg" />
+    <Content Include="images\brownbread.jpg" />
+    <Content Include="images\brownbun.jpg" />
+    <Content Include="images\buttercroissant.jpg" />
+    <Content Include="images\butterdanish.jpg" />
+    <Content Include="images\butterpicanmuffin.jpg" />
+    <Content Include="images\carameldanish.jpg" />
+    <Content Include="images\carameldonut.jpg" />
+    <Content Include="images\caramelmuffin.jpg" />
+    <Content Include="images\cheesecake.jpg" />
+    <Content Include="images\cheesecroissant.jpg" />
+    <Content Include="images\chocolatecroissant.jpg" />
+    <Content Include="images\chocolatedanish.jpg" />
+    <Content Include="images\chocolateglazeddonut.jpg" />
+    <Content Include="images\chocolatemoussecake.jpg" />
+    <Content Include="images\chocolatemuffin.jpg" />
+    <Content Include="images\creamcheesedanish.jpg" />
+    <Content Include="images\datesquare.jpg" />
+    <Content Include="images\devilsfoodcake.jpg" />
+    <Content Include="images\hamandcheesecroissant.jpg" />
+    <Content Include="images\icons\search.png" />
+    <Content Include="images\icons\shopping_cart_yellow.png" />
+    <Content Include="images\lemonmeringuecake.jpg" />
+    <Content Include="images\lemonsquare.jpg" />
+    <Content Include="images\logo.jpg" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\maplebread.jpg" />
+    <Content Include="images\marshmallowsquare.jpg" />
+    <Content Include="images\multigrainbread.jpg" />
+    <Content Include="images\multigrainbun.jpg" />
+    <Content Include="images\nanaimosquare.jpg" />
+    <Content Include="images\peanutbuttersquare.jpg" />
+    <Content Include="images\picansquare.jpg" />
+    <Content Include="images\poundcake.jpg" />
+    <Content Include="images\raspberrydanish.jpg" />
+    <Content Include="images\raspberryfilleddonut.jpg" />
+    <Content Include="images\raspberrymuffin.jpg" />
+    <Content Include="images\ryebread.jpg" />
+    <Content Include="images\ryebun.jpg" />
+    <Content Include="images\sourbread.jpg" />
+    <Content Include="images\sourdoughbun.jpg" />
+    <Content Include="images\strawberrydanish.jpg" />
+    <Content Include="images\strawberryfilleddonut.jpg" />
+    <Content Include="images\strawberrymuffin.jpg" />
+    <Content Include="images\sugardonut.jpg" />
+    <Content Include="images\triplechocolatecake.jpg" />
+    <Content Include="images\whitebread.jpg" />
+    <Content Include="images\whitebun.jpg" />
+    <Content Include="images\wholewheatbread.jpg" />
+    <Content Include="images\wholewheatbun.jpg" />
+    <Content Include="index.aspx" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\jquery-3.3.1.slim.min.js" />
+    <Content Include="js\popper.min.js" />
+    <Content Include="Admin\ManageCategories.aspx" />
+    <Content Include="ProductPage.aspx" />
+    <Content Include="UserControls\SearchBox.ascx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\Admin.Master.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Admin.Master.designer.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ManageProducts.aspx.cs">
+      <DependentUpon>ManageProducts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManageProducts.aspx.designer.cs">
+      <DependentUpon>ManageProducts.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ManageCategories.aspx.cs">
+      <DependentUpon>ManageCategories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManageCategories.aspx.designer.cs">
+      <DependentUpon>ManageCategories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PE.Master.cs">
+      <DependentUpon>PE.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PE.Master.designer.cs">
+      <DependentUpon>PE.Master</DependentUpon>
+    </Compile>
+    <Compile Include="ProductPage.aspx.cs">
+      <DependentUpon>ProductPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProductPage.aspx.designer.cs">
+      <DependentUpon>ProductPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\SearchBox.ascx.cs">
+      <DependentUpon>SearchBox.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\SearchBox.ascx.designer.cs">
+      <DependentUpon>SearchBox.ascx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\Admin.Master" />
     <None Include="packages.config" />
+    <Content Include="PE.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
