@@ -38,7 +38,7 @@
                             <br />
                             <asp:Label runat="server"><%#Eval("price", "{0:c}")%></asp:Label>
                             <br />
-                            <h4>Brief Description:</h4>
+                            <h4>Brief Description:fdsafdsafds</h4>
                             <asp:Label runat="server"><%#Eval("briefDescription")%></asp:Label>
                             <br />
                         </p>
