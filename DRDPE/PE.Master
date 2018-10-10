@@ -50,7 +50,7 @@
           <br />
           Copyright &copy; <%= DateTime.Now.Year %> Department of Redundancy Department
           <br /><br />
-          <a href="#" class="btn btn-outline-light">Admin login</a><br />
+          <a href="/Admin/index.aspx" class="btn btn-outline-light">Admin login</a><br />
           <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
         </footer>
     </form>
