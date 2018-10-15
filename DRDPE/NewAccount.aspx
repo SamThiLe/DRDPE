@@ -65,6 +65,72 @@
         </div>
         <div class="row">
             <div class="col-md-3 field-label-responsive">
+                <label for="dateOfBirth">Date of Birth</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <asp:TextBox runat="server" class="form-control" type="date" id="txtDateOfBirth" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="txtStreetAddress">Street Address</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <asp:Textbox runat="server" type="text" name="txtStreetAddress" class="form-control" id="txtStreetAddress"
+                               placeholder="1234 Mountain Rd."  />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="txtCity">City</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <asp:Textbox runat="server" type="text" name="txtCity" class="form-control" id="txtCity"
+                               placeholder="Moncton"  />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="email">Province, Postal Code, Country</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <asp:TextBox runat="server" type="text" name="txtProvince" class="form-control" id="txtProvince"
+                               placeholder="NB" />
+                        <asp:TextBox runat="server" type="text" name="txtPostalCode" class="form-control" ID="txtPostalCode" placeholder="E1A 0K8" Width="0.05%" />
+                        <asp:TextBox runat="server" type="text" name="txtCountry" class="form-control" ID="txtCountry" placeholder="Canada"  />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="txtPhoneNumber">Phone Number</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <asp:Textbox runat="server" type="phone" name="txtPhoneNumber" class="form-control" id="txtPhoneNumber"
+                               placeholder="(123) 456-7890" autofocus />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
                 <label for="email">E-Mail Address</label>
             </div>
             <div class="col-md-6">
