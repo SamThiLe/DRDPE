@@ -23,18 +23,14 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Products</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" href="#">Log in</a>
                   </li>
                     <li class="nav-item">
                     <a class="nav-link" href="#">Sign Up</a>
                   </li>
-                    
+                  <li class="nav-item">
+                  <a class="nav-link" href="#">About Us</a>
+                  </li>
                 </ul>
                   <label>Any&nbsp;</label><asp:Checkbox ID="chkKeywords" runat="server" Checked="false"/>&emsp;
                 <asp:TextBox ID="txtSearch" runat="server" type="text" class="form-control mr-sm-2  custom-search-box" placeholder="Search" name="q"></asp:TextBox>
