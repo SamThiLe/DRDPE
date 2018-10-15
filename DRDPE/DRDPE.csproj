@@ -85,7 +85,7 @@
     <Content Include="images\brownbun.jpg" />
     <Content Include="images\buttercroissant.jpg" />
     <Content Include="images\butterdanish.jpg" />
-    <Content Include="images\butterpicanmuffin.jpg" />
+    <Content Include="images\butterpecanmuffin.jpg" />
     <Content Include="images\carameldanish.jpg" />
     <Content Include="images\carameldonut.jpg" />
     <Content Include="images\caramelmuffin.jpg" />
@@ -112,7 +112,6 @@
     <Content Include="images\multigrainbun.jpg" />
     <Content Include="images\nanaimosquare.jpg" />
     <Content Include="images\peanutbuttersquare.jpg" />
-    <Content Include="images\picansquare.jpg" />
     <Content Include="images\poundcake.jpg" />
     <Content Include="images\raspberrydanish.jpg" />
     <Content Include="images\raspberryfilleddonut.jpg" />

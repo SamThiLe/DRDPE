@@ -29,7 +29,7 @@
               <div class="card" style="margin-bottom: 1em;">
                     <a href='ProductPage.aspx?productId=<%#Eval("productId") %>'>
                         <asp:Image runat="server" class="card-img-top"  ImageUrl ='<%#Eval("imageUrl")%>' />
-                        </a>
+                    </a>
                     <div class="card-body">
                         <h5 class="card-title"><asp:Label runat="server"><%#Eval("productName")%></asp:Label></h5>
                         <p class="card-text">
@@ -46,7 +46,7 @@
                     <div class="card-footer">
                         <small class="text-muted"><a href='ProductPage.aspx?productId=<%#Eval("productId") %>' class="btn btn-outline-light">Product Page</a></small>
                     </div>
-                    </div>
+                </div>
             </ItemTemplate>
       <FooterTemplate>
           </div>
