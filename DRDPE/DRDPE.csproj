@@ -134,6 +134,7 @@
     <Content Include="js\jquery-3.3.1.slim.min.js" />
     <Content Include="js\popper.min.js" />
     <Content Include="Admin\ManageCategories.aspx" />
+    <Content Include="NewAccount.aspx" />
     <Content Include="ProductPage.aspx" />
     <Content Include="UserControls\SearchBox.ascx" />
     <Content Include="Web.config" />
@@ -176,6 +177,13 @@
     </Compile>
     <Compile Include="Admin\ManageCategories.aspx.designer.cs">
       <DependentUpon>ManageCategories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NewAccount.aspx.cs">
+      <DependentUpon>NewAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NewAccount.aspx.designer.cs">
+      <DependentUpon>NewAccount.aspx</DependentUpon>
     </Compile>
     <Compile Include="PE.Master.cs">
       <DependentUpon>PE.Master</DependentUpon>
