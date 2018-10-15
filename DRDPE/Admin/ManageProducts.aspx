@@ -50,9 +50,11 @@
               <!-- List group -->
               
                     <label>Product Id:</label><br />
+                    
                     <asp:TextBox ID="txtProduct" runat="server" style="background-color:#c4c4c4" ReadOnly="true" Text='<%#Eval("productId")%>'></asp:TextBox>
                                     <br />
                     <label>Product Name:</label><br />
+                    <asp:RequiredFieldValidator ID="rfvProductName" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtProductName" ForeColor="Red">*</asp:RequiredFieldValidator>
                     <asp:TextBox ID="txtProductName" runat="server" Text='<%#Eval("productName")%>'></asp:TextBox>
                                     <br />
                     <label>Brief Description:</label><br />
