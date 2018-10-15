@@ -22,8 +22,6 @@ namespace DRDPE
                 getCategories();
                 Session.Remove("changed");
             }
-               
-
             if (!IsPostBack&&!String.IsNullOrEmpty(catId)&&(string)Session["changed"] != "yes")
             {
                 GetCategory(Convert.ToInt16(catId));
