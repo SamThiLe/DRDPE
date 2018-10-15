@@ -18,7 +18,7 @@
             </ul>
             <ul class="nav nav-fill">
                 <li class="nav-item bg-dark" style="padding-top:0.5%;padding-bottom:0.5%;">
-                    <asp:Button ID="btnAdd" runat="server" Text="Add Item" class="btn btn-outline-light my-sm-0 nav-fill" style="width:98%;"  OnClick="btnAdd_Click" PostBackUrl="~/Admin/ManageProducts.aspx" />
+                    <asp:Button ID="btnAdd" runat="server" Text="Add Item" class="btn btn-outline-light my-sm-0 nav-fill" style="width:98%;"  OnClick="btnAdd_Click" PostBackUrl="~/Admin/ManageProducts.aspx" CausesValidation="false" />
                 </li>
             </ul>
         </FooterTemplate>
@@ -48,26 +48,34 @@
               <!-- Default panel contents -->
               <div class="panel-heading"><h3>Selected Product</h3></div>
               <!-- List group -->
-              
+              <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
                     <label>Product Id:</label><br />
-                    
+
                     <asp:TextBox ID="txtProduct" runat="server" style="background-color:#c4c4c4" ReadOnly="true" Text='<%#Eval("productId")%>'></asp:TextBox>
                                     <br />
                     <label>Product Name:</label><br />
-                    <asp:RequiredFieldValidator ID="rfvProductName" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtProductName" ForeColor="Red">*</asp:RequiredFieldValidator>
+                    
                     <asp:TextBox ID="txtProductName" runat="server" Text='<%#Eval("productName")%>'></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Product Name is Required" ControlToValidate="txtProductName" ForeColor="Orange">*</asp:RequiredFieldValidator>
                                     <br />
                     <label>Brief Description:</label><br />
                     <asp:TextBox ID="txtProductBriefDescription" runat="server" TextMode="MultiLine" Height="150" Width="400" Text='<%#Eval("briefDescription")%>'></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Product brief description is Required" ControlToValidate="txtProductBriefDescription" ForeColor="Orange">*</asp:RequiredFieldValidator>
                                     <br />
                     <label>Full Description:</label><br />
                     <asp:TextBox ID="txtProductFullDescription" TextMode="MultiLine" Height="150" Width="400" runat="server" Text='<%#Eval("fullDescription")%>'></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Product Full description is Required" ControlToValidate="txtProductFullDescription" ForeColor="Orange">*</asp:RequiredFieldValidator>
+
                                     <br />
                     <label>Status Code:</label><br />
                     <asp:TextBox ID="txtProductStatus" runat="server" Text='<%#Eval("statusCode")%>' />
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Product status is Required" ControlToValidate="txtProductStatus" ForeColor="Orange">*</asp:RequiredFieldValidator>
+
                                     <br />
                     <label>Price:</label><br />
                     <asp:TextBox ID="txtProductPrice" runat="server" Text='<%#Eval("price", "{0:c}")%>'></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Product prices is Required" ControlToValidate="txtProductPrice" ForeColor="Orange">*</asp:RequiredFieldValidator>
+
                                     <br />
                     <label>Featured:</label><br />
                     <asp:CheckBox ID="chkProductFeatured" runat="server" Checked='<%#Eval("featured")%>'/>
@@ -79,12 +87,12 @@
                                    <br /><br />
                     <asp:Image ID="imgProd" runat="server" Width="200" Height="200" ImageUrl ='../<%#Eval("imageUrl")%>' />
                     <br />
-                    <asp:Button runat="server" class="btn btn-outline-light my-sm-0 nav-fill" Text="Upload an Image" /><br /><br />
+                    <asp:Button runat="server" class="btn btn-outline-light my-sm-0 nav-fill" Text="Upload an Image" CausesValidation="false" /><br /><br />
                     <asp:Button ID="btnUpdate" class="btn btn-outline-light my-sm-0 nav-fill" runat="server" Text="Update Item" OnClick="btnUpdate_Click" />
                     <asp:Button ID="btnDelete" class="btn btn-outline-light my-sm-0 nav-fill" runat="server" Text="Delete Item" OnClick="btnDelete_Click" />
                     <br /><br />
                     <asp:Button ID="btnSave" class="btn btn-outline-light my-sm-0 nav-fill" runat="server" Text="Save Item" OnClick="btnSave_Click" />
-                    <asp:Button ID="btnCancel" class="btn btn-outline-light my-sm-0 nav-fill" runat="server" Visible="false" Text="Cancel" OnClick="btnCancel_Click" />
+                    <asp:Button ID="btnCancel" class="btn btn-outline-light my-sm-0 nav-fill" runat="server" Visible="false" Text="Cancel" OnClick="btnCancel_Click" CausesValidation="false" />
                     <br /><br />
             </div>
 </asp:Content>

@@ -315,8 +315,7 @@ namespace DRDPE
         {
             rptProd.Visible = false;
             productContainer.Style.Remove("display");
-            txtProduct.ReadOnly = false;
-
+            //txtProduct.ReadOnly = false;
             txtProduct.Text = "";
             txtProductName.Text = "";
             txtProductBriefDescription.Text = "";
