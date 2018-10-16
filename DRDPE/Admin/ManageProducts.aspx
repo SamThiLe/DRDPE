@@ -82,8 +82,11 @@
                                     <br />
                     <label>Category:</label><br />
                     <asp:DropDownList ID="ddlCat" runat="server" AppendDataBoundItems="true">
-                        <asp:ListItem Value="--Select a Category--"></asp:ListItem>
+
+                    <asp:ListItem Value="--Select a Category--"></asp:ListItem>
                     </asp:DropDownList>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="Product category selection is Required" ControlToValidate="ddlCat" ForeColor="Orange" InitialValue="--Select a Category--">*</asp:RequiredFieldValidator>
+
                                    <br /><br />
                     <asp:Image ID="imgProd" runat="server" Width="200" Height="200" ImageUrl ='../<%#Eval("imageUrl")%>' />
                     <br />
