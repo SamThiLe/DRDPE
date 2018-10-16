@@ -245,10 +245,6 @@ namespace DRDPE
                 dr.Close();
             }
         }
-
-
-
-
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             productContainer.Style.Add("display", "none");
@@ -325,7 +321,6 @@ namespace DRDPE
             chkProductFeatured.Checked = false;
             imgProd.ImageUrl = "";
             ddlCat.SelectedIndex = -1;
-
             btnCancel.Visible = true;
             btnDelete.Visible = false;
             btnUpdate.Visible = false;
@@ -351,7 +346,6 @@ namespace DRDPE
                     cmd.Parameters.AddWithValue("@categoryId", ddlCat.SelectedValue);
                     cmd.Parameters.AddWithValue("@imageUrl", "Template");
                     cmd.CommandType = CommandType.StoredProcedure;
-                    
                     using (conn)
                     {
                         conn.Open();
@@ -382,7 +376,6 @@ namespace DRDPE
             }
         }
         #endregion
-
         #region Delete
         protected void btnDelete_Click(object sender, EventArgs e)
         {
