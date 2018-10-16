@@ -74,8 +74,8 @@
                                     <br />
                     <label>Price:</label><br />
                     <asp:TextBox ID="txtProductPrice" runat="server" Text='<%#Eval("price", "{0:c}")%>'></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Product prices is Required" ControlToValidate="txtProductPrice" ForeColor="Orange">*</asp:RequiredFieldValidator>
-
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Product price is Required" ControlToValidate="txtProductPrice" ForeColor="Orange" ViewStateMode="Disabled" Display="Dynamic">*</asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Product price must be numerical " ValidationExpression="/^\d*\.?\d+$/" ControlToValidate="txtProductPrice" ForeColor="Orange">*</asp:RegularExpressionValidator>
                                     <br />
                     <label>Featured:</label><br />
                     <asp:CheckBox ID="chkProductFeatured" runat="server" Checked='<%#Eval("featured")%>'/>
