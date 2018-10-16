@@ -3,7 +3,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
             <div class="row">
-            <div class="col-md-3"></div>
             <div class="col-md-6">
                 <h2>Register New User</h2>
                 <hr />
@@ -18,7 +17,7 @@
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <asp:TextBox runat="server" type="text" name="firstName" class="form-control" id="txtFirstName"
                                placeholder="First Name" autofocus />
-                        <asp:TextBox runat="server" type="text" name="middleInitial" class="form-control" ID="txtMiddleInitial" placeholder="MI" Width="0.05%" />
+                        <asp:TextBox runat="server" type="text" name="middleInitial" class="form-control" ID="txtMiddleInitial" placeholder="Middle Initial (Optional)" />
                         <asp:TextBox runat="server" type="text" name="lastName" class="form-control" ID="txtLastName" placeholder="Last Name"  />
                     </div>
                 </div>
