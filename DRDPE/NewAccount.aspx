@@ -5,6 +5,7 @@
             <div class="row">
             <div class="col-md-6">
                 <h2>Register New User</h2>
+                <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
                 <hr />
             </div>
         </div>
@@ -17,10 +18,14 @@
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <asp:TextBox runat="server" type="text" name="firstName" class="form-control" id="txtFirstName"
                                placeholder="First Name" autofocus />
-                        <asp:TextBox runat="server" type="text" name="middleInitial" class="form-control" ID="txtMiddleInitial" placeholder="Middle Initial (Optional)" />
-                        <asp:TextBox runat="server" type="text" name="lastName" class="form-control" ID="txtLastName" placeholder="Last Name"  />
+                        <asp:TextBox runat="server" type="text" name="middleInitial" class="form-control" id="txtMiddleInitial" placeholder="Middle Initial (Optional)" />
+                        <asp:TextBox runat="server" type="text" name="lastName" class="form-control" id="txtLastName" placeholder="Last Name"  />
                     </div>
-                </div>
+                </div>            
+            </div>
+            <div class="col-md-3">
+                <asp:RequiredFieldValidator ID="rfvFirstName" runat="server" ControlToValidate="txtFirstName" ErrorMessage="First name is required" ForeColor="Red">*</asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="rfvLastName" runat="server" ControlToValidate="txtLastName" ErrorMessage="Last name is required" ForeColor="Red">*</asp:RequiredFieldValidator>
             </div>
         </div>
         <div class="row">
@@ -33,7 +38,11 @@
                         <asp:TextBox runat="server" type="text" name="username" CssClass="form-control" ID="txtUserName"
                                placeholder="Username" />
                     </div>
+
                 </div>
+            </div>
+            <div class="col-md-3">
+                <asp:RequiredFieldValidator ID="rfvUsername" runat="server" ControlToValidate="txtUserName" ErrorMessage="Username is required" ForeColor="Red">*</asp:RequiredFieldValidator>
             </div>
         </div>
         <div class="row">
@@ -48,6 +57,9 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-3">
+                <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="txtPassword" ErrorMessage="Password is required" ForeColor="Red">*</asp:RequiredFieldValidator>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-3 field-label-responsive">
@@ -61,6 +73,9 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-3">
+                <asp:RequiredFieldValidator ID="rfvConfirmPassword" runat="server" ControlToValidate="txtConfirmPassword" ErrorMessage="Password confirmation required" ForeColor="Red">*</asp:RequiredFieldValidator>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-3 field-label-responsive">
@@ -69,9 +84,12 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <asp:TextBox runat="server" class="form-control" type="date" id="txtDateOfBirth" />
+                        <asp:TextBox runat="server" class="form-control" id="txtDateOfBirth"  TextMode="Date"/>
                     </div>
                 </div>
+            </div>
+            <div class="col-md-3">
+
             </div>
         </div>
         <div class="row">
@@ -86,6 +104,9 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-3">
+                <asp:RequiredFieldValidator ID="rfvStreet" runat="server" ControlToValidate="txtStreetAddress" ErrorMessage="Street address required" ForeColor="Red">*</asp:RequiredFieldValidator>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-3 field-label-responsive">
@@ -98,6 +119,9 @@
                                placeholder="Moncton"  />
                     </div>
                 </div>
+            </div>
+            <div class="col-md-3">
+                <asp:RequiredFieldValidator ID="rfvCity" runat="server" ControlToValidate="txtCity" ErrorMessage="City is required" ForeColor="Red">*</asp:RequiredFieldValidator>
             </div>
         </div>
         <div class="row">
@@ -114,6 +138,11 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-3">
+                <asp:RequiredFieldValidator ID="rfvProvince" runat="server" ControlToValidate="txtProvince" ErrorMessage="Province is required" ForeColor="Red">*</asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="rfvPostalCode" runat="server" ControlToValidate="txtPostalCode" ErrorMessage="Postal code is required" ForeColor="Red">*</asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="rfvCountry" runat="server" ControlToValidate="txtCountry" ErrorMessage="Country is required" ForeColor="Red">*</asp:RequiredFieldValidator>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-3 field-label-responsive">
@@ -127,6 +156,9 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-3">
+                <asp:RequiredFieldValidator ID="rfvPhoneNumber" runat="server" ControlToValidate="txtPhoneNumber" ErrorMessage="Phone number required" ForeColor="Red">*</asp:RequiredFieldValidator>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-3 field-label-responsive">
@@ -139,6 +171,9 @@
                                placeholder="you@example.com" autofocus />
                     </div>
                 </div>
+            </div>
+            <div class="col-md-3">
+                <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="E-mail address is required" ForeColor="Red">*</asp:RequiredFieldValidator>
             </div>
         </div>
         <div class="row">
