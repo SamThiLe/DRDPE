@@ -28,7 +28,6 @@ namespace DRDPE
 
             if (!string.IsNullOrEmpty(searchText))
             {
-                
                 GetSearchResultsForProducts(searchText);
             }
 

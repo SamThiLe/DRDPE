@@ -2,15 +2,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
     <asp:Repeater ID="rptProd" runat="server">
         <HeaderTemplate>
             <small class="text-muted"><a href='index.aspx' class="btn btn-outline-light">Back</a></small>
         </HeaderTemplate>
         <ItemTemplate>
-            <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
+            
             <h1><asp:Label runat="server"><%#Eval("productName")%></asp:Label><br /></h1>
             <asp:Image runat="server" Width="250" Height="250" ImageUrl ='<%#Eval("imageUrl")%>' /><br />
-            <asp:Label runat="server"><%#Eval("productId")%></asp:Label><br />
+            <asp:Label ID="lblProductID" runat="server"><%#Eval("productId")%></asp:Label><br />
             <p>
                 <h4>Category:</h4>
                 <asp:Label runat="server"><%#Eval("productName")%></asp:Label>
@@ -42,4 +43,5 @@
         <hr />
         </SeparatorTemplate>
     </asp:Repeater>
+    <asp:Button ID="btnAddToCart" runat="server" Text="Add To Cart" OnClick="btnAddToCart_Click" />
 </asp:Content>

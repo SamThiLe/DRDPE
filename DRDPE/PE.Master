@@ -36,7 +36,7 @@
                 <asp:TextBox ID="txtSearch" runat="server" type="text" class="form-control mr-sm-2  custom-search-box" placeholder="Search" name="q"></asp:TextBox>
                 <asp:button id="btnSearch"  class="btn btn-outline-light my-2 my-sm-0" type="submit" runat="server" Text="Search"></asp:button>
                   &emsp;
-                    <a id="shoppingCart" href="#"><img src="images/icons/shopping_cart_yellow.png" width="20"/></a>
+                    <a id="shoppingCart" href="Cart.aspx"><img src="images/icons/shopping_cart_yellow.png" width="20"/></a>
               </div>                 
             </nav>
         </header>

@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="Admin\index.aspx" />
     <Content Include="Admin\ManageProducts.aspx" />
+    <Content Include="Cart.aspx" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\style.css" />
     <Content Include="Global.asax" />
@@ -160,6 +161,13 @@
     </Compile>
     <Compile Include="Admin\ManageProducts.aspx.designer.cs">
       <DependentUpon>ManageProducts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cart.aspx.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cart.aspx.designer.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
