@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <h3>Your Cart</h3>
     <asp:Label ID="lblMessage" runat="server" Text="" EnableViewState="False"></asp:Label>
     <asp:GridView ID="grvCart" runat="server" Font-Names="Verdana" BorderColor="Black"
         DataKeyNames="qty"
@@ -48,7 +49,6 @@
       </asp:GridView>
     <span><b>Total:</b></span>
     <asp:Label ID="lblGrandTotal" runat="server"></asp:Label>
-    <asp:Label ID="lblTest" runat="server"></asp:Label>
 
     <br />
     <asp:Button ID="btnUpdate" runat="server" Text="Update Cart" OnClick="btnUpdate_Click" />

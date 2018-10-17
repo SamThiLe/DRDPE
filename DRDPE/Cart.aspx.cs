@@ -29,15 +29,6 @@ namespace DRDPE
             }
         }
 
-        private void GetGlobals()   
-        {
-            int count = grvCart.Rows.Count;
-            for (int i = 0; i < count; i++)
-            {
-                string price = grvCart.Rows[0].Cells[i].Text;
-            }
-            
-        }
 
         private void GetCart(string cartID)
         {
@@ -80,34 +71,35 @@ namespace DRDPE
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            SqlDataReader dr = default(SqlDataReader);
-            SqlCommand cmd = default(SqlCommand);
-            string cartId="";
-            string prodId="";
-            string qty="";
-            using (SqlConnection conn = new SqlConnection(cnnString))
+            
+
+            int count = grvCart.Rows.Count;
+            for (int i = 0; i < count; i++)
             {
-                cmd = new SqlCommand();
-                cmd.Connection = conn;
-                cmd.CommandText = "getCartItemQty";
-                cmd.Parameters.AddWithValue("@cartID", cartId);
-                cmd.Parameters.AddWithValue("@prodID", prodId);
-                cmd.Parameters.AddWithValue("@qty", qty);
-                cmd.CommandType = CommandType.StoredProcedure;
+                TextBox qty = (TextBox)grvCart.Rows[i].Cells[3].FindControl("Quantity");
+                string Quantity = qty.Text;
 
-                conn.Open();
-                dr = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+                Label lblProdId = (Label)grvCart.Rows[i].Cells[0].FindControl("ProductID");
+                string prodId = lblProdId.Text;
 
-                if (dr.HasRows)
+                SqlDataReader dr = default(SqlDataReader);
+                SqlCommand cmd = default(SqlCommand);
+                string cartId = Request.Cookies["cartId"].Value;
+
+                using (SqlConnection conn = new SqlConnection(cnnString))
                 {
-                    grvCart.DataSource = dr;
-                    grvCart.DataBind();
+                    cmd = new SqlCommand();
+                    cmd.Connection = conn;
+                    cmd.CommandText = "updateCartItemQty";
+                    cmd.Parameters.AddWithValue("@cartID", cartId);
+                    cmd.Parameters.AddWithValue("@prodID", prodId);
+                    cmd.Parameters.AddWithValue("@qty", Quantity);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+
                 }
-                else
-                {
-                    throw new Exception("No Details Found");
-                }
-                dr.Close();
             }
         }
     }
