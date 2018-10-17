@@ -22,13 +22,13 @@ namespace DRDPE {
         protected global::System.Web.UI.WebControls.Label lblMessage;
         
         /// <summary>
-        /// cartGrid control.
+        /// grvCart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView cartGrid;
+        protected global::System.Web.UI.WebControls.GridView grvCart;
         
         /// <summary>
         /// lblGrandTotal control.
@@ -38,6 +38,15 @@ namespace DRDPE {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblGrandTotal;
+        
+        /// <summary>
+        /// lblTest control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTest;
         
         /// <summary>
         /// btnUpdate control.

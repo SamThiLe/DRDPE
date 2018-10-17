@@ -25,7 +25,8 @@ namespace DRDPE
                 getCategories();
                 getFeatured();
             }
-
+            //to be removed
+            Response.Cookies["CartId"].Expires=DateTime.Today.AddDays(-1);
             if (!string.IsNullOrEmpty(searchText))
             {
                 GetSearchResultsForProducts(searchText);

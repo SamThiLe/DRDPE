@@ -68,10 +68,11 @@ namespace DRDPE
         }
         protected void btnAddToCart_Click(object sender, EventArgs e)
         {
+            
             int cartId;
             try
             {
-                string productId = Request.QueryString["prodId"];
+                string productId = Request.QueryString["productId"];
                 if (Request.Cookies["cartId"] != null)
                 {
                     cartId = Convert.ToInt32(Request.Cookies["cartId"].Value);
@@ -101,14 +102,14 @@ namespace DRDPE
             cmd.Transaction = trans;
             try
             {
-                cmd.CommandText = "spCreateCart";
+                cmd.CommandText = "createCart";
                 int cartID = (int)cmd.ExecuteScalar();
 
-                cmd.CommandText = "spRetrievePrice";
+                cmd.CommandText = "getProductPrice";
                 cmd.Parameters.AddWithValue("@prodId", productId);
                 decimal price = (decimal)cmd.ExecuteScalar();
 
-                cmd.CommandText = "spCreateCartItem";
+                cmd.CommandText = "createCartItem";
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@cartId", cartID);
                 cmd.Parameters.AddWithValue("@prodId", productId);
@@ -121,7 +122,7 @@ namespace DRDPE
                 Response.Cookies["cartId"].Value = cartID.ToString();
                 Response.Cookies["cartId"].Expires = DateTime.Now.AddDays(1);
 
-                Response.Redirect("~/Cart.aspx?prodId=" + productId);
+                Response.Redirect("~/Cart.aspx?productId=" + productId);
             }
             catch (Exception ex)
             {
@@ -146,17 +147,17 @@ namespace DRDPE
 
             using (SqlConnection conn = new SqlConnection(cnnString))
             {
-                cmd = new SqlCommand("UpdateCartItemQty", conn);
+                cmd = new SqlCommand("updateCartItemQty", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@cartID", cartId);
-                cmd.Parameters.AddWithValue("@prodID", int.Parse(productId));
+                cmd.Parameters.AddWithValue("@prodID", Convert.ToInt32(productId));
                 conn.Open();
 
                 int numRows = cmd.ExecuteNonQuery();
 
                 if (numRows != 0)
                 {
-                    Response.Redirect("~/Cart.aspx?prodId=" + productId);
+                    Response.Redirect("~/Cart.aspx?productId=" + productId);
                 }
                 else
                 {
