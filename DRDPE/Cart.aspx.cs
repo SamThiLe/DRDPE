@@ -21,6 +21,7 @@ namespace DRDPE
                 {
                     string cartID = Request.Cookies["cartId"].Value;
                     GetCart(cartID);
+                    calculateGrandTotal();
                 }
             }
             catch (Exception ex)
@@ -29,6 +30,17 @@ namespace DRDPE
             }
         }
 
+        private void calculateGrandTotal()
+        {
+            decimal grandTotal = 0m;
+            int count = grvCart.Rows.Count;
+            for (int i = 0; i < count; i++)
+            {
+                Label lblSubtotal = (Label)grvCart.Rows[i].FindControl("lblSubtotal");
+                 grandTotal += Convert.ToDecimal(lblSubtotal.Text.Substring(1));
+            }
+            lblGrandTotal.Text = grandTotal.ToString("c");
+        }
 
         private void GetCart(string cartID)
         {
@@ -71,35 +83,67 @@ namespace DRDPE
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
+            try
+            {
+                string cartId = Request.Cookies["cartId"].Value;
+                int count = grvCart.Rows.Count;
+                for (int i = 0; i < count; i++)
+                {
+                    TextBox qty = (TextBox)grvCart.Rows[i].FindControl("Quantity");
+                    string Quantity = qty.Text;
+                    CheckBox chkDelete = (CheckBox)grvCart.Rows[i].FindControl("Remove");
+                    Label lblProdId = (Label)grvCart.Rows[i].FindControl("ProductID");
+                    string prodId = lblProdId.Text;
+                    if (chkDelete.Checked)
+                    {
+                        RemoveCartItem(cartId, prodId);
+                    }
+                    else
+                    {
+                        UpdateCarItemQuantity(cartId, Quantity, prodId);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                lblMessage.Text = ex.Message;
+            }
+            Response.Redirect("~/Cart.aspx");
             
 
-            int count = grvCart.Rows.Count;
-            for (int i = 0; i < count; i++)
+        }
+
+        private void UpdateCarItemQuantity(string cartId, string Quantity, string prodId)
+        {
+            SqlCommand cmd = default(SqlCommand);
+            using (SqlConnection conn = new SqlConnection(cnnString))
             {
-                TextBox qty = (TextBox)grvCart.Rows[i].Cells[3].FindControl("Quantity");
-                string Quantity = qty.Text;
+                cmd = new SqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "updateCartItemQty";
+                cmd.Parameters.AddWithValue("@cartID", cartId);
+                cmd.Parameters.AddWithValue("@prodID", prodId);
+                cmd.Parameters.AddWithValue("@qty", Quantity);
+                cmd.CommandType = CommandType.StoredProcedure;
 
-                Label lblProdId = (Label)grvCart.Rows[i].Cells[0].FindControl("ProductID");
-                string prodId = lblProdId.Text;
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
 
-                SqlDataReader dr = default(SqlDataReader);
-                SqlCommand cmd = default(SqlCommand);
-                string cartId = Request.Cookies["cartId"].Value;
-
-                using (SqlConnection conn = new SqlConnection(cnnString))
-                {
-                    cmd = new SqlCommand();
-                    cmd.Connection = conn;
-                    cmd.CommandText = "updateCartItemQty";
-                    cmd.Parameters.AddWithValue("@cartID", cartId);
-                    cmd.Parameters.AddWithValue("@prodID", prodId);
-                    cmd.Parameters.AddWithValue("@qty", Quantity);
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-
-                }
+        private void RemoveCartItem(string cartId, string prodId)
+        {
+            SqlCommand cmd = default(SqlCommand);
+            using (SqlConnection conn = new SqlConnection(cnnString))
+            {
+                cmd = new SqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "deleteCartItem";
+                cmd.Parameters.AddWithValue("@cartID", cartId);
+                cmd.Parameters.AddWithValue("@prodID", prodId);
+                cmd.CommandType = CommandType.StoredProcedure;
+                conn.Open();
+                cmd.ExecuteNonQuery();
             }
         }
     }
