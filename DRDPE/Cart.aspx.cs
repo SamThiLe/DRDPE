@@ -29,7 +29,6 @@ namespace DRDPE
                 lblMessage.Text = ex.Message;
             }
         }
-
         private void calculateGrandTotal()
         {
             decimal total = 0m;
@@ -129,7 +128,6 @@ namespace DRDPE
                 cmd.Parameters.AddWithValue("@prodID", prodId);
                 cmd.Parameters.AddWithValue("@qty", Quantity);
                 cmd.CommandType = CommandType.StoredProcedure;
-
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }

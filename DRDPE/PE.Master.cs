@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,7 +13,19 @@ namespace DRDPE
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+        }
 
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            if (txtSearch.Text.Trim() != string.Empty)
+            {
+                GetSearchResultsForProducts(txtSearch.Text);
+            }
+        }
+        private void GetSearchResultsForProducts(string searchString)
+        {
+            Response.Redirect("~/index.aspx?SearchStr="+searchString+"&any="+chkKeywords.Checked);
         }
     }
 }

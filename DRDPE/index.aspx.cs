@@ -18,7 +18,7 @@ namespace DRDPE
         protected void Page_Load(object sender, EventArgs e)
         {
             string catId = Server.UrlDecode(Request.QueryString["Id"]);
-            string searchText = Server.UrlDecode(Request.QueryString["Search"]);
+            string searchText = Server.UrlDecode(Request.QueryString["SearchStr"]);
 
             if (!IsPostBack)
             {
@@ -36,20 +36,22 @@ namespace DRDPE
             {
                 getProducts(Convert.ToInt16(catId));
             }
-            Button btn = Master.FindControl("btnSearch") as Button;
-            btn.Click += new EventHandler(Search_Click);
+            //Button btn = Master.FindControl("btnSearch") as Button;
+            //btn.Click += new EventHandler(Search_Click);
         }
-        protected void Search_Click(object sender, EventArgs e)
-        {
-            TextBox txtSearch = Master.FindControl("txtSearch") as TextBox;
-            if (txtSearch.Text.Trim() != string.Empty)
-            {
-                GetSearchResultsForProducts(txtSearch.Text);
-            }
-        }
+        //protected void Search_Click(object sender, EventArgs e)
+        //{
+        //    TextBox txtSearch = Master.FindControl("txtSearch") as TextBox;
+        //    if (txtSearch.Text.Trim() != string.Empty)
+        //    {
+        //        GetSearchResultsForProducts(txtSearch.Text);
+        //    }
+        //}
 
         private void GetSearchResultsForProducts(string searchString)
         {
+            string anyCheck = Server.UrlDecode(Request.QueryString["any"]);
+            string origS = searchString;
             SqlDataReader dr = default(SqlDataReader);
             SqlCommand cmd = default(SqlCommand);
 
@@ -63,47 +65,49 @@ namespace DRDPE
                 lblMessage.Text = "You may use up to 5 keywords.";
                 return;
             }
-
-            try
+            else
             {
-                using (SqlConnection conn = new SqlConnection(cnnString))
+                try
                 {
-                    if ((Master.FindControl("chkKeywords") as CheckBox).Checked == true)
+                    using (SqlConnection conn = new SqlConnection(cnnString))
                     {
-                        cmd = new SqlCommand("KeywordSearchProductsAny", conn);
-                    }
-                    else
-                    {
-                        cmd = new SqlCommand("KeywordSearchProductsAll", conn);
-                    }
+                        if ((Master.FindControl("chkKeywords") as CheckBox).Checked == true)
+                        {
+                            cmd = new SqlCommand("KeywordSearchProductsAny", conn);
+                        }
+                        else
+                        {
+                            cmd = new SqlCommand("KeywordSearchProductsAll", conn);
+                        }
 
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    for (int i = 0; i < keywords.Count(); i++)
-                    {
-                        cmd.Parameters.AddWithValue("@Word" + (i + 1).ToString(), keywords[i].ToString());
-                    }
-                    conn.Open();
-                    dr = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        for (int i = 0; i < keywords.Count(); i++)
+                        {
+                            cmd.Parameters.AddWithValue("@Word" + (i + 1).ToString(), keywords[i].ToString());
+                        }
+                        conn.Open();
+                        dr = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
 
-                    if (dr.HasRows)
-                    {
-                        rptProd.DataSource = dr;
-                        rptProd.DataBind();
-                        lblHeader.Text = "Search results for \"" + (Master.FindControl("txtSearch") as TextBox).Text + "\"";
+                        if (dr.HasRows)
+                        {
+                            rptProd.DataSource = dr;
+                            rptProd.DataBind();
+                            lblHeader.Text = "Search results for \"" + origS + "\"";
+                        }
+                        else
+                        {
+                            lblMessage.Text = "No search results found.";
+                            rptProd.DataSource = null;
+                            rptProd.DataBind();
+                            lblHeader.Text = "";
+                        }
+                        conn.Close();
                     }
-                    else
-                    {
-                        lblMessage.Text = "No search results found.";
-                        rptProd.DataSource = null;
-                        rptProd.DataBind();
-                        lblHeader.Text = "";
-                    }
-                    conn.Close();
                 }
-            }
-            catch (Exception ex)
-            {
-                lblMessage.Text = ex.Message;
+                catch (Exception ex)
+                {
+                    lblMessage.Text = ex.Message;
+                }
             }
         }
 
