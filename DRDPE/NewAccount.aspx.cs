@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Mail;
 using System.Web;
@@ -45,7 +46,7 @@ namespace DRDPE
                     cmd.Parameters.Add("@middleInitial", SqlDbType.Char, 1).Value = txtMiddleInitial.Text;
                     cmd.Parameters.Add("@lastName", SqlDbType.NVarChar, 50).Value = txtLastName.Text;
                     cmd.Parameters.Add("@phone", SqlDbType.NVarChar, 10).Value = txtPhoneNumber.Text;
-                    cmd.Parameters.Add("@verificationToken", SqlDbType.NVarChar, 50).Value = userVerificationCode;
+                    cmd.Parameters.Add("@verificationToken", SqlDbType.NVarChar, 50).Value = userVerificationCode.ToString();
                     
                     using (conn)
                     {
@@ -64,7 +65,11 @@ namespace DRDPE
             catch (Exception ex)
             {
                 //logging
-            
+
+                EventLog log = new EventLog();
+
+                log.Source = "Demo Error Log";
+                log.WriteEntry(ex.Message, EventLogEntryType.Error);
                 return false;
             }
         }
