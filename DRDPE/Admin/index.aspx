@@ -9,5 +9,9 @@
         <li class="nav-item bg-dark" style="padding-top:0.5%;padding-bottom:0.5%;">
             <a class="btn btn-outline-light my-sm-0 nav-fill" style="width:90%;" href="ManageProducts.aspx">Manage Products</a>
         </li>
+        <li class="nav-item bg-dark" style="padding-top:0.5%;padding-bottom:0.5%;">
+            <a class="btn btn-outline-light my-sm-0 nav-fill" style="width:90%;" href="ManageCustomers.aspx">Manage Customers</a>
+        </li>
+
     </ul>
 </asp:Content>

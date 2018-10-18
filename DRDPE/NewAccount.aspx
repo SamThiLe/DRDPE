@@ -5,7 +5,7 @@
             <div class="row">
             <div class="col-md-6">
                 <h2>Register New User</h2>
-                <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
+                <asp:ValidationSummary ID="valSummary" runat="server" HeaderText="Opps! Please fix the following errors" />
                 <hr />
             </div>
         </div>
@@ -17,7 +17,7 @@
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <asp:TextBox runat="server" type="text" name="firstName" class="form-control" id="txtFirstName"
-                               placeholder="First Name" autofocus />
+                               placeholder="First Name" />
                         <asp:TextBox runat="server" type="text" name="middleInitial" class="form-control" id="txtMiddleInitial" placeholder="Middle Initial (Optional)" />
                         <asp:TextBox runat="server" type="text" name="lastName" class="form-control" id="txtLastName" placeholder="Last Name"  />
                     </div>
@@ -75,6 +75,9 @@
             </div>
             <div class="col-md-3">
                 <asp:RequiredFieldValidator ID="rfvConfirmPassword" runat="server" ControlToValidate="txtConfirmPassword" ErrorMessage="Password confirmation required" ForeColor="Red">*</asp:RequiredFieldValidator>
+
+                <asp:CompareValidator ID="cvConfirmPassword" runat="server" ControlToCompare="txtPassword" ControlToValidate="txtConfirmPassword" ErrorMessage="Passwords do not match" ForeColor="Red">*</asp:CompareValidator>
+
             </div>
         </div>
         <div class="row">
@@ -84,12 +87,13 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <asp:TextBox runat="server" class="form-control" id="txtDateOfBirth"  TextMode="Date"/>
+                        <asp:TextBox runat="server" class="form-control" id="txtDateOfBirth" TextMode="Date" />
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
-
+                <asp:RequiredFieldValidator ID="rfvDateOfBirth" runat="server" ControlToValidate="txtDateOfBirth" ErrorMessage="Date of Birth required" ForeColor="Red">*</asp:RequiredFieldValidator>
+                <asp:CompareValidator ID="cvDateOfBirth" runat="server" ErrorMessage="Need to be at least 16 years of age." ForeColor="Red" Operator="LessThan" ControlToValidate="txtDateOfBirth">*</asp:CompareValidator>
             </div>
         </div>
         <div class="row">
@@ -105,7 +109,7 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <asp:RequiredFieldValidator ID="rfvStreet" runat="server" ControlToValidate="txtStreetAddress" ErrorMessage="Street address required" ForeColor="Red">*</asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="rfvStreet" runat="server" ControlToValidate="txtStreetAddress" ErrorMessage="Street address required." ForeColor="Red">*</asp:RequiredFieldValidator>
             </div>
         </div>
         <div class="row">
@@ -121,7 +125,7 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <asp:RequiredFieldValidator ID="rfvCity" runat="server" ControlToValidate="txtCity" ErrorMessage="City is required" ForeColor="Red">*</asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="rfvCity" runat="server" ControlToValidate="txtCity" ErrorMessage="City is required." ForeColor="Red">*</asp:RequiredFieldValidator>
             </div>
         </div>
         <div class="row">
@@ -142,6 +146,7 @@
                 <asp:RequiredFieldValidator ID="rfvProvince" runat="server" ControlToValidate="txtProvince" ErrorMessage="Province is required" ForeColor="Red">*</asp:RequiredFieldValidator>
                 <asp:RequiredFieldValidator ID="rfvPostalCode" runat="server" ControlToValidate="txtPostalCode" ErrorMessage="Postal code is required" ForeColor="Red">*</asp:RequiredFieldValidator>
                 <asp:RequiredFieldValidator ID="rfvCountry" runat="server" ControlToValidate="txtCountry" ErrorMessage="Country is required" ForeColor="Red">*</asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtPostalCode" ErrorMessage="Incorrect format for Postal Code" ForeColor="Red" ValidationExpression="[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ] ?[0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]">*</asp:RegularExpressionValidator>
             </div>
         </div>
         <div class="row">
@@ -152,12 +157,13 @@
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <asp:Textbox runat="server" type="phone" name="txtPhoneNumber" class="form-control" id="txtPhoneNumber"
-                               placeholder="(123) 456-7890" autofocus />
+                               placeholder="(123) 456-7890" />
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
                 <asp:RequiredFieldValidator ID="rfvPhoneNumber" runat="server" ControlToValidate="txtPhoneNumber" ErrorMessage="Phone number required" ForeColor="Red">*</asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="txtPhoneNumber" ErrorMessage="Incorrect format for Phone number" ForeColor="Red" ValidationExpression="((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}">*</asp:RegularExpressionValidator>
             </div>
         </div>
         <div class="row">
@@ -168,18 +174,19 @@
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <asp:Textbox runat="server" type="text" name="email" class="form-control" id="txtEmail"
-                               placeholder="you@example.com" autofocus />
+                               placeholder="you@example.com" />
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
                 <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="E-mail address is required" ForeColor="Red">*</asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="txtEmail" ErrorMessage="Incorrect format for Email address" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">*</asp:RegularExpressionValidator>
             </div>
         </div>
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <button type="submit" class="btn btn-success"> Register</button>
+                <asp:Button ID="btnRegister" runat="server" type="submit" class="btn btn-success" Text="Register" OnClick="btnRegister_Click" />
                 <br />
                 <br />
             </div>
