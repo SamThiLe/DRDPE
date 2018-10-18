@@ -47,11 +47,19 @@
         </Columns>
     <RowStyle CssClass="CartListItem"></RowStyle>
       </asp:GridView>
+    <br />
+    <span><b>Subtotal:</b></span>
+    <asp:Label ID="lblGSubtotal" runat="server"></asp:Label>
+    <br />
+    <span><b>Tax:</b></span>
+    <asp:Label ID="lblTax" runat="server"></asp:Label>
+    <br />
     <span><b>Total:</b></span>
     <asp:Label ID="lblGrandTotal" runat="server"></asp:Label>
-
+    <br />
     <br />
     <asp:Button ID="btnUpdate" runat="server" Text="Update Cart" OnClick="btnUpdate_Click" />
     <asp:Button ID="btnContinue" runat="server" Text="Continue Shopping" OnClick="btnContinue_Click"  />
     <asp:Button ID="btnCheckOut" runat="server" Text="Check Out" OnClick="btnCheckOut_Click" />
+    <br />
 </asp:Content>

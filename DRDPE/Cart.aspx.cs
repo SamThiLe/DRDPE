@@ -32,14 +32,18 @@ namespace DRDPE
 
         private void calculateGrandTotal()
         {
-            decimal grandTotal = 0m;
+            decimal total = 0m;
             int count = grvCart.Rows.Count;
             for (int i = 0; i < count; i++)
             {
                 Label lblSubtotal = (Label)grvCart.Rows[i].FindControl("lblSubtotal");
-                 grandTotal += Convert.ToDecimal(lblSubtotal.Text.Substring(1));
+                 total += Convert.ToDecimal(lblSubtotal.Text.Substring(1));
             }
-            lblGrandTotal.Text = grandTotal.ToString("c");
+            lblGSubtotal.Text = total.ToString("c");
+            decimal tax = (total * 0.15m);
+            lblTax.Text = tax.ToString("c");
+            decimal gTotal = tax + total;
+            lblGrandTotal.Text = gTotal.ToString("c");
         }
 
         private void GetCart(string cartID)
@@ -94,7 +98,7 @@ namespace DRDPE
                     CheckBox chkDelete = (CheckBox)grvCart.Rows[i].FindControl("Remove");
                     Label lblProdId = (Label)grvCart.Rows[i].FindControl("ProductID");
                     string prodId = lblProdId.Text;
-                    if (chkDelete.Checked)
+                    if (chkDelete.Checked || Quantity=="0")
                     {
                         RemoveCartItem(cartId, prodId);
                     }
