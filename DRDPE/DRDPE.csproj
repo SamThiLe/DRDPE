@@ -139,6 +139,7 @@
     <Content Include="NewAccount.aspx" />
     <Content Include="ProductPage.aspx" />
     <Content Include="UserControls\SearchBox.ascx" />
+    <Content Include="Verify.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -222,6 +223,13 @@
     </Compile>
     <Compile Include="UserControls\SearchBox.ascx.designer.cs">
       <DependentUpon>SearchBox.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Verify.aspx.cs">
+      <DependentUpon>Verify.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Verify.aspx.designer.cs">
+      <DependentUpon>Verify.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
