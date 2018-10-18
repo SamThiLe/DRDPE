@@ -58,8 +58,8 @@
     <asp:Label ID="lblGrandTotal" runat="server"></asp:Label>
     <br />
     <br />
-    <asp:Button ID="btnUpdate" runat="server" Text="Update Cart" OnClick="btnUpdate_Click" />
-    <asp:Button ID="btnContinue" runat="server" Text="Continue Shopping" OnClick="btnContinue_Click"  />
-    <asp:Button ID="btnCheckOut" runat="server" Text="Check Out" OnClick="btnCheckOut_Click" />
-    <br />
+    <asp:Button ID="btnUpdate"  class="btn btn-outline-light" runat="server" Text="Update Cart" OnClick="btnUpdate_Click" />
+    <asp:Button ID="btnContinue"  class="btn btn-outline-light" runat="server" Text="Continue Shopping" OnClick="btnContinue_Click"  />
+    <asp:Button ID="btnCheckOut"  class="btn btn-outline-light" runat="server" Text="Check Out" OnClick="btnCheckOut_Click" />
+    <br /><br />
 </asp:Content>
