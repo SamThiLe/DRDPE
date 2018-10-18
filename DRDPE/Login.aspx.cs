@@ -13,5 +13,10 @@ namespace DRDPE
         {
 
         }
+
+        protected void btnLogin_Click(object sender, EventArgs e)
+        {
+            Session["login"] = true;
+        }
     }
 }

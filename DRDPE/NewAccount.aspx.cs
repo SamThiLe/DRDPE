@@ -23,9 +23,60 @@ namespace DRDPE
 
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-            AddCustomer();
-            SendWelcomeEmail();
-            Response.Redirect("Registered.aspx");
+            if (!CheckUsername())
+            {
+                CustomValidator err = new CustomValidator();
+                err.IsValid = false;
+                err.ControlToValidate = txtUserName.Text;
+                err.ErrorMessage = "That username is in use.";
+                Page.Validators.Add(err);
+            }
+            else
+            {
+                AddCustomer();
+                SendWelcomeEmail();
+                Response.Redirect("Registered.aspx");
+            }
+        }
+
+        private bool CheckUsername()
+        {
+            int ar = 0;
+            SqlCommand cmd = default(SqlCommand);
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(cnnString))
+                {
+                    cmd = new SqlCommand("checkUniqueUsername", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@username", SqlDbType.NVarChar, 15).Value = txtUserName.Text;
+
+
+                    using (conn)
+                    {
+                        conn.Open();
+                        ar = (int)cmd.ExecuteScalar();
+                        conn.Close();
+                    }
+                    if (ar > 0)
+                    {
+                        return false;
+                    }
+                    else
+                        return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                //logging
+
+                EventLog log = new EventLog();
+
+                log.Source = "Demo Error Log";
+                log.WriteEntry(ex.Message, EventLogEntryType.Error);
+                return false;
+            }
         }
 
         private bool AddCustomer()

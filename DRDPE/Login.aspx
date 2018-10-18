@@ -34,7 +34,7 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <asp:Button ID="btnLogin" runat="server" type="submit" class="btn btn-success" Text="Login" />
+            <asp:Button ID="btnLogin" runat="server" type="submit" class="btn btn-success" Text="Login" OnClick="btnLogin_Click" />
             <br />
             <br />
         </div>

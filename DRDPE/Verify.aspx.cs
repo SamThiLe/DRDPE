@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -29,21 +30,22 @@ namespace DRDPE
 
         private bool GetVerificationTokenFromDB(string token)
         {
-            SqlDataReader dr = default(SqlDataReader);
             SqlCommand cmd = default(SqlCommand);
 
             try
             {
                 using(SqlConnection conn = new SqlConnection(cnnString))
                 {
-                    cmd = new SqlCommand("matchVerificationToken", conn);
+                    cmd = new SqlCommand("verifyToken", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@token", SqlDbType.NVarChar, 50).Value = token.ToString();
+                    cmd.Parameters.Add("@verificationToken", SqlDbType.NVarChar, 50).Value = token.ToString();
+                    cmd.Parameters.Add("@result", SqlDbType.Int);
+                    cmd.Parameters["@result"].Direction = ParameterDirection.Output;
                     conn.Open();
+                    cmd.ExecuteScalar();
+                    int retval = (int)cmd.Parameters["@result"].Value;
 
-                    dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
-
-                    if (dr.HasRows)
+                    if (retval == 1)
                     {
                         return true;
                     }
@@ -56,6 +58,10 @@ namespace DRDPE
             catch(Exception ex)
             {
                 //logging
+                EventLog log = new EventLog();
+
+                log.Source = "Demo Error Log";
+                log.WriteEntry(ex.Message, EventLogEntryType.Error);
                 return false;
             }
         }
