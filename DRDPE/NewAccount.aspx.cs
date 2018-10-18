@@ -14,7 +14,7 @@ namespace DRDPE
     public partial class NewAccount : System.Web.UI.Page
     {
         private string cnnString = ConfigurationManager.ConnectionStrings["cnn"].ConnectionString;
-
+        private Guid userVerificationCode = Guid.NewGuid();
         protected void Page_Load(object sender, EventArgs e)
         {
             cvDateOfBirth.ValueToCompare = DateTime.Now.Date.AddYears(-19).ToString("d");
@@ -24,6 +24,7 @@ namespace DRDPE
         {
             //AddCustomer();
             SendWelcomeEmail();
+            Response.Redirect("Registered.aspx");
         }
 
         private bool AddCustomer()
@@ -43,7 +44,9 @@ namespace DRDPE
                     cmd.Parameters.Add("@firstName", SqlDbType.NVarChar, 50).Value = txtFirstName.Text;
                     cmd.Parameters.Add("@lastName", SqlDbType.NVarChar, 50).Value = txtLastName.Text;
                     cmd.Parameters.Add("@phone", SqlDbType.NVarChar, 10).Value = txtPhoneNumber.Text;
-                    
+                    cmd.Parameters.Add("@verificationToken", SqlDbType.NVarChar, 50).Value = userVerificationCode;
+
+
                     using (conn)
                     {
                         conn.Open();
@@ -68,7 +71,6 @@ namespace DRDPE
 
         private void SendWelcomeEmail()
         {
-            Guid userVerificationCode = Guid.NewGuid();
             string verificationLink = "http://" + HttpContext.Current.Request.Url.Host + ":2443/Verify.aspx?token=" + userVerificationCode;
 
             try
