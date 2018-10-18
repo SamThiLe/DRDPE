@@ -43,5 +43,5 @@
         <hr />
         </SeparatorTemplate>
     </asp:Repeater>
-    <asp:Button ID="btnAddToCart" runat="server" Text="Add To Cart" OnClick="btnAddToCart_Click" />
+    <asp:Button ID="btnAddToCart"  class="btn btn-outline-light my-sm-0 nav-fill" runat="server" Text="Add To Cart" OnClick="btnAddToCart_Click" /><br /><br />
 </asp:Content>
