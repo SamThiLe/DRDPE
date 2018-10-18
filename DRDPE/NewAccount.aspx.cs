@@ -22,7 +22,7 @@ namespace DRDPE
 
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-            //AddCustomer();
+            AddCustomer();
             SendWelcomeEmail();
             Response.Redirect("Registered.aspx");
         }
@@ -42,11 +42,11 @@ namespace DRDPE
                     cmd.Parameters.Add("@username", SqlDbType.NVarChar, 15).Value = txtUserName.Text;
                     cmd.Parameters.Add("@password", SqlDbType.NVarChar, 15).Value = txtPassword.Text;
                     cmd.Parameters.Add("@firstName", SqlDbType.NVarChar, 50).Value = txtFirstName.Text;
+                    cmd.Parameters.Add("@middleInitial", SqlDbType.Char, 1).Value = txtMiddleInitial.Text;
                     cmd.Parameters.Add("@lastName", SqlDbType.NVarChar, 50).Value = txtLastName.Text;
                     cmd.Parameters.Add("@phone", SqlDbType.NVarChar, 10).Value = txtPhoneNumber.Text;
                     cmd.Parameters.Add("@verificationToken", SqlDbType.NVarChar, 50).Value = userVerificationCode;
-
-
+                    
                     using (conn)
                     {
                         conn.Open();
