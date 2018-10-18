@@ -96,7 +96,10 @@ namespace DRDPE
             catch (Exception ex)
             {
                 //logging
+                EventLog log = new EventLog();
 
+                log.Source = "Demo Error Log";
+                log.WriteEntry(ex.Message, EventLogEntryType.Error);
 
             }
         }

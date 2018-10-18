@@ -25,10 +25,14 @@ namespace DRDPE
                 getCategories();
                 getFeatured();
             }
-            //to be removed
-            Response.Cookies["CartId"].Expires=DateTime.Today.AddDays(-1);
+            
             if (!string.IsNullOrEmpty(searchText))
             {
+                string anyCheck = Server.UrlDecode(Request.QueryString["any"]);
+                if (anyCheck == "True")
+                    (Master.FindControl("chkKeywords") as CheckBox).Checked = true;
+
+                (Master.FindControl("txtSearch") as TextBox).Text = searchText;
                 GetSearchResultsForProducts(searchText);
             }
 
@@ -36,21 +40,11 @@ namespace DRDPE
             {
                 getProducts(Convert.ToInt16(catId));
             }
-            //Button btn = Master.FindControl("btnSearch") as Button;
-            //btn.Click += new EventHandler(Search_Click);
         }
-        //protected void Search_Click(object sender, EventArgs e)
-        //{
-        //    TextBox txtSearch = Master.FindControl("txtSearch") as TextBox;
-        //    if (txtSearch.Text.Trim() != string.Empty)
-        //    {
-        //        GetSearchResultsForProducts(txtSearch.Text);
-        //    }
-        //}
 
         private void GetSearchResultsForProducts(string searchString)
         {
-            string anyCheck = Server.UrlDecode(Request.QueryString["any"]);
+            
             string origS = searchString;
             SqlDataReader dr = default(SqlDataReader);
             SqlCommand cmd = default(SqlCommand);

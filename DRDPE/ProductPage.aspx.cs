@@ -120,7 +120,7 @@ namespace DRDPE
                 trans.Commit();
 
                 Response.Cookies["cartId"].Value = cartID.ToString();
-                Response.Cookies["cartId"].Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies["cartId"].Expires = DateTime.Now.AddDays(1);
 
                 Response.Redirect("~/Cart.aspx?productId=" + productId);
             }

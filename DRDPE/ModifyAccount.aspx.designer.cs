@@ -10,7 +10,7 @@
 namespace DRDPE {
     
     
-    public partial class NewAccount {
+    public partial class ModifyAccount {
         
         /// <summary>
         /// valSummary control.
@@ -310,12 +310,12 @@ namespace DRDPE {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator3;
         
         /// <summary>
-        /// btnRegister control.
+        /// btnModify control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRegister;
+        protected global::System.Web.UI.WebControls.Button btnModify;
     }
 }

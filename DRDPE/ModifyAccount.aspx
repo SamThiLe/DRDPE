@@ -1,8 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PE.Master" AutoEventWireup="true" CodeBehind="ModifyAccount.aspx.cs" Inherits="DRDPE.NewAccount" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PE.Master" AutoEventWireup="true" CodeBehind="ModifyAccount.aspx.cs" Inherits="DRDPE.ModifyAccount" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-            <div class="row">
+        <div class="row">
             <div class="col-md-6">
                 <h2>Register New User</h2>
                 <asp:ValidationSummary ID="valSummary" runat="server" HeaderText="Opps! Please fix the following errors" />
@@ -186,7 +186,7 @@
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <asp:Button ID="btnRegister" runat="server" type="submit" class="btn btn-success" Text="Register" OnClick="btnRegister_Click" />
+                <asp:Button ID="btnModify" runat="server" type="submit" class="btn btn-success" Text="Register" />
                 <br />
                 <br />
             </div>

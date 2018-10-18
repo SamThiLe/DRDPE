@@ -76,6 +76,8 @@ namespace DRDPE
 
         protected void btnCheckOut_Click(object sender, EventArgs e)
         {
+            bool LoggedIn = true;
+            if(LoggedIn)
             Response.Redirect("~/Checkout.aspx");
         }
 
