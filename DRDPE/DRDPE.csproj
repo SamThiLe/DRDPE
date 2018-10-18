@@ -138,6 +138,7 @@
     <Content Include="js\popper.min.js" />
     <Content Include="Admin\ManageCategories.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="ModifyAccount.aspx" />
     <Content Include="NewAccount.aspx" />
     <Content Include="ProductPage.aspx" />
     <Content Include="Registered.aspx" />
@@ -211,6 +212,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ModifyAccount.aspx.cs">
+      <DependentUpon>ModifyAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModifyAccount.aspx.designer.cs">
+      <DependentUpon>ModifyAccount.aspx</DependentUpon>
     </Compile>
     <Compile Include="NewAccount.aspx.cs">
       <DependentUpon>NewAccount.aspx</DependentUpon>
