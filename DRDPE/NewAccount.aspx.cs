@@ -97,7 +97,13 @@ namespace DRDPE
                     cmd.Parameters.Add("@middleInitial", SqlDbType.Char, 1).Value = txtMiddleInitial.Text;
                     cmd.Parameters.Add("@lastName", SqlDbType.NVarChar, 50).Value = txtLastName.Text;
                     cmd.Parameters.Add("@phone", SqlDbType.NVarChar, 10).Value = txtPhoneNumber.Text;
+                    cmd.Parameters.Add("@street", SqlDbType.NVarChar, 50).Value = txtStreetAddress.Text;
+                    cmd.Parameters.Add("@city", SqlDbType.NVarChar, 50).Value = txtCity.Text;
+                    cmd.Parameters.Add("@stateProv", SqlDbType.NVarChar, 15).Value = txtProvince.Text;
+                    cmd.Parameters.Add("@country", SqlDbType.NVarChar, 20).Value = txtCountry.Text;
+                    cmd.Parameters.Add("@postalCode", SqlDbType.NVarChar, 10).Value = txtPostalCode.Text;
                     cmd.Parameters.Add("@verificationToken", SqlDbType.NVarChar, 50).Value = userVerificationCode.ToString();
+
                     
                     using (conn)
                     {
