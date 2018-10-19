@@ -75,7 +75,7 @@ namespace DRDPE
 
                 log.Source = "Demo Error Log";
                 log.WriteEntry(ex.Message, EventLogEntryType.Error);
-                return false;
+                return true;
             }
         }
 

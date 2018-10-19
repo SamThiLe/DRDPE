@@ -18,8 +18,8 @@
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <asp:TextBox runat="server" type="text" name="firstName" class="form-control" id="txtFirstName"
                                placeholder="First Name" />
-                        <asp:TextBox runat="server" type="text" name="middleInitial" class="form-control" id="txtMiddleInitial" placeholder="Middle Initial (Optional)" />
-                        <asp:TextBox runat="server" type="text" name="lastName" class="form-control" id="txtLastName" placeholder="Last Name"  />
+                        <asp:TextBox runat="server" type="text" name="middleInitial" class="form-control" id="txtMiddleInitial" placeholder="Middle Initial" />
+                        <asp:TextBox runat="server" type="text" name="lastName" class="form-control" id="txtLastName" placeholder="Last Name" />
                     </div>
                 </div>            
             </div>

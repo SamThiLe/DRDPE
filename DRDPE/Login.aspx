@@ -2,15 +2,19 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
     <div class="row">
         <div class="col-md-6">
             <h2>User Login</h2>
             <hr />
+            <asp:Label runat="server" ID="lblSuccess"></asp:Label>
         </div>
     </div>
+
+    <div runat="server" id="loginContainer">
     <div class="row">
         <div class="col-md-3 field-label-responsive">
-            <label for="username">Username</label>
+            <asp:Label runat="server" id="lblUser" for="username">Username</asp:Label>
         </div>
         <div class="col-md-6">
             <div class="form-group">
@@ -22,7 +26,7 @@
     </div>
     <div class="row">
         <div class="col-md-3 field-label-responsive">
-            <label for="password">Password</label>
+            <asp:Label runat="server" id="lblPass" for="password">Password</asp:Label>
         </div>
         <div class="col-md-6">
             <div class="form-group has-danger">
@@ -33,10 +37,14 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-md-3 field-label-responsive">
+
+        </div>
         <div class="col-md-6">
-            <asp:Button ID="btnLogin" runat="server" type="submit" class="btn btn-success" Text="Login" OnClick="btnLogin_Click" />
+            <asp:Button ID="btnLogin" runat="server" type="submit" class="btn btn-success" Text="Login" OnClick="btnLogin_Click" data-toggle="modal" data-target="#myModal"/>
             <br />
             <br />
+        </div>
         </div>
     </div>
 </asp:Content>
