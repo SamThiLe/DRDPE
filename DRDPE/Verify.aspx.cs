@@ -60,8 +60,8 @@ namespace DRDPE
                 //logging
                 EventLog log = new EventLog();
 
-                log.Source = "Demo Error Log";
-                log.WriteEntry(ex.Message, EventLogEntryType.Error);
+                //log.Source = "Demo Error Log";
+                //log.WriteEntry(ex.Message, EventLogEntryType.Error);
                 return false;
             }
         }

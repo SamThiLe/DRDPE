@@ -20,12 +20,12 @@ namespace DRDPE
             string catId = Server.UrlDecode(Request.QueryString["Id"]);
             string searchText = Server.UrlDecode(Request.QueryString["SearchStr"]);
 
-            if (!IsPostBack)
+
+            if (!IsPostBack && string.IsNullOrEmpty(searchText))
             {
                 getCategories();
                 getFeatured();
             }
-            
             if (!string.IsNullOrEmpty(searchText))
             {
                 string anyCheck = Server.UrlDecode(Request.QueryString["any"]);
@@ -91,9 +91,8 @@ namespace DRDPE
                         else
                         {
                             lblMessage.Text = "No search results found.";
-                            rptProd.DataSource = null;
-                            rptProd.DataBind();
-                            lblHeader.Text = "";
+                            getCategories();
+                            getFeatured();
                         }
                         conn.Close();
                     }
