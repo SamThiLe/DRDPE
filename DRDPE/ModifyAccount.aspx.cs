@@ -18,13 +18,39 @@ namespace DRDPE
         private Guid userVerificationCode = Guid.NewGuid();
         protected void Page_Load(object sender, EventArgs e)
         {
-            cvDateOfBirth.ValueToCompare = DateTime.Now.Date.AddYears(-19).ToString("d");
+            if (!IsPostBack)
+            {
+                //GetAccountInfo();
+            }
+            //if (Request.Cookies["CheckingOut"].Value == "true")
+            //{
+            //    //CheckoutVersion Of Things
+            //}
         }
 
-        protected void btnRegister_Click(object sender, EventArgs e)
+        private void GetAccountInfo()
         {
-            ModifyCustomer();
-            Response.Redirect("Registered.aspx");
+            SqlDataReader dr = default(SqlDataReader);
+            SqlCommand cmd = default(SqlCommand);
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(cnnString))
+                {
+                    string productId = Request.QueryString["productId"];
+                    cmd = new SqlCommand("getFullCustomerInfo", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    conn.Open();
+                    dr = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+                }
+            }
+            catch (Exception ex)
+            {
+                
+            }
+            finally
+            {
+                dr.Close();
+            }
         }
 
         private bool ModifyCustomer()
@@ -39,14 +65,10 @@ namespace DRDPE
                     cmd = new SqlCommand("insertCustomer", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@email", SqlDbType.NVarChar, 50).Value = txtEmail.Text;
-                    cmd.Parameters.Add("@username", SqlDbType.NVarChar, 15).Value = txtUserName.Text;
                     cmd.Parameters.Add("@password", SqlDbType.NVarChar, 15).Value = txtPassword.Text;
-                    cmd.Parameters.Add("@firstName", SqlDbType.NVarChar, 50).Value = txtFirstName.Text;
-                    cmd.Parameters.Add("@middleInitial", SqlDbType.Char, 1).Value = txtMiddleInitial.Text;
                     cmd.Parameters.Add("@lastName", SqlDbType.NVarChar, 50).Value = txtLastName.Text;
                     cmd.Parameters.Add("@phone", SqlDbType.NVarChar, 10).Value = txtPhoneNumber.Text;
                     cmd.Parameters.Add("@verificationToken", SqlDbType.NVarChar, 50).Value = userVerificationCode.ToString();
-
                     using (conn)
                     {
                         conn.Open();
