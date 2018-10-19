@@ -27,6 +27,11 @@ namespace DRDPE
                 Session["login"] = true;
                 loginContainer.Style.Add("display", "none");
                 lblSuccess.Text = "<h3>Login succesful. Redirecting...</h3>";
+                Response.Redirect("index.aspx");
+            }
+            else
+            {
+                lblSuccess.Text = "<h3>Login unsuccessful. No existing user with those matching credentials.</h3>";
             }
 
         }
