@@ -77,8 +77,12 @@ namespace DRDPE
         protected void btnCheckOut_Click(object sender, EventArgs e)
         {
             bool LoggedIn = true;
-            if(LoggedIn)
-            Response.Redirect("~/Checkout.aspx");
+            if (LoggedIn)
+            {
+                Response.Cookies["ChekingOut"].Value = "true";
+                Response.Redirect("~/Checkout.aspx");
+            }
+            
         }
 
         protected void btnContinue_Click(object sender, EventArgs e)
