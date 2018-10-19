@@ -270,7 +270,7 @@ namespace DRDPE
                     cmd.Parameters.AddWithValue("@price", txtProductPrice.Text);
                     cmd.Parameters.AddWithValue("@featured", chkProductFeatured.Checked);
                     cmd.Parameters.AddWithValue("@categoryId", ddlCat.SelectedValue);
-                    cmd.Parameters.AddWithValue("@imageUrl", "Template");
+                    //cmd.Parameters.AddWithValue("@imageUrl", "Template");
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     using (conn)
@@ -344,7 +344,7 @@ namespace DRDPE
                     cmd.Parameters.AddWithValue("@price", txtProductPrice.Text);
                     cmd.Parameters.AddWithValue("@featured", chkProductFeatured.Checked);
                     cmd.Parameters.AddWithValue("@categoryId", ddlCat.SelectedValue);
-                    cmd.Parameters.AddWithValue("@imageUrl", "Template");
+                    //cmd.Parameters.AddWithValue("@imageUrl", "Template");
                     cmd.CommandType = CommandType.StoredProcedure;
                     using (conn)
                     {
