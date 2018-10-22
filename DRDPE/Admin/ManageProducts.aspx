@@ -68,8 +68,8 @@
 
                                     <br />
                     <label>Status Code:</label><br />
-                    <asp:TextBox ID="txtProductStatus" runat="server" Text='<%#Eval("statusCode")%>' />
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Product status is Required" ControlToValidate="txtProductStatus" ForeColor="Orange">*</asp:RequiredFieldValidator>
+                    <asp:DropDownList ID="ddlProductStatus" runat="server"></asp:DropDownList>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Product status is Required" ControlToValidate="ddlProductStatus" ForeColor="Orange">*</asp:RequiredFieldValidator>
 
                                     <br />
                     <label>Price:</label><br />

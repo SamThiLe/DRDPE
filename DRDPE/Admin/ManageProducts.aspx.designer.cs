@@ -130,13 +130,13 @@ namespace DRDPE {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
         
         /// <summary>
-        /// txtProductStatus control.
+        /// ddlProductStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProductStatus;
+        protected global::System.Web.UI.WebControls.DropDownList ddlProductStatus;
         
         /// <summary>
         /// RequiredFieldValidator4 control.
