@@ -2,10 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="#993300"></asp:Label>
     <h3>Product for Selected Catagory</h3>
-
-
     <asp:Repeater ID="rptCat" runat="server">
         <HeaderTemplate>
             <ul id="catList" class="nav nav-fill">
