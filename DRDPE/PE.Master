@@ -22,6 +22,7 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
+                    
                   <li class="nav-item">
                     <a runat="server" id="linkLogin" class="nav-link" href="Login.aspx">Log in</a>
                   </li>
@@ -31,6 +32,10 @@
                   <li class="nav-item">
                   <a class="nav-link" href="#">About Us</a>
                   </li>
+                    <li class="nav-item"><asp:Label class="nav-link active" runat="server" ID="lblLoggedInAs"></asp:Label></li>
+                    <li class="nav-item">
+                        <a runat="server" id="linkLogout" class="nav-link" href="Login.aspx" >[Logout]</a>
+                    </li>
                 </ul>
                   <label>Any&nbsp;</label><asp:Checkbox ID="chkKeywords" runat="server" Checked="false"/>&emsp;
                 <asp:TextBox ID="txtSearch" runat="server" type="text" class="form-control mr-sm-2  custom-search-box" placeholder="Search" name="q"></asp:TextBox>

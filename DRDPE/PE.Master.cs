@@ -13,8 +13,13 @@ namespace DRDPE
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            linkLogout.Visible = Convert.ToBoolean(Session["login"]);
             linkLogin.Visible = !Convert.ToBoolean(Session["login"]);
             linkSignup.Visible = !Convert.ToBoolean(Session["login"]);
+            if (Session["login"] != null)
+            {
+                lblLoggedInAs.Text = "[Logged in as " + Session["username"] + "]";
+            }
         }
 
 
