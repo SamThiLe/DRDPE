@@ -45,7 +45,6 @@ namespace DRDPE
                 rptProd.Visible = false;
             }
         }
-
         private void FillProductStatusDDL()
         {
             ddlProductStatus.DataSource = Enumeration.GetAll<ProductStatus>();
@@ -53,7 +52,6 @@ namespace DRDPE
             ddlProductStatus.DataValueField = "Key";
             ddlProductStatus.DataBind();
         }
-
         protected void Search_Click(object sender, EventArgs e)
         {
             TextBox txtSearch = Master.FindControl("txtSearch") as TextBox;
@@ -82,12 +80,14 @@ namespace DRDPE
                     }
                     else
                     {
+                        ShowError();
                         myMessage.Text = "No rows found.";
                     }
                 }
             }
             catch (Exception ex)
             {
+                ShowError();
                 myMessage.Text = ex.Message;
             }
             finally
@@ -115,12 +115,14 @@ namespace DRDPE
                     }
                     else
                     {
+                        ShowError();
                         myMessage.Text = "No rows found.";
                     }
                 }
             }
             catch (Exception ex)
             {
+                ShowError();
                 myMessage.Text = ex.Message;
             }
             finally
@@ -138,6 +140,7 @@ namespace DRDPE
             string[] keywords = searchString.Split(System.Convert.ToChar(";"));
             if (keywords.Count() > 5)
             {
+                ShowError();
                 myMessage.Text = "You may use up to 5 keywords.";
                 return;
             }
@@ -168,6 +171,7 @@ namespace DRDPE
                     }
                     else
                     {
+                        ShowError();
                         myMessage.Text = "No search results found.";
                         rptProd.DataSource = null;
                         rptProd.DataBind();
@@ -178,6 +182,7 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
+                ShowError();
                 myMessage.Text = ex.Message;
             }
         }
@@ -213,6 +218,7 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
+                ShowError();
                 myMessage.Text = ex.Message;
             }
             finally
@@ -251,6 +257,7 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
+                ShowError();
                 myMessage.Text = ex.Message;
             }
             finally
@@ -263,7 +270,6 @@ namespace DRDPE
             productContainer.Style.Add("display", "none");
             btnSave.Visible = false;
         }
-
         #region Update Product
         protected bool UpdateProduct()
         {
@@ -304,6 +310,7 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
+                ShowError();
                 myMessage.Text = "Some fields were not validated. Please try again";
                 return false;
             }
@@ -313,15 +320,14 @@ namespace DRDPE
             Label myMessage = Master.FindControl("lblMessage") as Label;
             if (UpdateProduct())
             {
+                ShowError();
                 myMessage.Text = "Product Updated Successfuly";
                 productContainer.Style.Add("display", "none");
                 btnSave.Visible = false;
             }
         }
         #endregion
-
         #region Add Product
-
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             rptProd.Visible = false;
@@ -341,7 +347,6 @@ namespace DRDPE
             btnUpdate.Visible = false;
             btnSave.Visible = true;
         }
-
         protected bool AddProduct()
         {
             Label myMessage = Master.FindControl("lblMessage") as Label;
@@ -379,6 +384,7 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
+                ShowError();
                 myMessage.Text = "Some fields were not correct. Please try again";
                 return false;
             }
@@ -388,6 +394,7 @@ namespace DRDPE
             Label myMessage = Master.FindControl("lblMessage") as Label;
             if (AddProduct())
             {
+                ShowError();
                 myMessage.Text = "Product Added Successfuly";
                 productContainer.Style.Add("display", "none");
             }
@@ -399,6 +406,7 @@ namespace DRDPE
             Label myMessage = Master.FindControl("lblMessage") as Label;
             if (DeleteProduct())
             {
+                ShowError();
                 myMessage.Text = "Product deleted Successfuly";
                 btnSave.Visible = false;
                 productContainer.Style.Add("display", "none");
@@ -406,7 +414,6 @@ namespace DRDPE
             }
                 
         }
-
         private bool DeleteProduct()
         {
             Label myMessage = Master.FindControl("lblMessage") as Label;
@@ -438,12 +445,12 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
+                ShowError();
                 myMessage.Text = ex.Message;
                 return false;
             }
         }
         #endregion
-
         #region ErrorMessage
         private void ShowError()
         {

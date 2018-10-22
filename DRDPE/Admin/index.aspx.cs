@@ -11,7 +11,24 @@ namespace DRDPE.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Label myMessage = Master.FindControl("lblMessage") as Label;
+            if (myMessage.Text == "")
+            {
+                HideError();
+            }
         }
+
+        #region ErrorMessage
+        private void ShowError()
+        {
+            System.Web.UI.HtmlControls.HtmlGenericControl myError = (System.Web.UI.HtmlControls.HtmlGenericControl)Master.FindControl("errorMessage");
+            myError.Style.Remove("Display");
+        }
+        private void HideError()
+        {
+            System.Web.UI.HtmlControls.HtmlGenericControl myError = (System.Web.UI.HtmlControls.HtmlGenericControl)Master.FindControl("errorMessage");
+            myError.Style.Add("Display", "none");
+        }
+        #endregion
     }
 }
