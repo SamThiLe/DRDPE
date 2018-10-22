@@ -16,6 +16,12 @@ namespace DRDPE
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Label myMessage = Master.FindControl("lblMessage") as Label;
+            if (myMessage.Text == "")
+            {
+                HideError();
+            }
+            
             string catId = Server.UrlDecode(Request.QueryString["Id"]);
             if (!IsPostBack || (string)Session["changed"] == "yes")
             {
@@ -31,9 +37,9 @@ namespace DRDPE
         #region Methods
         protected void getCategories()
         {
+            Label myMessage = Master.FindControl("lblMessage") as Label;
             SqlDataReader dr = default(SqlDataReader);
             SqlCommand cmd = default(SqlCommand);
-
             try
             {
                 using (SqlConnection conn = new SqlConnection(cnnString))
@@ -49,13 +55,15 @@ namespace DRDPE
                     }
                     else
                     {
-                        lblMessage.Text = "No rows found.";
+                        ShowError();
+                        myMessage.Text = "No Categories found.";
                     }
                 }
             }
             catch (Exception ex)
             {
-                lblMessage.Text = ex.Message;
+                ShowError();
+                myMessage.Text = ex.Message;
             }
             finally
             {
@@ -64,6 +72,7 @@ namespace DRDPE
         }
         protected void GetCategory(int catId)
         {
+            Label myMessage = Master.FindControl("lblMessage") as Label;
             SqlDataReader dr = default(SqlDataReader);
             SqlCommand cmd = default(SqlCommand);
 
@@ -90,13 +99,15 @@ namespace DRDPE
                     }
                     else
                     {
-                        lblMessage.Text = "No rows found.<br>";
+                        ShowError();
+                        myMessage.Text = "No rows found.<br>";
                     }
                 }
             }
             catch (Exception ex)
             {
-                lblMessage.Text = ex.Message;
+                ShowError();
+                myMessage.Text = ex.Message;
             }
             finally
             {
@@ -105,6 +116,7 @@ namespace DRDPE
         }
         protected bool AddCategory()
         {
+            Label myMessage = Master.FindControl("lblMessage") as Label;
             int ar = 0;
             SqlCommand cmd = default(SqlCommand);
 
@@ -134,12 +146,14 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
-                lblMessage.Text = ex.Message.ToString();
+                ShowError();
+                myMessage.Text = ex.Message.ToString();
                 return false;
             }
         }
         protected bool UpdateCategory()
         {
+            Label myMessage = Master.FindControl("lblMessage") as Label;
             string catDes = txtCatDescriptionUpdate.Text;
 
             int ar = 0;
@@ -172,12 +186,14 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
-                lblMessage.Text = ex.Message;
+                ShowError();
+                myMessage.Text = ex.Message;
                 return false;
             }
         }
         private bool DeleteSelectedCategory()
         {
+            Label myMessage = Master.FindControl("lblMessage") as Label;
             int ar = 0;
             SqlCommand cmd = default(SqlCommand);
 
@@ -206,7 +222,8 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
-                lblMessage.Text = "Error: All Products must be removed before this Category can be deleted";
+                ShowError();
+                myMessage.Text = "Error: All Products must be removed before this Category can be deleted";
                 return false;
             }
         }
@@ -222,11 +239,11 @@ namespace DRDPE
 
         #region Events
         protected void btnAddCategory_Click(object sender, EventArgs e)
-            {
-                ClearForm();
-                categoryUpdateContainer.Style.Add("Display", "none");
-                categoryAddContainer.Style.Remove("Display");
-            }
+        {
+            ClearForm();
+            categoryUpdateContainer.Style.Add("Display", "none");
+            categoryAddContainer.Style.Remove("Display");
+        }
         protected void btnCancel_Command(object sender, CommandEventArgs e)
         {
             ClearForm();
@@ -235,19 +252,46 @@ namespace DRDPE
         }
         protected void btnAdd_Click(object sender, EventArgs e)
         {
+            Label myMessage = Master.FindControl("lblMessage") as Label;
             if (AddCategory())
-                lblMessage.Text = "Category Added Successfuly";
+            {
+                ShowError();
+                myMessage.Text = "Category Added Successfuly";
+            }
+                
         }
         protected void btnCategoryDelete_Click(object sender, EventArgs e)
         {
-            if(DeleteSelectedCategory())
-                lblMessage.Text = "Category deleted Successfuly";
+            Label myMessage = Master.FindControl("lblMessage") as Label;
+            if (DeleteSelectedCategory())
+            {
+                ShowError();
+                myMessage.Text = "Category deleted Successfuly";
+            }
+                
         }
         #endregion
         protected void btnCategoryUpdate_Click(object sender, EventArgs e)
         {
+            Label myMessage = Master.FindControl("lblMessage") as Label;
             if (UpdateCategory())
-                lblMessage.Text = "Category updated Successfuly";
+            {
+                ShowError();
+                myMessage.Text = "Category updated Successfuly";
+            }
+                
         }
+        #region ErrorMessage
+        private void ShowError()
+        {
+            System.Web.UI.HtmlControls.HtmlGenericControl myError = (System.Web.UI.HtmlControls.HtmlGenericControl)Master.FindControl("errorMessage");
+            myError.Style.Remove("Display");
+        }
+        private void HideError()
+        {
+            System.Web.UI.HtmlControls.HtmlGenericControl myError = (System.Web.UI.HtmlControls.HtmlGenericControl)Master.FindControl("errorMessage");
+            myError.Style.Add("Display", "none");
+        }
+        #endregion
     }
 }
