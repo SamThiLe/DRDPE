@@ -20,10 +20,10 @@
                 <h4>Price:</h4>
                 <asp:Label runat="server"><%#Eval("price", "{0:c}")%></asp:Label>
             </p>
-            <p>
+<%--            <p>
                 <h4>Status:</h4>
                 <asp:Label ID="chkStatus" runat="server" Enabled="false" Text='<%#Eval("statusCode")%>'></asp:Label>
-            </p>
+            </p>--%>
             <!--
             <h4>Featured:</h4>
             <asp:checkbox ID="chkFeatured" runat="server" Enabled="false" Checked='<%#Eval("featured")%>' />
