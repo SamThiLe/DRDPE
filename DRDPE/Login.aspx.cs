@@ -18,6 +18,7 @@ namespace DRDPE
         protected void Page_Load(object sender, EventArgs e)
         {
             Session.RemoveAll();
+
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -28,6 +29,10 @@ namespace DRDPE
                 Session["username"] = txtUserName.Text;
                 loginContainer.Style.Add("display", "none");
                 lblSuccess.Text = "<h3>Login succesful. Redirecting...</h3>";
+                if (Request.QueryString["CO"] == "1")
+                {
+                    Response.Redirect("~/ModifyAccount.aspx");
+                }
                 Response.Redirect("index.aspx");
             }
             else
