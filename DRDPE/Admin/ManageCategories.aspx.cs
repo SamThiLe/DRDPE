@@ -42,10 +42,8 @@ namespace DRDPE
                     cmd.CommandType = CommandType.StoredProcedure;
                     conn.Open();
                     dr = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-
                     if (dr.HasRows)
                     {
-
                         rptCat.DataSource = dr;
                         rptCat.DataBind();
                     }
@@ -127,6 +125,7 @@ namespace DRDPE
                     if (ar > 0)
                     {
                         Session["added"] = "yes";
+                        getCategories();
                         return true;
                     }
                     else
@@ -164,6 +163,7 @@ namespace DRDPE
                     if (ar > 0)
                     {
                         Session["added"] = "yes";
+                        getCategories();
                         return true;
                     }
                     else
@@ -197,6 +197,7 @@ namespace DRDPE
                     if (ar > 0)
                     {
                         Session["change"] = "yes";
+                        getCategories();
                         return true;
                     }
                     else
