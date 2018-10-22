@@ -20,7 +20,7 @@ namespace DRDPE
             string token = Server.UrlDecode(Request.QueryString["token"]);
             if (GetVerificationTokenFromDB(token))
             {
-                lblMessage.Text = "<h2>Thank you for verifying your account. Start shopping now!</h2>";
+                lblMessage.Text = "<h2>Thank you for verifying your account. You can now log in and start shopping!</h2>";
             }
             else
             {

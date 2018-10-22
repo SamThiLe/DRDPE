@@ -24,6 +24,7 @@ namespace DRDPE
             string prodId = Server.UrlDecode(Request.QueryString["prodId"]);
             if (!IsPostBack || (string)Session["changed"] == "yes")
             {
+                FillProductStatusDDL();
                 getCategoriesForDDL();
                 getCategories();
                 Session.Remove("changed");
@@ -46,6 +47,15 @@ namespace DRDPE
             //btn.Click += new EventHandler(Search_Click);
 
         }
+
+        private void FillProductStatusDDL()
+        {
+            ddlProductStatus.DataSource = Enumeration.GetAll<ProductStatus>();
+            ddlProductStatus.DataTextField = "Value";
+            ddlProductStatus.DataValueField = "Key";
+            ddlProductStatus.DataBind();
+        }
+
         protected void Search_Click(object sender, EventArgs e)
         {
             TextBox txtSearch = Master.FindControl("txtSearch") as TextBox;
@@ -191,7 +201,7 @@ namespace DRDPE
                         txtProductName.Text = dr["productname"].ToString();
                         txtProductBriefDescription.Text = dr["briefDescription"].ToString();
                         txtProductFullDescription.Text = dr["fullDescription"].ToString();
-                        txtProductStatus.Text = dr["statusCode"].ToString();
+                        ddlProductStatus.SelectedValue = dr["statusCode"].ToString();
                         txtProductPrice.Text = Convert.ToDecimal(dr["price"]).ToString("c");
                         chkProductFeatured.Checked = Convert.ToBoolean(dr["featured"]);
                         imgProd.ImageUrl = "../" + Convert.ToString(dr["imageUrl"]);
@@ -210,6 +220,7 @@ namespace DRDPE
         }
         protected void getCategoriesForDDL()
         {
+
             SqlDataReader dr = default(SqlDataReader);
             SqlCommand cmd = default(SqlCommand);
 
@@ -266,7 +277,7 @@ namespace DRDPE
                     cmd.Parameters.AddWithValue("@productName", txtProductName.Text);
                     cmd.Parameters.AddWithValue("@briefDescription", txtProductBriefDescription.Text);
                     cmd.Parameters.AddWithValue("@fullDescription", txtProductFullDescription.Text);
-                    cmd.Parameters.AddWithValue("@statusCode", txtProductStatus.Text);
+                    cmd.Parameters.AddWithValue("@statusCode", ddlProductStatus.SelectedValue);
                     cmd.Parameters.AddWithValue("@price", txtProductPrice.Text);
                     cmd.Parameters.AddWithValue("@featured", chkProductFeatured.Checked);
                     cmd.Parameters.AddWithValue("@categoryId", ddlCat.SelectedValue);
@@ -316,7 +327,7 @@ namespace DRDPE
             txtProductName.Text = "";
             txtProductBriefDescription.Text = "";
             txtProductFullDescription.Text = "";
-            txtProductStatus.Text = "";
+            ddlProductStatus.SelectedIndex = -1;
             txtProductPrice.Text = "";
             chkProductFeatured.Checked = false;
             imgProd.ImageUrl = "";
@@ -340,7 +351,7 @@ namespace DRDPE
                     cmd.Parameters.AddWithValue("@productName", txtProductName.Text);
                     cmd.Parameters.AddWithValue("@briefDescription", txtProductBriefDescription.Text);
                     cmd.Parameters.AddWithValue("@fullDescription", txtProductFullDescription.Text);
-                    cmd.Parameters.AddWithValue("@statusCode", txtProductStatus.Text);
+                    cmd.Parameters.AddWithValue("@statusCode", ddlProductStatus.SelectedValue);
                     cmd.Parameters.AddWithValue("@price", txtProductPrice.Text);
                     cmd.Parameters.AddWithValue("@featured", chkProductFeatured.Checked);
                     cmd.Parameters.AddWithValue("@categoryId", ddlCat.SelectedValue);

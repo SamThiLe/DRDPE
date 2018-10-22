@@ -13,7 +13,8 @@ namespace DRDPE
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            linkLogin.Visible = !Convert.ToBoolean(Session["login"]);
+            linkSignup.Visible = !Convert.ToBoolean(Session["login"]);
         }
 
 

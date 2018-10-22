@@ -52,34 +52,34 @@
                     <label>Product Id:</label><br />
 
                     <asp:TextBox ID="txtProduct" runat="server" style="background-color:#c4c4c4" ReadOnly="true" Text='<%#Eval("productId")%>'></asp:TextBox>
-                                    <br />
+                                    <br /><br />
                     <label>Product Name:</label><br />
                     
                     <asp:TextBox ID="txtProductName" runat="server" Text='<%#Eval("productName")%>'></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Product Name is Required" ControlToValidate="txtProductName" ForeColor="Orange">*</asp:RequiredFieldValidator>
-                                    <br />
+                                    <br /><br />
                     <label>Brief Description:</label><br />
                     <asp:TextBox ID="txtProductBriefDescription" runat="server" TextMode="MultiLine" Height="150" Width="400" Text='<%#Eval("briefDescription")%>'></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Product brief description is Required" ControlToValidate="txtProductBriefDescription" ForeColor="Orange">*</asp:RequiredFieldValidator>
-                                    <br />
+                                    <br /><br />
                     <label>Full Description:</label><br />
                     <asp:TextBox ID="txtProductFullDescription" TextMode="MultiLine" Height="150" Width="400" runat="server" Text='<%#Eval("fullDescription")%>'></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Product Full description is Required" ControlToValidate="txtProductFullDescription" ForeColor="Orange">*</asp:RequiredFieldValidator>
 
-                                    <br />
+                                    <br /><br />
                     <label>Status Code:</label><br />
-                    <asp:TextBox ID="txtProductStatus" runat="server" Text='<%#Eval("statusCode")%>' />
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Product status is Required" ControlToValidate="txtProductStatus" ForeColor="Orange">*</asp:RequiredFieldValidator>
+                    <asp:DropDownList ID="ddlProductStatus" runat="server"></asp:DropDownList>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Product status is Required" ControlToValidate="ddlProductStatus" ForeColor="Orange">*</asp:RequiredFieldValidator>
 
-                                    <br />
+                                    <br /><br />
                     <label>Price:</label><br />
                     <asp:TextBox ID="txtProductPrice" runat="server" Text='<%#Eval("price")%>'></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Product price is Required" ControlToValidate="txtProductPrice" ForeColor="Orange" ViewStateMode="Disabled" Display="Dynamic">*</asp:RequiredFieldValidator>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Product price must be in format #.##" ValidationExpression="\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9])?" ControlToValidate="txtProductPrice" ForeColor="Orange">*</asp:RegularExpressionValidator>
-                                    <br />
+                                    <br /><br />
                     <label>Featured:</label><br />
                     <asp:CheckBox ID="chkProductFeatured" runat="server" Checked='<%#Eval("featured")%>'/>
-                                    <br />
+                                    <br /><br />
                     <label>Category:</label><br />
                     <asp:DropDownList ID="ddlCat" runat="server" AppendDataBoundItems="true">
 
