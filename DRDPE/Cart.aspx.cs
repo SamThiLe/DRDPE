@@ -76,11 +76,15 @@ namespace DRDPE
 
         protected void btnCheckOut_Click(object sender, EventArgs e)
         {
-            bool LoggedIn = true;
+            bool LoggedIn = Convert.ToBoolean(Session["login"]);
             if (LoggedIn)
             {
-                Response.Cookies["ChekingOut"].Value = "true";
-                Response.Redirect("~/Checkout.aspx");
+                Response.Cookies["CheckingOut"].Value = "true";
+                Response.Redirect("~/ModifyAccount.aspx");
+            }
+            else
+            {
+                Response.Redirect("~/Login.aspx?CO=1");
             }
             
         }
