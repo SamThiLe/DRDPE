@@ -31,13 +31,12 @@
         <label>Category Id:</label>
         <br />
         <asp:TextBox ID="txtCategoryIdUpdate" style="background-color:#c4c4c4" runat="server" Enabled="False" Text=''></asp:TextBox>
-        <br />
+        <br /><br />
         <label>Category Name:</label>
         <br />
         <asp:TextBox ID="txtCategoryNameUpdate" runat="server" Text=''></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Category Name Required" ControlToValidate="txtCategoryNameUpdate" ForeColor="Orange">*</asp:RequiredFieldValidator>
-
-        <br />
+        <br /><br />
         <label>Description:</label>
         <br />
         <asp:TextBox ID="txtCatDescriptionUpdate" TextMode="MultiLine" Height="150" Width="400" runat="server" Text=""></asp:TextBox>
@@ -55,7 +54,7 @@
         <asp:TextBox ID="txtCategoryNameAdd" runat="server" Text=''></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Category Name is Required" ControlToValidate="txtCategoryNameAdd" ValidationGroup="addCat" ForeColor="Orange">*</asp:RequiredFieldValidator>
 
-        <br />
+        <br /><br />
         <label>Description:</label>
         <br />
         <asp:TextBox ID="txtCategoryDescriptionAdd" Height="150" Width="400" TextMode="MultiLine" runat="server" Text='<%#Eval("description")%>'></asp:TextBox>
