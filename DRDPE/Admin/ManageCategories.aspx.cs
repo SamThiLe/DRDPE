@@ -13,7 +13,6 @@ namespace DRDPE
     public partial class ManageCategories : System.Web.UI.Page
     {
         private string cnnString = ConfigurationManager.ConnectionStrings["cnn"].ConnectionString;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             Label myMessage = Master.FindControl("lblMessage") as Label;

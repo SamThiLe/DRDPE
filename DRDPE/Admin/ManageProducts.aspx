@@ -2,7 +2,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
     <div id="col1">
     <h3>Add a new item or select a category</h3>
     <asp:Repeater ID="rptCat" runat="server">
@@ -24,7 +23,6 @@
         </FooterTemplate>
     </asp:Repeater>
   </div>
-    <asp:Label ID="lblMessage" runat="server" Text="" EnableViewState="False"></asp:Label>
     <h3><asp:Label ID="lblHeader" runat="server" Text=""></asp:Label></h3>
       <br />
       <asp:Repeater ID="rptProd" runat="server">

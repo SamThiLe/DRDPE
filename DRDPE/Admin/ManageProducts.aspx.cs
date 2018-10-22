@@ -13,11 +13,13 @@ namespace DRDPE
     public partial class ManageProducts : System.Web.UI.Page
     {
         private string cnnString = ConfigurationManager.ConnectionStrings["cnn"].ConnectionString;
-
-        //private Control productContainer;
-
         protected void Page_Load(object sender, EventArgs e)
         {
+            Label myMessage = Master.FindControl("lblMessage") as Label;
+            if (myMessage.Text == "")
+            {
+                HideError();
+            }
             btnSave.Visible = false;
             productContainer.Style.Add("display", "none");
             string catId = Server.UrlDecode(Request.QueryString["catId"]);
@@ -42,10 +44,6 @@ namespace DRDPE
                 getProduct();
                 rptProd.Visible = false;
             }
-            
-            //Button btn = Master.FindControl("btnSearch") as Button;
-            //btn.Click += new EventHandler(Search_Click);
-
         }
 
         private void FillProductStatusDDL()
@@ -66,6 +64,7 @@ namespace DRDPE
         }
         protected void getCategories()
         {
+            Label myMessage = Master.FindControl("lblMessage") as Label;
             SqlDataReader dr = default(SqlDataReader);
             SqlCommand cmd = default(SqlCommand);
             try
@@ -83,13 +82,13 @@ namespace DRDPE
                     }
                     else
                     {
-                        //lblMessage.Text = "No rows found.";
+                        myMessage.Text = "No rows found.";
                     }
                 }
             }
             catch (Exception ex)
             {
-                lblMessage.Text = ex.Message;
+                myMessage.Text = ex.Message;
             }
             finally
             {
@@ -98,6 +97,7 @@ namespace DRDPE
         }
         protected void getProducts(int catId)
         {
+            Label myMessage = Master.FindControl("lblMessage") as Label;
             SqlDataReader dr = default(SqlDataReader);
             SqlCommand cmd = default(SqlCommand);
             try
@@ -115,13 +115,13 @@ namespace DRDPE
                     }
                     else
                     {
-                        //lblMessage.Text = "No rows found.";
+                        myMessage.Text = "No rows found.";
                     }
                 }
             }
             catch (Exception ex)
             {
-                lblMessage.Text = ex.Message;
+                myMessage.Text = ex.Message;
             }
             finally
             {
@@ -130,6 +130,7 @@ namespace DRDPE
         }
         private void GetSearchResultsForProducts(string searchString)
         {
+            Label myMessage = Master.FindControl("lblMessage") as Label;
             SqlDataReader dr = default(SqlDataReader);
             SqlCommand cmd = default(SqlCommand);
             searchString = searchString.Replace(System.Convert.ToChar(" "), System.Convert.ToChar(";"));
@@ -137,7 +138,7 @@ namespace DRDPE
             string[] keywords = searchString.Split(System.Convert.ToChar(";"));
             if (keywords.Count() > 5)
             {
-                lblMessage.Text = "You may use up to 5 keywords.";
+                myMessage.Text = "You may use up to 5 keywords.";
                 return;
             }
             try
@@ -167,7 +168,7 @@ namespace DRDPE
                     }
                     else
                     {
-                        lblMessage.Text = "No search results found.";
+                        myMessage.Text = "No search results found.";
                         rptProd.DataSource = null;
                         rptProd.DataBind();
                         lblHeader.Text = "";
@@ -177,11 +178,12 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
-                lblMessage.Text = ex.Message;
+                myMessage.Text = ex.Message;
             }
         }
         private void getProduct()
         {
+            Label myMessage = Master.FindControl("lblMessage") as Label;
             SqlDataReader dr = default(SqlDataReader);
             SqlCommand cmd = default(SqlCommand);
             try
@@ -211,7 +213,7 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
-                lblMessage.Text = ex.Message;
+                myMessage.Text = ex.Message;
             }
             finally
             {
@@ -220,7 +222,7 @@ namespace DRDPE
         }
         protected void getCategoriesForDDL()
         {
-
+            Label myMessage = Master.FindControl("lblMessage") as Label;
             SqlDataReader dr = default(SqlDataReader);
             SqlCommand cmd = default(SqlCommand);
 
@@ -243,13 +245,13 @@ namespace DRDPE
                     }
                     else
                     {
-                        //lblMessage.Text = "No rows found.";
+                        myMessage.Text = "No rows found.";
                     }
                 }
             }
             catch (Exception ex)
             {
-                lblMessage.Text = ex.Message;
+                myMessage.Text = ex.Message;
             }
             finally
             {
@@ -265,6 +267,7 @@ namespace DRDPE
         #region Update Product
         protected bool UpdateProduct()
         {
+            Label myMessage = Master.FindControl("lblMessage") as Label;
             int ar = 0;
             SqlCommand cmd = default(SqlCommand);
 
@@ -301,15 +304,16 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
-                lblMessage.Text = "Some fields were not validated. Please try again";
+                myMessage.Text = "Some fields were not validated. Please try again";
                 return false;
             }
         }
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
+            Label myMessage = Master.FindControl("lblMessage") as Label;
             if (UpdateProduct())
             {
-                lblMessage.Text = "Product Updated Successfuly";
+                myMessage.Text = "Product Updated Successfuly";
                 productContainer.Style.Add("display", "none");
                 btnSave.Visible = false;
             }
@@ -340,6 +344,7 @@ namespace DRDPE
 
         protected bool AddProduct()
         {
+            Label myMessage = Master.FindControl("lblMessage") as Label;
             int ar = 0;
             SqlCommand cmd = default(SqlCommand);
 
@@ -374,15 +379,16 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
-                lblMessage.Text = "Some fields were not correct. Please try again";
+                myMessage.Text = "Some fields were not correct. Please try again";
                 return false;
             }
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            Label myMessage = Master.FindControl("lblMessage") as Label;
             if (AddProduct())
             {
-                lblMessage.Text = "Product Added Successfuly";
+                myMessage.Text = "Product Added Successfuly";
                 productContainer.Style.Add("display", "none");
             }
         }
@@ -390,9 +396,10 @@ namespace DRDPE
         #region Delete
         protected void btnDelete_Click(object sender, EventArgs e)
         {
+            Label myMessage = Master.FindControl("lblMessage") as Label;
             if (DeleteProduct())
             {
-                lblMessage.Text = "Product deleted Successfuly";
+                myMessage.Text = "Product deleted Successfuly";
                 btnSave.Visible = false;
                 productContainer.Style.Add("display", "none");
 
@@ -402,6 +409,7 @@ namespace DRDPE
 
         private bool DeleteProduct()
         {
+            Label myMessage = Master.FindControl("lblMessage") as Label;
             int ar = 0;
             SqlCommand cmd = default(SqlCommand);
 
@@ -430,9 +438,22 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
-                lblMessage.Text = ex.Message;
+                myMessage.Text = ex.Message;
                 return false;
             }
+        }
+        #endregion
+
+        #region ErrorMessage
+        private void ShowError()
+        {
+            System.Web.UI.HtmlControls.HtmlGenericControl myError = (System.Web.UI.HtmlControls.HtmlGenericControl)Master.FindControl("errorMessage");
+            myError.Style.Remove("Display");
+        }
+        private void HideError()
+        {
+            System.Web.UI.HtmlControls.HtmlGenericControl myError = (System.Web.UI.HtmlControls.HtmlGenericControl)Master.FindControl("errorMessage");
+            myError.Style.Add("Display", "none");
         }
         #endregion
     }
