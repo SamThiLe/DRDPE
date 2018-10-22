@@ -1,9 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PE.Master" AutoEventWireup="true" CodeBehind="Cart.aspx.cs" Inherits="DRDPE.Cart" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PE.Master" AutoEventWireup="true" CodeBehind="Payment.aspx.cs" Inherits="DRDPE.Payment" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h3>Your Cart</h3>
-    <asp:Label ID="lblMessage" runat="server" Text="" EnableViewState="False"></asp:Label>
     <asp:GridView ID="grvCart" runat="server" Font-Names="Verdana" BorderColor="Black"
         DataKeyNames="qty"
         GridLines="Vertical"
@@ -47,6 +45,8 @@
         </Columns>
     <RowStyle CssClass="CartListItem"></RowStyle>
       </asp:GridView>
+    <asp:Label ID="lblMessage" runat="server" Text="Label"></asp:Label>
+
     <br />
     <span><b>Subtotal:</b></span>
     <asp:Label ID="lblGSubtotal" runat="server"></asp:Label>
@@ -61,8 +61,5 @@
     <asp:Label ID="lblGrandTotal" runat="server"></asp:Label>
     <br />
     <br />
-    <asp:Button ID="btnUpdate"  class="btn btn-outline-light" runat="server" Text="Update Cart" OnClick="btnUpdate_Click" />
-    <asp:Button ID="btnContinue"  class="btn btn-outline-light" runat="server" Text="Continue Shopping" OnClick="btnContinue_Click"  />
-    <asp:Button ID="btnCheckOut"  class="btn btn-outline-light" runat="server" Text="Check Out" OnClick="btnCheckOut_Click" />
-    <br /><br />
+    <asp:Button ID="btnAccept"  class="btn btn-outline-light" runat="server" Text="Accept" OnClick="btnUpdate_Click" />
 </asp:Content>
