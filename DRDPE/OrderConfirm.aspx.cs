@@ -73,19 +73,16 @@ namespace DRDPE
                 mailMessage.IsBodyHtml = true;
                 mailMessage.Body = "<h2>Our dear client,</h2>" +
                     "<p>Your Payment has been processed and you pasteries are on there way</p>" +
-                    
                     "<a>View Your Order: " + orderConfirmationCode + "</a><br>" +
                     orderDetails +
                     "Not sure why you're seeing this? Disregard this email.</p>";
                 SmtpClient smtpClient = new SmtpClient("localhost");
                 smtpClient.Send(mailMessage);
-
             }
             catch (Exception ex)
             {
 
             }
-
         }
     }
 }

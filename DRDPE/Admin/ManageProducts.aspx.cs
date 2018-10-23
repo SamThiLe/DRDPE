@@ -463,5 +463,43 @@ namespace DRDPE
             myError.Style.Add("Display", "none");
         }
         #endregion
+
+        protected void ddlImages_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Label myMessage = Master.FindControl("lblMessage") as Label;
+            SqlDataReader dr = default(SqlDataReader);
+            SqlCommand cmd = default(SqlCommand);
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(cnnString))
+                {
+                    int productId = int.Parse(Request.QueryString["prodId"]);
+                    cmd = new SqlCommand("getSingleImaget", cnn);
+                    cmd.Parameters.AddWithValue("@imageId", productId);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cnn.Open();
+                    dr = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+
+                    while (dr.Read())
+                    {
+                        imgProd.ImageUrl = "../" + Convert.ToString(dr["imageUrl"]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowError();
+                myMessage.Text = ex.Message;
+            }
+            finally
+            {
+                dr.Close();
+            }
+        }
+
+        protected void Unnamed1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
