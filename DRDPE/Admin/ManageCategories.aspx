@@ -16,7 +16,7 @@
             </ul>
                 <ul id="catList" class="nav nav-fill">
                     <li class="nav-item bg-dark" style="padding-top:0.5%;padding-bottom:0.5%;">
-                    <asp:Button runat="server" id="btnAddCategory" class="btn btn-outline-light my-sm-0 nav-fill" style="width:98%;" text="Add Category" OnClick="btnAddCategory_Click" CausesValidation="false"/>
+                    <asp:Button runat="server" id="btnPaymentType" class="btn btn-outline-light my-sm-0 nav-fill" style="width:98%;" text="Add Category" OnClick="btnAddCategory_Click" CausesValidation="false"/>
                     </li>
                 </ul>
         </FooterTemplate>
