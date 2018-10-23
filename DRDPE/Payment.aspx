@@ -45,7 +45,7 @@
         </Columns>
     <RowStyle CssClass="CartListItem"></RowStyle>
       </asp:GridView>
-    <asp:Label ID="lblMessage" runat="server" Text="Label"></asp:Label>
+    <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
 
     <br />
     <span><b>Subtotal:</b></span>
@@ -61,5 +61,18 @@
     <asp:Label ID="lblGrandTotal" runat="server"></asp:Label>
     <br />
     <br />
-    <asp:Button ID="btnAccept"  class="btn btn-outline-light" runat="server" Text="Accept" OnClick="btnUpdate_Click" />
+    <h4>Payment Type:</h4>
+    <asp:RadioButtonList ID="rblPaymentType" runat="server" AutoPostBack="true"  OnSelectedIndexChanged="rblPaymentType_SelectedIndexChanged">
+        <asp:ListItem Value="0">PayPal</asp:ListItem>
+        <asp:ListItem Value="1">Credit</asp:ListItem>
+    </asp:RadioButtonList>
+    <div id="debitContainer" style="display:none" runat="server">
+        <label>PayPal User Debit:</label>
+    </div>
+    <div id="creditContainer" style="display:none" runat="server">
+        <label>PayPal User Credit:</label>
+    </div>
+    <br />
+    <asp:Button ID="btnFinish" class="btn btn-outline-light" runat="server" Text="Finalize Order" OnClick="btnFinish_Click" />
+    <br /><br />
 </asp:Content>

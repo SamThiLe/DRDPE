@@ -62,7 +62,6 @@ namespace DRDPE
         {
             SqlDataReader dr = default(SqlDataReader);
             SqlCommand cmd = default(SqlCommand);
-
             using (SqlConnection conn = new SqlConnection(cnnString))
             {
                 cmd = new SqlCommand();
@@ -99,7 +98,6 @@ namespace DRDPE
             {
                 Response.Redirect("~/Login.aspx?CO=1");
             }
-            
         }
 
         protected void btnContinue_Click(object sender, EventArgs e)

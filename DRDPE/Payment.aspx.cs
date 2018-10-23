@@ -69,15 +69,79 @@ namespace DRDPE
                 total += Convert.ToDecimal(lblSubtotal.Text.Substring(1));
             }
             lblGSubtotal.Text = total.ToString("c");
+            decimal shipping = 0m;
+            bool casey = true;
+            switch (casey)
+            {
+                case true when (total <= 35m):
+                    shipping = 7m;
+                    break;
+                case true when (total > 35m && total < 75):
+                    shipping = 12m;
+                    break;
+            }
+            lblShipping.Text = shipping.ToString("c");
+            total += shipping;
             decimal tax = (total * 0.15m);
             lblTax.Text = tax.ToString("c");
             decimal gTotal = tax + total;
             lblGrandTotal.Text = gTotal.ToString("c");
         }
 
-        protected void btnUpdate_Click(object sender, EventArgs e)
-        {
 
+        protected void rblPaymentType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (rblPaymentType.SelectedIndex == 0)
+            {
+                DisplayDebit();
+            }
+            else
+            {
+                DisplayCredit();
+            }
+        }
+
+        private void DisplayCredit()
+        {
+            btnFinish.ValidationGroup = "";
+            debitContainer.Style.Add("Display", "none");
+            creditContainer.Style.Remove("Display");
+        }
+
+        private void DisplayDebit()
+        {
+            btnFinish.ValidationGroup = "";
+            creditContainer.Style.Add("Display", "none");
+            debitContainer.Style.Remove("Display");
+        }
+
+        protected void btnAccept_Click1(object sender, EventArgs e)
+        {
+            if (rblPaymentType.SelectedItem != null)
+            {
+                lblMessage.Text = "payment type Selected";
+                Session["order"] = "shipped";
+                Response.Redirect("~/OrderConfirm.aspx");
+            }
+            else
+            {
+                lblMessage.Text = "Please select a payment type";
+            }
+        }
+
+        protected void btnFinish_Click(object sender, EventArgs e)
+        {
+            
+            if (rblPaymentType.SelectedItem != null)
+            {
+                lblMessage.Text = "payment type Selected";
+                Session["order"] = "shipped";
+                Response.Redirect("~/OrderConfirm.aspx");
+            }
+            else
+            {
+                lblMessage.Text = "Please select a payment type";
+            }
         }
     }
 }
