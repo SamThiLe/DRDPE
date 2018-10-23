@@ -39,6 +39,19 @@ namespace DRDPE
                  total += Convert.ToDecimal(lblSubtotal.Text.Substring(1));
             }
             lblGSubtotal.Text = total.ToString("c");
+            decimal shipping = 0m;
+            bool casey = true;
+            switch (casey)
+            {
+                case true when (total <= 35m):
+                    shipping =7m;
+                    break;
+                case true when (total > 35m && total <75):
+                    shipping = 12m;
+                    break;
+            }
+            lblShipping.Text = shipping.ToString("c");
+            total += shipping;
             decimal tax = (total * 0.15m);
             lblTax.Text = tax.ToString("c");
             decimal gTotal = tax + total;
@@ -122,8 +135,6 @@ namespace DRDPE
                 lblMessage.Text = ex.Message;
             }
             Response.Redirect("~/Cart.aspx");
-            
-
         }
 
         private void UpdateCarItemQuantity(string cartId, string Quantity, string prodId)
