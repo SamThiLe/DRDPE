@@ -13,7 +13,14 @@ namespace DRDPE
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            linkLogout.Visible = Convert.ToBoolean(Session["login"]);
+            if (Convert.ToBoolean(Session["login"]))
+            {
+                linkLogout.Style.Remove("Display");
+            }
+            else
+            {
+                linkLogout.Style.Add("Display", "none");
+            }
             linkLogin.Visible = !Convert.ToBoolean(Session["login"]);
             linkSignup.Visible = !Convert.ToBoolean(Session["login"]);
             if (Session["login"] != null)
@@ -33,6 +40,13 @@ namespace DRDPE
         private void GetSearchResultsForProducts(string searchString)
         {
             Response.Redirect("~/index.aspx?SearchStr="+searchString+"&any="+chkKeywords.Checked);
+        }
+
+        protected void linkLogout_Click(object sender, EventArgs e)
+        {
+            Session.Remove("customerId");
+            Session.Remove("login");
+            Response.Redirect("Login.aspx");
         }
     }
 }

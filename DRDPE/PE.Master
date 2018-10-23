@@ -33,8 +33,8 @@
                   <a class="nav-link" href="#">About Us</a>
                   </li>
                     <li class="nav-item"><asp:Label class="nav-link active" runat="server" ID="lblLoggedInAs"></asp:Label></li>
-                    <li class="nav-item">
-                        <a runat="server" id="linkLogout" class="nav-link" href="Login.aspx" >[Logout]</a>
+                    <li class="nav-item" runat="server">
+                        <asp:LinkButton runat="server" id="linkLogout" class="nav-link" OnClick="linkLogout_Click" Text="Logout"></asp:LinkButton>
                     </li>
                 </ul>
                   <label>Any&nbsp;</label><asp:Checkbox ID="chkKeywords" runat="server" Checked="false"/>&emsp;
