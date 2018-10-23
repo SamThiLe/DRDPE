@@ -22,6 +22,7 @@ namespace DRDPE
         {
             if ((string)Session["order"] == "shipped")
             {
+                GetAccountInfo();
                 SendConfirmationEmail();
                 lblMessage.Text = "<h2>Thank you for placing an order. Your confirmation Email Has been sent.</h2>";
             }
@@ -38,9 +39,9 @@ namespace DRDPE
             {
                 using (SqlConnection conn = new SqlConnection(cnnString))
                 {
-                    //put customer ID in the session when logged in
+                    string customerId = Session["CustomerId"].ToString();
                     cmd = new SqlCommand("getFullCustomerInfo", conn);
-                    //cmd.Parameters.AddWithValue("@customerId", customerId);
+                    cmd.Parameters.AddWithValue("@customerId", customerId);
                     cmd.CommandType = CommandType.StoredProcedure;
                     conn.Open();
                     dr = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
@@ -82,11 +83,6 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
-                //logging
-                //EventLog log = new EventLog();
-
-                //log.Source = "Demo Error Log";
-                //log.WriteEntry(ex.Message, EventLogEntryType.Error);
 
             }
 
