@@ -15,6 +15,7 @@ namespace DRDPE
     public partial class Login : System.Web.UI.Page
     {
         private string cnnString = ConfigurationManager.ConnectionStrings["cnn"].ConnectionString;
+        private int customerId;
         protected void Page_Load(object sender, EventArgs e)
         {
             Session.RemoveAll();
@@ -26,6 +27,7 @@ namespace DRDPE
             if (CustomerLogin())
             {
                 Session["login"] = true;
+                Session["customerId"] = customerId;
                 Session["username"] = txtUserName.Text;
                 loginContainer.Style.Add("display", "none");
                 lblSuccess.Text = "<h3>Login succesful. Redirecting...</h3>";
@@ -44,7 +46,6 @@ namespace DRDPE
 
         private bool CustomerLogin()
         {
-            int ar = 0;
             SqlCommand cmd = default(SqlCommand);
 
             try
@@ -55,17 +56,15 @@ namespace DRDPE
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@username", SqlDbType.NVarChar, 15).Value = txtUserName.Text;
                     cmd.Parameters.Add("@password", SqlDbType.NVarChar, 15).Value = txtPassword.Text;
-
                     using (conn)
                     {
                         conn.Open();
-                        ar = (int)cmd.ExecuteScalar();
+                        customerId = (int)cmd.ExecuteScalar();
                         conn.Close();
                     }
-                    if (ar > 0)
+                    if (customerId > 0)
                     {
                         return true;
-
                     }
                     else
                         return false;
