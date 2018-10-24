@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PE.Master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="DRDPE.index" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PE.Master" MaintainScrollPositionOnPostback="true" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="DRDPE.index" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <%@ MasterType virtualpath="~/PE.Master" %>
 </asp:Content>

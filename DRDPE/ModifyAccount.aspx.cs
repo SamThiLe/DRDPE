@@ -47,8 +47,11 @@ namespace DRDPE
 
                     while (dr.Read())
                     {
-                        lblFirstName.Text = dr["firstName"].ToString();
-                        lblMiddleInitial.Text = dr["middleInitial"].ToString();
+                        txtFirstName.Text = dr["firstName"].ToString();
+                        txtMiddleInitial.Text = dr["middleInitial"].ToString();
+                        txtLastName.Text = dr["lastName"].ToString();
+                        txtPhoneNumber.Text = dr["phone"].ToString();
+                        txtEmail.Text = dr["email"].ToString();
                     }
                     if (!dr.HasRows)
                     {

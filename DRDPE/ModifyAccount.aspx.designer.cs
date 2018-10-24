@@ -22,22 +22,22 @@ namespace DRDPE {
         protected global::System.Web.UI.WebControls.ValidationSummary valSummary;
         
         /// <summary>
-        /// lblFirstName control.
+        /// txtFirstName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFirstName;
+        protected global::System.Web.UI.WebControls.TextBox txtFirstName;
         
         /// <summary>
-        /// lblMiddleInitial control.
+        /// txtMiddleInitial control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMiddleInitial;
+        protected global::System.Web.UI.WebControls.TextBox txtMiddleInitial;
         
         /// <summary>
         /// txtLastName control.
