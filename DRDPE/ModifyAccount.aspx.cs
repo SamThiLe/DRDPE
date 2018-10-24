@@ -15,12 +15,13 @@ namespace DRDPE
     public partial class ModifyAccount : System.Web.UI.Page
     {
         private string cnnString = ConfigurationManager.ConnectionStrings["cnn"].ConnectionString;
+        private int customerId;
         private Guid userVerificationCode = Guid.NewGuid();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                //GetAccountInfo();
+                GetAccountInfo();
             }
             //if (Request.Cookies["CheckingOut"].Value == "true")
             //{
@@ -30,6 +31,7 @@ namespace DRDPE
 
         private void GetAccountInfo()
         {
+            customerId = (int)Session["customerId"];
             SqlDataReader dr = default(SqlDataReader);
             SqlCommand cmd = default(SqlCommand);
             try
@@ -38,9 +40,20 @@ namespace DRDPE
                 {
                     string productId = Request.QueryString["productId"];
                     cmd = new SqlCommand("getFullCustomerInfo", conn);
+                    cmd.Parameters.Add("@customerId", SqlDbType.Int, 0).Value = customerId;
                     cmd.CommandType = CommandType.StoredProcedure;
                     conn.Open();
                     dr = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+
+                    while (dr.Read())
+                    {
+                        lblFirstName.Text = dr["firstName"].ToString();
+                        lblMiddleInitial.Text = dr["middleInitial"].ToString();
+                    }
+                    if (!dr.HasRows)
+                    {
+
+                    }
                 }
             }
             catch (Exception ex)
