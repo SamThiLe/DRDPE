@@ -163,7 +163,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <asp:CheckBox ID="shkSameAsBilling" runat="server" />
+                        <asp:CheckBox ID="shkSameAsBilling" runat="server" Checked="true" />
                     </div>
                 </div>
             </div>

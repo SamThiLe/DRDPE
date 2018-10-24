@@ -52,6 +52,11 @@ namespace DRDPE
                         txtLastName.Text = dr["lastName"].ToString();
                         txtPhoneNumber.Text = dr["phone"].ToString();
                         txtEmail.Text = dr["email"].ToString();
+                        txtStreetAddress.Text = dr["street"].ToString();
+                        txtCity.Text = dr["city"].ToString();
+                        txtProvince.Text = dr["stateProv"].ToString();
+                        txtPostalCode.Text = dr["postalCode"].ToString();
+                        txtCountry.Text = dr["country"].ToString();
                     }
                     if (!dr.HasRows)
                     {

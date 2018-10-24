@@ -16,10 +16,12 @@ namespace DRDPE
             if (Convert.ToBoolean(Session["login"]))
             {
                 linkLogout.Style.Remove("Display");
+                linkAccountInfo.Style.Remove("Display");
             }
             else
             {
                 linkLogout.Style.Add("Display", "none");
+                linkAccountInfo.Style.Add("Display", "none");
             }
             linkLogin.Visible = !Convert.ToBoolean(Session["login"]);
             linkSignup.Visible = !Convert.ToBoolean(Session["login"]);
@@ -47,6 +49,11 @@ namespace DRDPE
             Session.Remove("customerId");
             Session.Remove("login");
             Response.Redirect("Login.aspx");
+        }
+
+        protected void linkAccountInfo_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ModifyAccount.aspx");
         }
     }
 }
