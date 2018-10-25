@@ -163,15 +163,78 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <asp:CheckBox ID="shkSameAsBilling" runat="server" Checked="true" />
+                        <asp:CheckBox ID="chkSameAsBilling" runat="server" Checked="true" OnCheckedChanged="chkSameAsBilling_CheckedChanged" AutoPostBack="True" />
                     </div>
                 </div>
             </div>
         </div>
+    <div id="divShippingAddress" runat="server" style="display:none;">
+        <div class="row">
+                <div class="col-md-3 field-label-responsive">
+                    
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0"><label for="lblAddressType">Shipping Address:</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="txtStreetAddress">Street Address</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <asp:Textbox runat="server" type="text" name="txtShipStreetAddress" class="form-control" id="txtShipStreetAddress" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <asp:RequiredFieldValidator ID="rfvShipStreetAddress" runat="server" ControlToValidate="txtShipStreetAddress" ErrorMessage="Street address required." ForeColor="Red">*</asp:RequiredFieldValidator>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="txtCity">City</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <asp:Textbox runat="server" type="text" name="txtShipCity" class="form-control" id="txtShipCity"  />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <asp:RequiredFieldValidator ID="rfvShipCity" runat="server" ControlToValidate="txtShipCity" ErrorMessage="City is required." ForeColor="Red">*</asp:RequiredFieldValidator>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="email">Province, Postal Code, Country</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <asp:TextBox runat="server" type="text" name="txtShipProvince" class="form-control" id="txtShipProvince" />
+                        <asp:TextBox runat="server" type="text" name="txtShipPostalCode" class="form-control" ID="txtShipPostalCode" Width="0.05%" />
+                        <asp:TextBox runat="server" type="text" name="txtShipCountry" class="form-control" ID="txtShipCountry" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <asp:RequiredFieldValidator ID="rfvShipProvince" runat="server" ControlToValidate="txtShipProvince" ErrorMessage="Province is required" ForeColor="Red">*</asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="rfvShipPostalCode" runat="server" ControlToValidate="txtShipPostalCode" ErrorMessage="Postal code is required" ForeColor="Red">*</asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="rfvShipCountry" runat="server" ControlToValidate="txtShipCountry" ErrorMessage="Country is required" ForeColor="Red">*</asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="revShipPostalCode" runat="server" ControlToValidate="txtShipPostalCode" ErrorMessage="Incorrect format for Postal Code" ForeColor="Red" ValidationExpression="[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ] ?[0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]">*</asp:RegularExpressionValidator>
+            </div>
+        </div>
+    </div>
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <asp:Button ID="btnModify" runat="server" type="submit" class="btn btn-success" Text="Confirm" />
+                <asp:Button ID="btnModify" runat="server" type="submit" class="btn btn-success" Text="Confirm" OnClick="btnModify_Click" />
                 <br />
                 <br />
             </div>

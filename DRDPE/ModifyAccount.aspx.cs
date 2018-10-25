@@ -23,6 +23,10 @@ namespace DRDPE
             {
                 GetAccountInfo();
             }
+            if(!IsPostBack && Request.Cookies["CheckingOut"] == null)
+            {
+                chkSameAsBilling.Style.Add("display", "none");
+            }
         }
 
         private void GetAccountInfo()
@@ -64,7 +68,10 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
-                
+                EventLog log = new EventLog();
+
+                log.Source = "Demo Error Log";
+                log.WriteEntry(ex.Message, EventLogEntryType.Error);
             }
             finally
             {
@@ -111,6 +118,71 @@ namespace DRDPE
                 log.Source = "Demo Error Log";
                 log.WriteEntry(ex.Message, EventLogEntryType.Error);
                 return false;
+            }
+        }
+
+        protected void btnModify_Click(object sender, EventArgs e)
+        {
+            AddAddress();
+        }
+
+        private void AddAddress()
+        {
+            int ar = 0;
+            SqlCommand cmd = default(SqlCommand);
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(cnnString))
+                {
+                    cmd = new SqlCommand("insertAddressForCustomer", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@customerId", SqlDbType.Int, 0).Value = customerId;
+                    cmd.Parameters.Add("@street", SqlDbType.NVarChar, 50).Value = txtStreetAddress.Text;
+                    cmd.Parameters.Add("@city", SqlDbType.NVarChar, 50).Value = txtCity.Text;
+                    cmd.Parameters.Add("@stateProv", SqlDbType.NVarChar, 15).Value = txtProvince.Text;
+                    cmd.Parameters.Add("@country", SqlDbType.NVarChar, 20).Value = txtCountry.Text;
+                    cmd.Parameters.Add("@postalCode", SqlDbType.NVarChar, 10).Value = txtPostalCode.Text;
+
+
+                    using (conn)
+                    {
+                        conn.Open();
+                        ar = cmd.ExecuteNonQuery();
+                        conn.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //logging
+
+                EventLog log = new EventLog();
+
+                log.Source = "Demo Error Log";
+                log.WriteEntry(ex.Message, EventLogEntryType.Error);
+            }
+        }
+
+        protected void chkSameAsBilling_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkSameAsBilling.Checked)
+            {
+                divShippingAddress.Style.Remove("display");
+                rfvShipStreetAddress.Enabled = true;
+                rfvShipCity.Enabled = true;
+                rfvShipProvince.Enabled = true;
+                rfvShipPostalCode.Enabled = true;
+                rfvShipCountry.Enabled = true;
+            }
+            else
+            {
+                divShippingAddress.Style.Add("display", "none");
+                rfvShipStreetAddress.Enabled = false;
+                rfvShipCity.Enabled = false;
+                rfvShipProvince.Enabled = false;
+                rfvShipPostalCode.Enabled = false;
+                rfvShipCountry.Enabled = false;
             }
         }
     }
