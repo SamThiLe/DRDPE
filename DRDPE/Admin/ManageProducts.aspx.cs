@@ -7,6 +7,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.IO;
+using System.Drawing.Imaging;
 
 namespace DRDPE
 {
@@ -247,7 +249,6 @@ namespace DRDPE
                         ddlCat.DataTextField = "name";
                         ddlCat.DataValueField = "categoryId";
                         ddlCat.DataBind();
-
                     }
                     else
                     {
@@ -290,7 +291,6 @@ namespace DRDPE
                     cmd.Parameters.AddWithValue("@price", txtProductPrice.Text);
                     cmd.Parameters.AddWithValue("@featured", chkProductFeatured.Checked);
                     cmd.Parameters.AddWithValue("@categoryId", ddlCat.SelectedValue);
-                    //cmd.Parameters.AddWithValue("@imageUrl", "Template");
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     using (conn)
@@ -332,7 +332,6 @@ namespace DRDPE
         {
             rptProd.Visible = false;
             productContainer.Style.Remove("display");
-            //txtProduct.ReadOnly = false;
             txtProduct.Text = "";
             txtProductName.Text = "";
             txtProductBriefDescription.Text = "";
@@ -497,9 +496,92 @@ namespace DRDPE
             }
         }
 
-        protected void Unnamed1_Click(object sender, EventArgs e)
+        protected void btnChoseImage_Click(object sender, EventArgs e)
         {
+            Label myMessage = Master.FindControl("lblMessage") as Label;
+            try
+            {
+                int intSizeLimit = 1048576;
+                if (uplPics.HasFile == true)
+                {
+                    string stringPath = Server.MapPath("~/tempImages") + "\\"+uplPics.FileName;
+                    string strContentType = uplPics.PostedFile.ContentType;
 
+                    System.Drawing.Image img = System.Drawing.Image.FromStream(uplPics.PostedFile.InputStream);
+                    bool imgSaved = false;
+                    if (ImageFormat.Jpeg.Equals(img.RawFormat)|| ImageFormat.Gif.Equals(img.RawFormat)|| ImageFormat.Bmp.Equals(img.RawFormat)|| ImageFormat.Png.Equals(img.RawFormat)|| ImageFormat.Tiff.Equals(img.RawFormat))
+                    {
+                        imgSaved = SaveImage(stringPath);
+                        myMessage.Text = "Image Saved";
+                    }
+                    else
+                    {
+                        myMessage.Text = "Not a Valid Image";
+                    }
+
+                }
+                else
+                {
+                    myMessage.Text = "The File Is Too Big";
+                }
+            }
+            catch (Exception ex)
+            {
+                if(ex.Message.ToLower() == "Parameter is not valid.")
+                {
+                    myMessage.Text = "Oh no, thats not a valid image";
+                }
+                else
+                {
+                    myMessage.Text = ex.Message;
+                }
+            }
+        }
+
+        private bool SaveImage(string strPath)
+        {
+            Label myMessage = Master.FindControl("lblMessage") as Label;
+
+            if (File.Exists(strPath))
+            {
+                myMessage.Text = "File Already Exists... try again!";
+                return false;
+            }
+            else
+            {
+                uplPics.SaveAs(strPath);
+                myMessage.Text = "File upload to:" + strPath;
+
+                imgProd.ImageUrl = "~/tempImages/" + uplPics.FileName;
+                int intLength = uplPics.FileName.Length;
+                int intRem = intLength - 4;
+                string strNoExtension = uplPics.FileName.Substring(0, intLength - 3);
+
+                imgProd.AlternateText = strNoExtension;
+                imgProd.Visible = true;
+
+                SqlCommand cmd = default(SqlCommand);
+                using (SqlConnection conn = new SqlConnection(cnnString))
+                {
+                    cmd = new SqlCommand("insertImage", conn);
+                    cmd.Parameters.AddWithValue("@imageUrl", imgProd.ImageUrl);
+                    cmd.Parameters.AddWithValue("@altText", strNoExtension);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    try
+                    {
+                        conn.Open();
+                        int ar = cmd.ExecuteNonQuery();
+                        conn.Close();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        conn.Close();
+                        myMessage.Text = ex.Message;
+                    }
+                }
+                return false;
+            }
         }
     }
 }

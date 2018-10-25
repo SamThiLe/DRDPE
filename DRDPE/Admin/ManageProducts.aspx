@@ -80,6 +80,8 @@
             </asp:DropDownList>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="Product category selection is Required" ControlToValidate="ddlCat" ForeColor="Orange" InitialValue="--Select a Category--">*</asp:RequiredFieldValidator>
             <br /><br />
+            <asp:FileUpload ID="uplPics" runat="server" />
+            <asp:LinkButton id="btnChoseImage" runat="server" class="btn btn-outline-light my-sm-0 nav-fill" Text="Upload an Image" AutoPostBack="false"  CausesValidation="false" OnClick="btnChoseImage_Click" /><br /><br />
             <asp:Image ID="imgProd" runat="server" Width="200" Height="200" ImageUrl ='../<%#Eval("imageUrl")%>' />
             <br />
             <br />
@@ -87,7 +89,6 @@
                 <asp:ListItem Value="--Select an Image--"></asp:ListItem>
             </asp:DropDownList>
 
-            <asp:Button runat="server" class="btn btn-outline-light my-sm-0 nav-fill" Text="Upload an Image" CausesValidation="false" OnClick="Unnamed1_Click" /><br /><br />
             <asp:Button ID="btnUpdate" class="btn btn-outline-light my-sm-0 nav-fill" runat="server" Text="Update Item" OnClick="btnUpdate_Click" />
             <asp:Button ID="btnDelete" class="btn btn-outline-light my-sm-0 nav-fill" runat="server" Text="Delete Item" OnClick="btnDelete_Click" />
             <br /><br />
