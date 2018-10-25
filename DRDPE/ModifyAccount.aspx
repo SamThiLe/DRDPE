@@ -17,9 +17,9 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <asp:Label runat="server" type="text" class="form-control" id="lblFirstName"/>
-                        <asp:Label runat="server" type="text" class="form-control" id="lblMiddleInitial"/>
-                        <asp:TextBox runat="server" type="text" name="lastName" class="form-control" id="txtLastName"/>
+                        <asp:TextBox runat="server" type="text" class="form-control" id="txtFirstName" ReadOnly="true"/>
+                        <asp:TextBox runat="server" type="text" class="form-control" id="txtMiddleInitial" ReadOnly="true"/>
+                        <asp:TextBox runat="server" type="text" class="form-control" id="txtLastName"/>
                     </div>
                 </div>            
             </div>
@@ -163,7 +163,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <asp:CheckBox ID="shkSameAsBilling" runat="server" />
+                        <asp:CheckBox ID="shkSameAsBilling" runat="server" Checked="true" />
                     </div>
                 </div>
             </div>

@@ -58,13 +58,22 @@ namespace DRDPE {
         protected global::System.Web.UI.WebControls.Label lblLoggedInAs;
         
         /// <summary>
+        /// linkAccountInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton linkAccountInfo;
+        
+        /// <summary>
         /// linkLogout control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor linkLogout;
+        protected global::System.Web.UI.WebControls.LinkButton linkLogout;
         
         /// <summary>
         /// chkKeywords control.
