@@ -115,20 +115,6 @@ namespace DRDPE
             debitContainer.Style.Remove("Display");
         }
 
-        protected void btnAccept_Click1(object sender, EventArgs e)
-        {
-            if (rblPaymentType.SelectedItem != null)
-            {
-                lblMessage.Text = "payment type Selected";
-                Session["order"] = "shipped";
-                Response.Redirect("~/OrderConfirm.aspx");
-            }
-            else
-            {
-                lblMessage.Text = "Please select a payment type";
-            }
-        }
-
         protected void btnFinish_Click(object sender, EventArgs e)
         {
             
