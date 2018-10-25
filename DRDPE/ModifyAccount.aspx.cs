@@ -23,10 +23,6 @@ namespace DRDPE
             {
                 GetAccountInfo();
             }
-            //if (Request.Cookies["CheckingOut"].Value == "true")
-            //{
-            //    //CheckoutVersion Of Things
-            //}
         }
 
         private void GetAccountInfo()
@@ -50,6 +46,8 @@ namespace DRDPE
                         txtFirstName.Text = dr["firstName"].ToString();
                         txtMiddleInitial.Text = dr["middleInitial"].ToString();
                         txtLastName.Text = dr["lastName"].ToString();
+                        txtPassword.Text = dr["password"].ToString();
+                        txtConfirmPassword.Text = dr["password"].ToString();
                         txtPhoneNumber.Text = dr["phone"].ToString();
                         txtEmail.Text = dr["email"].ToString();
                         txtStreetAddress.Text = dr["street"].ToString();

@@ -34,10 +34,10 @@
                   </li>
                     <li class="nav-item"><asp:Label class="nav-link active" runat="server" ID="lblLoggedInAs"></asp:Label></li>
                                         <li class="nav-item" runat="server">
-                        <asp:LinkButton runat="server" id="linkAccountInfo" class="nav-link" Text="Account" OnClick="linkAccountInfo_Click"></asp:LinkButton>
+                        <asp:LinkButton runat="server" id="linkAccountInfo" class="nav-link" Text="Account" CausesValidation="False" OnClick="linkAccountInfo_Click"></asp:LinkButton>
                     </li>
                     <li class="nav-item" runat="server">
-                        <asp:LinkButton runat="server" id="linkLogout" class="nav-link" OnClick="linkLogout_Click" Text="Logout"></asp:LinkButton>
+                        <asp:LinkButton runat="server" id="linkLogout" class="nav-link" OnClick="linkLogout_Click" Text="Logout" CausesValidation="False"></asp:LinkButton>
                     </li>
                 </ul>
                   <label>Any&nbsp;</label><asp:Checkbox ID="chkKeywords" runat="server" Checked="false"/>&emsp;
