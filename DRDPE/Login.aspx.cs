@@ -58,7 +58,7 @@ namespace DRDPE
                     using (conn)
                     {
                         conn.Open();
-                        customerId = (int)cmd.ExecuteScalar();
+                        customerId = Convert.ToInt32(cmd.ExecuteScalar());
                         conn.Close();
                     }
                     if (customerId > 0)

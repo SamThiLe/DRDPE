@@ -239,19 +239,16 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <asp:Textbox runat="server" type="text" name="txtAdditionalNotes" class="form-control" id="Textbox1" placeholder="Optional"/>
+                        <asp:Textbox runat="server" type="text" name="txtAdditionalNotes" class="form-control" id="txtAdditionalNotes" placeholder="Optional"/>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtShipStreetAddress" ErrorMessage="Street address required." ForeColor="Red">*</asp:RequiredFieldValidator>
             </div>
         </div>
     </div>
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <asp:Button ID="btnModify" runat="server" type="submit" class="btn btn-success" Text="Confirm" OnClick="btnModify_Click" />
+                <asp:Button ID="btnModify" runat="server" class="btn btn-success" Text="Confirm" OnClick="btnModify_Click" />
                 <br />
                 <br />
             </div>
