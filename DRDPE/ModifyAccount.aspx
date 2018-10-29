@@ -232,6 +232,21 @@
                 <asp:RegularExpressionValidator ID="revShipPostalCode" runat="server" ControlToValidate="txtShipPostalCode" ErrorMessage="Incorrect format for Postal Code" ForeColor="Red" ValidationExpression="[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ] ?[0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]">*</asp:RegularExpressionValidator>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="txtAdditionalNotes">Additional Notes</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <asp:Textbox runat="server" type="text" name="txtAdditionalNotes" class="form-control" id="Textbox1" placeholder="Optional"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtShipStreetAddress" ErrorMessage="Street address required." ForeColor="Red">*</asp:RequiredFieldValidator>
+            </div>
+        </div>
     </div>
         <div class="row">
             <div class="col-md-3"></div>

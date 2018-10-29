@@ -31,7 +31,7 @@ namespace DRDPE
                 rfvShipProvince.Enabled = false;
                 rfvShipPostalCode.Enabled = false;
                 rfvShipCountry.Enabled = false;
-                //btnSave.Visible = false;
+                
             }
             if(!IsPostBack && Request.Cookies["CheckingOut"].Value == "")
             {
@@ -42,7 +42,6 @@ namespace DRDPE
                 rfvShipPostalCode.Enabled = false;
                 rfvShipCountry.Enabled = false;
                 btnModify.Visible = false;
-                //btnSave.Visible = true;
             }
         }
 
@@ -141,6 +140,7 @@ namespace DRDPE
         protected void btnModify_Click(object sender, EventArgs e)
         {
             UpdateAccount();
+
             if (Request.Cookies["CheckingOut"].Value != "" && !chkSameAsBilling.Checked)
             {
                 UpdateAccount();
@@ -152,7 +152,36 @@ namespace DRDPE
 
         private void UpdateAddress()
         {
+            int ar = 0;
+            SqlCommand cmd = default(SqlCommand);
 
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(cnnString))
+                {
+                    cmd = new SqlCommand("updateCustomerAddress", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@email", SqlDbType.NVarChar, 50).Value = txtEmail.Text;
+                    cmd.Parameters.Add("@lastName", SqlDbType.NVarChar, 50).Value = txtLastName.Text;
+                    cmd.Parameters.Add("@phone", SqlDbType.NVarChar, 14).Value = txtPhoneNumber.Text;
+
+                    using (conn)
+                    {
+                        conn.Open();
+                        ar = cmd.ExecuteNonQuery();
+                        conn.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //logging
+
+                EventLog log = new EventLog();
+
+                log.Source = "Demo Error Log";
+                log.WriteEntry(ex.Message, EventLogEntryType.Error);
+            }
         }
 
         private void UpdateAccount()
@@ -164,9 +193,11 @@ namespace DRDPE
             {
                 using (SqlConnection conn = new SqlConnection(cnnString))
                 {
-                    cmd = new SqlCommand("updateCustomerUser", conn);
+                    cmd = new SqlCommand("updateCustomer", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
-
+                    cmd.Parameters.Add("@email", SqlDbType.NVarChar, 50).Value = txtEmail.Text;
+                    cmd.Parameters.Add("@lastName", SqlDbType.NVarChar, 50).Value = txtLastName.Text;
+                    cmd.Parameters.Add("@phone", SqlDbType.NVarChar, 14).Value = txtPhoneNumber.Text;
 
                     using (conn)
                     {
@@ -196,7 +227,7 @@ namespace DRDPE
             {
                 using (SqlConnection conn = new SqlConnection(cnnString))
                 {
-                    cmd = new SqlCommand("insertAddressForCustomer", conn);
+                    cmd = new SqlCommand("insertAddress", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@customerId", SqlDbType.Int, 0).Value = customerId;
                     cmd.Parameters.Add("@street", SqlDbType.NVarChar, 50).Value = txtShipStreetAddress.Text;
@@ -204,6 +235,7 @@ namespace DRDPE
                     cmd.Parameters.Add("@stateProv", SqlDbType.NVarChar, 15).Value = txtShipProvince.Text;
                     cmd.Parameters.Add("@country", SqlDbType.NVarChar, 20).Value = txtShipCountry.Text;
                     cmd.Parameters.Add("@postalCode", SqlDbType.NVarChar, 10).Value = txtShipPostalCode.Text;
+                    cmd.Parameters.Add("@additionalNo", SqlDbType.NVarChar, 50).Value = "";
                     
                     using (conn)
                     {
