@@ -260,11 +260,7 @@ namespace DRDPE
                         GetApprovedImages();
                         ddlImages.Items.FindByValue(dr["imageId"].ToString()).Selected = true;
                         ddlCat.Items.FindByValue(dr["categoryId"].ToString()).Selected = true;
-
-                        //ddlCat.SelectedValue = Convert.ToInt16(dr["categoryId"]);
                     }
-
-                    
                 }
             }
             catch (Exception ex)

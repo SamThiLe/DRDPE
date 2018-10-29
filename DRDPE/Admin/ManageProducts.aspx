@@ -88,7 +88,6 @@
             <br />
             <br />
             <asp:Image ID="imgProd" runat="server" Width="200" Height="200" ImageUrl ='../<%#Eval("imageUrl")%>' />
-            
             <br />
             <br />
             <asp:Button ID="btnUpdate" class="btn btn-outline-light my-sm-0 nav-fill" runat="server" Text="Update Item" OnClick="btnUpdate_Click" />
