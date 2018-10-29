@@ -19,17 +19,27 @@ namespace DRDPE
         private Guid userVerificationCode = Guid.NewGuid();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Session["login"] == "false")
+            if(Session["login"] == null)
             {
                 Response.Redirect("index.aspx");
             }
             if (!IsPostBack)
             {
                 GetAccountInfo();
+                rfvShipStreetAddress.Enabled = false;
+                rfvShipCity.Enabled = false;
+                rfvShipProvince.Enabled = false;
+                rfvShipPostalCode.Enabled = false;
+                rfvShipCountry.Enabled = false;
             }
             if(!IsPostBack && Request.Cookies["CheckingOut"].Value == "")
             {
                 divShippingAddressChk.Style.Add("display", "none");
+                rfvShipStreetAddress.Enabled = false;
+                rfvShipCity.Enabled = false;
+                rfvShipProvince.Enabled = false;
+                rfvShipPostalCode.Enabled = false;
+                rfvShipCountry.Enabled = false;
             }
         }
 
@@ -178,6 +188,12 @@ namespace DRDPE
                 rfvShipProvince.Enabled = true;
                 rfvShipPostalCode.Enabled = true;
                 rfvShipCountry.Enabled = true;
+
+                rfvStreetAddress.Enabled = true;
+                rfvCity.Enabled = true;
+                rfvProvince.Enabled = true;
+                rfvPostalCode.Enabled = true;
+                rfvCountry.Enabled = true;
             }
             else
             {
@@ -187,6 +203,12 @@ namespace DRDPE
                 rfvShipProvince.Enabled = false;
                 rfvShipPostalCode.Enabled = false;
                 rfvShipCountry.Enabled = false;
+
+                rfvStreetAddress.Enabled = true;
+                rfvCity.Enabled = true;
+                rfvProvince.Enabled = true;
+                rfvPostalCode.Enabled = true;
+                rfvCountry.Enabled = true;
             }
         }
     }
