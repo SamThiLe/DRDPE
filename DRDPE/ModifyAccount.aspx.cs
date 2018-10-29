@@ -31,6 +31,7 @@ namespace DRDPE
                 rfvShipProvince.Enabled = false;
                 rfvShipPostalCode.Enabled = false;
                 rfvShipCountry.Enabled = false;
+                //btnSave.Visible = false;
             }
             if(!IsPostBack && Request.Cookies["CheckingOut"].Value == "")
             {
@@ -40,6 +41,8 @@ namespace DRDPE
                 rfvShipProvince.Enabled = false;
                 rfvShipPostalCode.Enabled = false;
                 rfvShipCountry.Enabled = false;
+                btnModify.Visible = false;
+                //btnSave.Visible = true;
             }
         }
 
@@ -137,7 +140,51 @@ namespace DRDPE
 
         protected void btnModify_Click(object sender, EventArgs e)
         {
-            AddAddress();
+            UpdateAccount();
+            if (Request.Cookies["CheckingOut"].Value != "" && !chkSameAsBilling.Checked)
+            {
+                UpdateAccount();
+                UpdateAddress();
+                AddAddress();
+            }
+                
+        }
+
+        private void UpdateAddress()
+        {
+
+        }
+
+        private void UpdateAccount()
+        {
+            int ar = 0;
+            SqlCommand cmd = default(SqlCommand);
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(cnnString))
+                {
+                    cmd = new SqlCommand("updateCustomerUser", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+
+                    using (conn)
+                    {
+                        conn.Open();
+                        ar = cmd.ExecuteNonQuery();
+                        conn.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //logging
+
+                EventLog log = new EventLog();
+
+                log.Source = "Demo Error Log";
+                log.WriteEntry(ex.Message, EventLogEntryType.Error);
+            }
         }
 
         private void AddAddress()
@@ -152,11 +199,11 @@ namespace DRDPE
                     cmd = new SqlCommand("insertAddressForCustomer", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@customerId", SqlDbType.Int, 0).Value = customerId;
-                    cmd.Parameters.Add("@street", SqlDbType.NVarChar, 50).Value = txtStreetAddress.Text;
-                    cmd.Parameters.Add("@city", SqlDbType.NVarChar, 50).Value = txtCity.Text;
-                    cmd.Parameters.Add("@stateProv", SqlDbType.NVarChar, 15).Value = txtProvince.Text;
-                    cmd.Parameters.Add("@country", SqlDbType.NVarChar, 20).Value = txtCountry.Text;
-                    cmd.Parameters.Add("@postalCode", SqlDbType.NVarChar, 10).Value = txtPostalCode.Text;
+                    cmd.Parameters.Add("@street", SqlDbType.NVarChar, 50).Value = txtShipStreetAddress.Text;
+                    cmd.Parameters.Add("@city", SqlDbType.NVarChar, 50).Value = txtShipCity.Text;
+                    cmd.Parameters.Add("@stateProv", SqlDbType.NVarChar, 15).Value = txtShipProvince.Text;
+                    cmd.Parameters.Add("@country", SqlDbType.NVarChar, 20).Value = txtShipCountry.Text;
+                    cmd.Parameters.Add("@postalCode", SqlDbType.NVarChar, 10).Value = txtShipPostalCode.Text;
                     
                     using (conn)
                     {
