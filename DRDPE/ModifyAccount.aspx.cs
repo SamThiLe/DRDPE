@@ -19,13 +19,17 @@ namespace DRDPE
         private Guid userVerificationCode = Guid.NewGuid();
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(Session["login"] == "false")
+            {
+                Response.Redirect("index.aspx");
+            }
             if (!IsPostBack)
             {
                 GetAccountInfo();
             }
-            if(!IsPostBack && Request.Cookies["CheckingOut"] == null)
+            if(!IsPostBack && Request.Cookies["CheckingOut"].Value == "")
             {
-                chkSameAsBilling.Style.Add("display", "none");
+                divShippingAddressChk.Style.Add("display", "none");
             }
         }
 

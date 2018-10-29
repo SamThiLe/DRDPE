@@ -156,6 +156,7 @@
                 <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtPostalCode" ErrorMessage="Incorrect format for Postal Code" ForeColor="Red" ValidationExpression="[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ] ?[0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]">*</asp:RegularExpressionValidator>
             </div>
         </div>
+    <div id="divShippingAddressChk" runat="server">
             <div class="row">
             <div class="col-md-3 field-label-responsive">
                 <label for="email">Shipping Address Same As Billing</label>
@@ -167,6 +168,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     <div id="divShippingAddress" runat="server" style="display:none;">
         <div class="row">
