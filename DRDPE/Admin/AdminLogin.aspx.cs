@@ -47,7 +47,7 @@ namespace DRDPE.Admin
                 {
                     cmd = new SqlCommand("loginAdmin", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@email", SqlDbType.NVarChar, 15).Value = txtUserName.Text;
+                    cmd.Parameters.Add("@email", SqlDbType.NVarChar, 50).Value = txtUserName.Text;
                     cmd.Parameters.Add("@password", SqlDbType.NVarChar, 15).Value = txtPassword.Text;
                     using (conn)
                     {

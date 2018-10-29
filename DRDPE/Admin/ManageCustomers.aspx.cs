@@ -75,7 +75,8 @@ namespace DRDPE.Admin
 
         protected void grvCustomers_RowEditing(object sender, GridViewEditEventArgs e)
         {
-
+            grvCustomers.EditIndex = e.NewEditIndex;
+            grvCustomers.DataBind();
         }
     }
 
