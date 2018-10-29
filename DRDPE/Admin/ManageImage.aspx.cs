@@ -18,9 +18,7 @@ namespace DRDPE.Admin
         protected void Page_Load(object sender, EventArgs e)
         {
             Label myMessage = Master.FindControl("lblMessage") as Label;
-
         }
-
         #region ErrorMessage
         private void ShowError()
         {
@@ -33,7 +31,6 @@ namespace DRDPE.Admin
             myError.Style.Add("Display", "none");
         }
         #endregion
-
         protected void btnChoseImage_Click(object sender, EventArgs e)
         {
             Label myMessage = Master.FindControl("lblMessage") as Label;
@@ -57,7 +54,6 @@ namespace DRDPE.Admin
                         ShowError();
                         myMessage.Text = "Not a Valid Image";
                     }
-
                 }
                 else
                 {
@@ -93,12 +89,10 @@ namespace DRDPE.Admin
             {
                 uplPics.SaveAs(strPath);
                 myMessage.Text = "File upload to:" + strPath;
-
                 imgProd.ImageUrl = "~/tempImages/" + uplPics.FileName;
                 int intLength = uplPics.FileName.Length;
                 int intRem = intLength - 4;
                 string strNoExtension = uplPics.FileName.Substring(0, intLength - 3);
-
                 imgProd.AlternateText = strNoExtension;
                 imgProd.Visible = true;
 
