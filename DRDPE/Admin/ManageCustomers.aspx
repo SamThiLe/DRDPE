@@ -27,6 +27,21 @@
         <asp:TextBox ID="txtSearch" runat="server" type="text" class="form-control mr-sm-2  custom-search-box" style="display:inline;" placeholder="Search" name="q"></asp:TextBox>
         <asp:button id="btnSearch"  class="btn btn-outline-light my-2 my-sm-0" type="submit" runat="server" Text="Search" OnClick="btnSearch_Click"></asp:button>
     </div>
+
+    <asp:GridView ID="grvCustomers" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" PageSize="5">
+        <Columns>
+            <asp:BoundField HeaderText="Customer ID" ReadOnly="True" />
+            <asp:BoundField HeaderText="First Name" />
+            <asp:BoundField HeaderText="Middle Initial" />
+            <asp:BoundField HeaderText="Last Name" />
+            <asp:BoundField HeaderText="Email" />
+            <asp:BoundField HeaderText="Username" />
+            <asp:BoundField HeaderText="Phone" />
+            <asp:BoundField HeaderText="Verified" />
+            <asp:BoundField HeaderText="Archived" />
+        </Columns>
+    </asp:GridView>
+
     <asp:Repeater ID="rptCust" runat="server">
         <HeaderTemplate>
             <div class="card-deck">
@@ -34,20 +49,20 @@
             <ItemTemplate>
                 <div class="card" style="margin-bottom: 1em;">
                     <div class="card-body">
-                        <h5 class="card-title"><asp:Label runat="server"><%#Eval("firstName")%> <%#Eval("middleInitial")%>. <%#Eval("lastName")%></asp:Label></h5>
+                        <h5 class="card-title"><asp:Label runat="server"><%#Eval("firstName")%>&nbsp;<%#Eval("middleInitial")%>&nbsp;<%#Eval("lastName")%></asp:Label></h5>
                         <p class="card-text">
                             <br />
-                            <asp:Label runat="server"><%#Eval("customerId")%></asp:Label><br />
+                            <asp:Label runat="server">Customer ID: <%#Eval("customerId")%></asp:Label>
                             <br />
-                            <asp:Label runat="server"><%#Eval("email")%></asp:Label>
+                            <asp:Label runat="server">Email: <%#Eval("email")%></asp:Label>
                             <br />
-                            <asp:Label runat="server"><%#Eval("username")%></asp:Label>
+                            <asp:Label runat="server">Username: <%#Eval("username")%></asp:Label>
                             <br />
-                            <asp:Label runat="server"><%#Eval("phone")%></asp:Label>
+                            <asp:Label runat="server">Phone: <%#Eval("phone")%></asp:Label>
                             <br />
-                            <asp:Label runat="server"><%#Eval("verified")%></asp:Label>
+                            <asp:Label runat="server">Verified: <%#Eval("verified")%></asp:Label>
                             <br />
-                            <asp:Label runat="server"><%#Eval("archived")%></asp:Label>
+                            <asp:Label runat="server">Archived: <%#Eval("archived")%></asp:Label>
                             <br />
                         </p>
                     </div>

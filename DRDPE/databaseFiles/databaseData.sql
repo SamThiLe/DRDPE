@@ -27,6 +27,8 @@ DELETE FROM Addresses
 GO
 DELETE FROM Customers
 GO
+DELETE FROM adminLogin
+GO
 DBCC CHECKIDENT ('Products', RESEED, 1000)
 GO
 DBCC CHECKIDENT ('SiteImages', RESEED, 0)
@@ -36,6 +38,8 @@ GO
 DBCC CHECKIDENT ('CartItems', RESEED, 0)
 GO
 DBCC CHECKIDENT ('Customers', RESEED, 0)
+GO
+DBCC CHECKIDENT ('adminLogin', RESEED, 0)
 GO
 
 --bread images
@@ -187,7 +191,10 @@ insert into Products VALUES ('Sugar Donuts', 'A sugar donut', 'A delicious home 
 insert into Products VALUES ('Boston Cream Donuts', 'A boston cream donut', 'A delicious home made box of boston cream donut using the finest, hand-picked ingredients', 1, 4.50, 0, 8, 55)
 GO
 
-
+insert into adminLogin VALUES ('wolfe.winters@gmail.com', 'admin');
+insert into adminLogin VALUES ('poirier_justin@hotmail.com', 'admin');
+insert into adminLogin VALUES ('samuelthile@gmail.com', 'admin');
+GO
 insert into Cart VALUES (getdate(), getdate(), 1, null);
 GO
 insert into CartItems VALUES (1, 1001, 1, 3.50, null, 'AV');
@@ -537,19 +544,18 @@ GO
 DROP PROCEDURE IF EXISTS dbo.loginAdmin
 GO
 CREATE PROCEDURE loginAdmin
-    @email      NVARCHAR(50),
-    @password   NVARCHAR(15),
-    @result     BIT OUTPUT
+    @email		NVARCHAR(15),
+    @password   NVARCHAR(15)
 AS
 BEGIN
-        --Returns 1 on success - Returns 0 on fail
+        --Returns admin ID on success - Returns 0 on fail
         SELECT
-            COUNT(*)
+            id
         FROM
             adminLogin
         WHERE
             email = @email AND
-            [password] = @password;
+            [password] = @password
 END
 GO
 
@@ -676,7 +682,7 @@ CREATE PROCEDURE insertCustomer
     @password           NVARCHAR(15),
     @firstName          NVARCHAR(50),
     @lastName           NVARCHAR(50),
-    @phone              NVARCHAR(10),
+    @phone              NVARCHAR(14),
     @middleInitial      CHAR(1)         = null,
     @verificationToken  NVARCHAR(50),
     @street             NVARCHAR(50),
@@ -750,7 +756,7 @@ GO
 CREATE PROCEDURE updateCustomer
     @email              NVARCHAR(50),
     @lastName           NVARCHAR(50),
-    @phone              NVARCHAR(10),
+    @phone              NVARCHAR(14),
     @archived           BIT
 AS
 BEGIN
@@ -771,7 +777,7 @@ CREATE PROCEDURE updateCustomerAdmin
     @email              NVARCHAR(50),
     @firstName          NVARCHAR(50),
     @lastName           NVARCHAR(50),
-    @phone              NVARCHAR(10),
+    @phone              NVARCHAR(14),
     @middleInitial      CHAR(1)         = null,
     @archived           BIT
 AS

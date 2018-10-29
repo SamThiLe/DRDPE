@@ -19,17 +19,27 @@ namespace DRDPE
         private Guid userVerificationCode = Guid.NewGuid();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Session["login"] == "false")
+            if(Session["login"] == null)
             {
                 Response.Redirect("index.aspx");
             }
             if (!IsPostBack)
             {
                 GetAccountInfo();
+                rfvShipStreetAddress.Enabled = false;
+                rfvShipCity.Enabled = false;
+                rfvShipProvince.Enabled = false;
+                rfvShipPostalCode.Enabled = false;
+                rfvShipCountry.Enabled = false;
             }
             if(!IsPostBack && Request.Cookies["CheckingOut"].Value == "")
             {
                 divShippingAddressChk.Style.Add("display", "none");
+                rfvShipStreetAddress.Enabled = false;
+                rfvShipCity.Enabled = false;
+                rfvShipProvince.Enabled = false;
+                rfvShipPostalCode.Enabled = false;
+                rfvShipCountry.Enabled = false;
             }
         }
 
@@ -97,7 +107,7 @@ namespace DRDPE
                     cmd.Parameters.Add("@email", SqlDbType.NVarChar, 50).Value = txtEmail.Text;
                     cmd.Parameters.Add("@password", SqlDbType.NVarChar, 15).Value = txtPassword.Text;
                     cmd.Parameters.Add("@lastName", SqlDbType.NVarChar, 50).Value = txtLastName.Text;
-                    cmd.Parameters.Add("@phone", SqlDbType.NVarChar, 10).Value = txtPhoneNumber.Text;
+                    cmd.Parameters.Add("@phone", SqlDbType.NVarChar, 14).Value = txtPhoneNumber.Text;
                     cmd.Parameters.Add("@verificationToken", SqlDbType.NVarChar, 50).Value = userVerificationCode.ToString();
                     using (conn)
                     {
@@ -147,8 +157,7 @@ namespace DRDPE
                     cmd.Parameters.Add("@stateProv", SqlDbType.NVarChar, 15).Value = txtProvince.Text;
                     cmd.Parameters.Add("@country", SqlDbType.NVarChar, 20).Value = txtCountry.Text;
                     cmd.Parameters.Add("@postalCode", SqlDbType.NVarChar, 10).Value = txtPostalCode.Text;
-
-
+                    
                     using (conn)
                     {
                         conn.Open();
@@ -178,6 +187,12 @@ namespace DRDPE
                 rfvShipProvince.Enabled = true;
                 rfvShipPostalCode.Enabled = true;
                 rfvShipCountry.Enabled = true;
+
+                rfvStreetAddress.Enabled = true;
+                rfvCity.Enabled = true;
+                rfvProvince.Enabled = true;
+                rfvPostalCode.Enabled = true;
+                rfvCountry.Enabled = true;
             }
             else
             {
@@ -187,6 +202,12 @@ namespace DRDPE
                 rfvShipProvince.Enabled = false;
                 rfvShipPostalCode.Enabled = false;
                 rfvShipCountry.Enabled = false;
+
+                rfvStreetAddress.Enabled = true;
+                rfvCity.Enabled = true;
+                rfvProvince.Enabled = true;
+                rfvPostalCode.Enabled = true;
+                rfvCountry.Enabled = true;
             }
         }
     }
