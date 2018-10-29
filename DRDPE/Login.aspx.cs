@@ -43,7 +43,6 @@ namespace DRDPE
             }
 
         }
-
         private bool CustomerLogin()
         {
             SqlCommand cmd = default(SqlCommand);

@@ -26,23 +26,17 @@ namespace DRDPE.Admin
             {
                 Session["adminLogin"] = true;
                 Session["adminId"] = adminId;
-                Session["adminUsername"] = txtUserName.Text;
                 loginContainer.Style.Add("display", "none");
                 lblSuccess.Text = "<h3>Login succesful. Redirecting...</h3>";
-                if (Request.QueryString["CO"] == "1")
-                {
-                    Response.Redirect("~/ModifyAccount.aspx");
-                }
 
-                Response.Redirect("index.aspx");
+
+                Response.Redirect("~/admin/index.aspx");
             }
             else
             {
                 lblSuccess.Text = "<h3>Login unsuccessful. No existing user with those matching credentials.</h3>";
             }
-
         }
-
         private bool CustomerLogin()
         {
             SqlCommand cmd = default(SqlCommand);
@@ -53,7 +47,7 @@ namespace DRDPE.Admin
                 {
                     cmd = new SqlCommand("loginAdmin", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@username", SqlDbType.NVarChar, 15).Value = txtUserName.Text;
+                    cmd.Parameters.Add("@email", SqlDbType.NVarChar, 15).Value = txtUserName.Text;
                     cmd.Parameters.Add("@password", SqlDbType.NVarChar, 15).Value = txtPassword.Text;
                     using (conn)
                     {
@@ -71,12 +65,11 @@ namespace DRDPE.Admin
             }
             catch (Exception ex)
             {
-                //logging
+                ////logging
+                //EventLog log = new EventLog();
 
-                EventLog log = new EventLog();
-
-                log.Source = "Demo Error Log";
-                log.WriteEntry(ex.Message, EventLogEntryType.Error);
+                //log.Source = "Demo Error Log";
+                //log.WriteEntry(ex.Message, EventLogEntryType.Error);
                 return false;
             }
         }
