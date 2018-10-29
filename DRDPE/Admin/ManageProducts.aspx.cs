@@ -33,7 +33,6 @@ namespace DRDPE
                 getCategoriesForDDL();
                 getCategories();
                 Session.Remove("changed");
-                GetApprovedImages();
             }
                 
             if (!String.IsNullOrEmpty(catId))
@@ -52,6 +51,7 @@ namespace DRDPE
 
         private void GetApprovedImages()
         {
+            
             Label myMessage = Master.FindControl("lblMessage") as Label;
             SqlDataReader dr = default(SqlDataReader);
             SqlCommand cmd = default(SqlCommand);
@@ -59,7 +59,9 @@ namespace DRDPE
             {
                 using (SqlConnection conn = new SqlConnection(cnnString))
                 {
+                    
                     cmd = new SqlCommand("getApprovedNotUsed", conn);
+                    cmd.Parameters.AddWithValue("@ProdId", txtProduct.Text);
                     cmd.CommandType = CommandType.StoredProcedure;
                     conn.Open();
                     dr = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
@@ -112,8 +114,8 @@ namespace DRDPE
             {
                 using (SqlConnection conn = new SqlConnection(cnnString))
                 {
-                    cmd = new SqlCommand("select * from Categories", conn);
-                    /*cmd.CommandType = CommandType.StoredProcedure;*/
+                    cmd = new SqlCommand("getCategories", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
                     conn.Open();
                     dr = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
                     if (dr.HasRows)
@@ -255,7 +257,9 @@ namespace DRDPE
                         txtProductPrice.Text = Convert.ToDecimal(dr["price"]).ToString("c");
                         chkProductFeatured.Checked = Convert.ToBoolean(dr["featured"]);
                         imgProd.ImageUrl = Convert.ToString(dr["imageUrl"]);
-                        ddlCat.SelectedIndex = Convert.ToInt16(dr["categoryId"]);
+                        GetApprovedImages();
+                        ddlImages.Items.FindByValue(dr["imageId"].ToString()).Selected = true;
+                        ddlCat.Items.FindByValue(dr["categoryId"].ToString()).Selected = true;
                     }
                 }
             }
@@ -279,8 +283,8 @@ namespace DRDPE
             {
                 using (SqlConnection conn = new SqlConnection(cnnString))
                 {
-                    cmd = new SqlCommand("select DISTINCT * from Categories", conn);
-                    /*cmd.CommandType = CommandType.StoredProcedure;*/
+                    cmd = new SqlCommand("getCategories", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
                     conn.Open();
                     dr = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
 
@@ -290,6 +294,7 @@ namespace DRDPE
                         ddlCat.DataTextField = "name";
                         ddlCat.DataValueField = "categoryId";
                         ddlCat.DataBind();
+                        
                     }
                     else
                     {
@@ -332,6 +337,8 @@ namespace DRDPE
                     cmd.Parameters.AddWithValue("@price", txtProductPrice.Text);
                     cmd.Parameters.AddWithValue("@featured", chkProductFeatured.Checked);
                     cmd.Parameters.AddWithValue("@categoryId", ddlCat.SelectedValue);
+                    cmd.Parameters.AddWithValue("@imageId", ddlImages.SelectedValue);
+                    
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     using (conn)
@@ -405,7 +412,7 @@ namespace DRDPE
                     cmd.Parameters.AddWithValue("@price", txtProductPrice.Text);
                     cmd.Parameters.AddWithValue("@featured", chkProductFeatured.Checked);
                     cmd.Parameters.AddWithValue("@categoryId", ddlCat.SelectedValue);
-                    //cmd.Parameters.AddWithValue("@imageUrl", "Template");
+                    cmd.Parameters.AddWithValue("@imageId", ddlImages.SelectedValue);
                     cmd.CommandType = CommandType.StoredProcedure;
                     using (conn)
                     {
@@ -465,7 +472,7 @@ namespace DRDPE
                 using (SqlConnection conn = new SqlConnection(cnnString))
                 {
                     cmd = new SqlCommand("deleteProduct", conn);
-                    cmd.Parameters.AddWithValue("@productId", txtProduct.Text);
+                    cmd.Parameters.AddWithValue("@ProdId", txtProduct.Text);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     using (conn)
@@ -509,7 +516,7 @@ namespace DRDPE
             Label myMessage = Master.FindControl("lblMessage") as Label;
             try
             {
-                imgProd.ImageUrl = "~/"+ddlImages.SelectedItem.Text;
+                imgProd.ImageUrl = ddlImages.SelectedItem.Text;
             }
             catch (Exception ex)
             {

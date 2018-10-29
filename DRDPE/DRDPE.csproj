@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\AdminLogin.aspx" />
     <Content Include="Admin\index.aspx" />
     <Content Include="Admin\ManageCustomers.aspx" />
     <Content Include="Admin\ManageImage.aspx" />
@@ -161,6 +162,13 @@
     </Compile>
     <Compile Include="Admin\Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdminLogin.aspx.cs">
+      <DependentUpon>AdminLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminLogin.aspx.designer.cs">
+      <DependentUpon>AdminLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>

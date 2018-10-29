@@ -27,6 +27,21 @@
         <asp:TextBox ID="txtSearch" runat="server" type="text" class="form-control mr-sm-2  custom-search-box" style="display:inline;" placeholder="Search" name="q"></asp:TextBox>
         <asp:button id="btnSearch"  class="btn btn-outline-light my-2 my-sm-0" type="submit" runat="server" Text="Search" OnClick="btnSearch_Click"></asp:button>
     </div>
+
+    <asp:GridView ID="grvCustomers" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" PageSize="5">
+        <Columns>
+            <asp:BoundField HeaderText="Customer ID" ReadOnly="True" />
+            <asp:BoundField HeaderText="First Name" />
+            <asp:BoundField HeaderText="Middle Initial" />
+            <asp:BoundField HeaderText="Last Name" />
+            <asp:BoundField HeaderText="Email" />
+            <asp:BoundField HeaderText="Username" />
+            <asp:BoundField HeaderText="Phone" />
+            <asp:BoundField HeaderText="Verified" />
+            <asp:BoundField HeaderText="Archived" />
+        </Columns>
+    </asp:GridView>
+
     <asp:Repeater ID="rptCust" runat="server">
         <HeaderTemplate>
             <div class="card-deck">
