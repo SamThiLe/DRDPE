@@ -43,80 +43,80 @@ DBCC CHECKIDENT ('adminLogin', RESEED, 0)
 GO
 
 --bread images
-insert into SiteImages VALUES ('~/images/placeholder.jpg', GETDATE(), 'Placeholder image', 1);
-insert into SiteImages VALUES ('~/images/whitebread.jpg', GETDATE(), 'A loaf of white bread', 1);
-insert into SiteImages VALUES ('~/images/brownbread.jpg', GETDATE(), 'A loaf of Brown bread', 1);
-insert into SiteImages VALUES ('~/images/ryebread.jpg', GETDATE(), 'A loaf of Rye bread', 1);
-insert into SiteImages VALUES ('~/images/sourbread.jpg', GETDATE(), 'A loaf of Sourdough bread', 1);
-insert into SiteImages VALUES ('~/images/wholewheatbread.jpg', GETDATE(), 'A loaf of whole wheat bread', 1);
-insert into SiteImages VALUES ('~/images/multigrainbread.jpg', GETDATE(), 'A loaf of multigrain bread', 1);
-insert into SiteImages VALUES ('~/images/maplebread.jpg', GETDATE(), 'A loaf of maple bread', 1);
+insert into SiteImages VALUES ('~/images/placeholder.jpg', GETDATE(), 'Placeholder image', 1, 1);
+insert into SiteImages VALUES ('~/images/whitebread.jpg', GETDATE(), 'A loaf of white bread', 1, 1);
+insert into SiteImages VALUES ('~/images/brownbread.jpg', GETDATE(), 'A loaf of Brown bread', 1, 1);
+insert into SiteImages VALUES ('~/images/ryebread.jpg', GETDATE(), 'A loaf of Rye bread', 1, 1);
+insert into SiteImages VALUES ('~/images/sourbread.jpg', GETDATE(), 'A loaf of Sourdough bread', 1, 1);
+insert into SiteImages VALUES ('~/images/wholewheatbread.jpg', GETDATE(), 'A loaf of whole wheat bread', 1, 1);
+insert into SiteImages VALUES ('~/images/multigrainbread.jpg', GETDATE(), 'A loaf of multigrain bread', 1, 1);
+insert into SiteImages VALUES ('~/images/maplebread.jpg', GETDATE(), 'A loaf of maple bread', 1, 1);
 
 --Square images
-insert into SiteImages VALUES ('~/images/nanaimosquare.jpg', GETDATE(), 'A pack of nanaimo squares', 1);
-insert into SiteImages VALUES ('~/images/marshmallowsquare.jpg', GETDATE(), 'A pack of marshmallow squares', 1);
-insert into SiteImages VALUES ('~/images/datesquare.jpg', GETDATE(), 'A pack of date squares', 1);
-insert into SiteImages VALUES ('~/images/blueberrysquare.jpg', GETDATE(), 'A pack of blueberry squares', 1);
-insert into SiteImages VALUES ('~/images/lemonsquare.jpg', GETDATE(), 'A pack of lemon squares', 1);
-insert into SiteImages VALUES ('~/images/pecansquare.jpg', GETDATE(), 'A pack of pecan squares', 1);
-insert into SiteImages VALUES ('~/images/peanutbuttersquare.jpg', GETDATE(), 'A pack of peanut butter squares', 1);
+insert into SiteImages VALUES ('~/images/nanaimosquare.jpg', GETDATE(), 'A pack of nanaimo squares', 1, 1);
+insert into SiteImages VALUES ('~/images/marshmallowsquare.jpg', GETDATE(), 'A pack of marshmallow squares', 1, 1);
+insert into SiteImages VALUES ('~/images/datesquare.jpg', GETDATE(), 'A pack of date squares', 1, 1);
+insert into SiteImages VALUES ('~/images/blueberrysquare.jpg', GETDATE(), 'A pack of blueberry squares', 1, 1);
+insert into SiteImages VALUES ('~/images/lemonsquare.jpg', GETDATE(), 'A pack of lemon squares', 1, 1);
+insert into SiteImages VALUES ('~/images/pecansquare.jpg', GETDATE(), 'A pack of pecan squares', 1, 1);
+insert into SiteImages VALUES ('~/images/peanutbuttersquare.jpg', GETDATE(), 'A pack of peanut butter squares', 1, 1);
 
 --Cake images
-insert into SiteImages VALUES ('~/images/triplechocolatecake.jpg', GETDATE(), 'A triple chocolate cake', 1);
-insert into SiteImages VALUES ('~/images/devilsfoodcake.jpg', GETDATE(), 'A devils food cake', 1);
-insert into SiteImages VALUES ('~/images/angelfoodcake.jpg', GETDATE(), 'A angel food cake', 1);
-insert into SiteImages VALUES ('~/images/cheesecake.jpg', GETDATE(), 'A cheesecake', 1);
-insert into SiteImages VALUES ('~/images/lemonmeringuecake.jpg', GETDATE(), 'A lemon meringue cake', 1);
-insert into SiteImages VALUES ('~/images/blackforestcake.jpg', GETDATE(), 'A black forest cake', 1);
-insert into SiteImages VALUES ('~/images/chocolatemoussecake.jpg', GETDATE(), 'A chocolate mousse cake', 1);
-insert into SiteImages VALUES ('~/images/poundcake.jpg', GETDATE(), 'A pound cake', 1);
+insert into SiteImages VALUES ('~/images/triplechocolatecake.jpg', GETDATE(), 'A triple chocolate cake', 1, 1);
+insert into SiteImages VALUES ('~/images/devilsfoodcake.jpg', GETDATE(), 'A devils food cake', 1, 1);
+insert into SiteImages VALUES ('~/images/angelfoodcake.jpg', GETDATE(), 'A angel food cake', 1, 1);
+insert into SiteImages VALUES ('~/images/cheesecake.jpg', GETDATE(), 'A cheesecake', 1, 1);
+insert into SiteImages VALUES ('~/images/lemonmeringuecake.jpg', GETDATE(), 'A lemon meringue cake', 1, 1);
+insert into SiteImages VALUES ('~/images/blackforestcake.jpg', GETDATE(), 'A black forest cake', 1, 1);
+insert into SiteImages VALUES ('~/images/chocolatemoussecake.jpg', GETDATE(), 'A chocolate mousse cake', 1, 1);
+insert into SiteImages VALUES ('~/images/poundcake.jpg', GETDATE(), 'A pound cake', 1, 1);
 
 --Bun images
-insert into SiteImages VALUES ('~/images/whitebun.jpg', GETDATE(), 'A white bun', 1);
-insert into SiteImages VALUES ('~/images/brownbun.jpg', GETDATE(), 'A brown bun', 1);
-insert into SiteImages VALUES ('~/images/ryebun.jpg', GETDATE(), 'A rye bun', 1);
-insert into SiteImages VALUES ('~/images/sourdoughbun.jpg', GETDATE(), 'A sourdough bun', 1);
-insert into SiteImages VALUES ('~/images/wholewheatbun.jpg', GETDATE(), 'A whole wheat bun', 1);
-insert into SiteImages VALUES ('~/images/multigrainbun.jpg', GETDATE(), 'A multigrain bun', 1);
+insert into SiteImages VALUES ('~/images/whitebun.jpg', GETDATE(), 'A white bun', 1, 1);
+insert into SiteImages VALUES ('~/images/brownbun.jpg', GETDATE(), 'A brown bun', 1, 1);
+insert into SiteImages VALUES ('~/images/ryebun.jpg', GETDATE(), 'A rye bun', 1, 1);
+insert into SiteImages VALUES ('~/images/sourdoughbun.jpg', GETDATE(), 'A sourdough bun', 1, 1);
+insert into SiteImages VALUES ('~/images/wholewheatbun.jpg', GETDATE(), 'A whole wheat bun', 1, 1);
+insert into SiteImages VALUES ('~/images/multigrainbun.jpg', GETDATE(), 'A multigrain bun', 1, 1);
 
 --Danish images
-insert into SiteImages VALUES ('~/images/blueberrydanish.jpg', GETDATE(), 'A blueberry danish', 1);
-insert into SiteImages VALUES ('~/images/raspberrydanish.jpg', GETDATE(), 'A raspberry danish', 1);
-insert into SiteImages VALUES ('~/images/strawberrydanish.jpg', GETDATE(), 'A strawberry danish', 1);
-insert into SiteImages VALUES ('~/images/carameldanish.jpg', GETDATE(), 'A caramel danish', 1);
-insert into SiteImages VALUES ('~/images/chocolatedanish.jpg', GETDATE(), 'A chocolate danish', 1);
-insert into SiteImages VALUES ('~/images/butterdanish.jpg', GETDATE(), 'A butter danish', 1);
-insert into SiteImages VALUES ('~/images/creamcheesedanish.jpg', GETDATE(), 'A cream cheese danish', 1);
+insert into SiteImages VALUES ('~/images/blueberrydanish.jpg', GETDATE(), 'A blueberry danish', 1, 1);
+insert into SiteImages VALUES ('~/images/raspberrydanish.jpg', GETDATE(), 'A raspberry danish', 1, 1);
+insert into SiteImages VALUES ('~/images/strawberrydanish.jpg', GETDATE(), 'A strawberry danish', 1, 1);
+insert into SiteImages VALUES ('~/images/carameldanish.jpg', GETDATE(), 'A caramel danish', 1, 1);
+insert into SiteImages VALUES ('~/images/chocolatedanish.jpg', GETDATE(), 'A chocolate danish', 1, 1);
+insert into SiteImages VALUES ('~/images/butterdanish.jpg', GETDATE(), 'A butter danish', 1, 1);
+insert into SiteImages VALUES ('~/images/creamcheesedanish.jpg', GETDATE(), 'A cream cheese danish', 1, 1);
 
 --Muffin images
-insert into SiteImages VALUES ('~/images/blueberrymuffin.jpg', GETDATE(), 'A blueberry muffin', 1);
-insert into SiteImages VALUES ('~/images/raspberrymuffin.jpg', GETDATE(), 'A raspberry muffin', 1);
-insert into SiteImages VALUES ('~/images/strawberrymuffin.jpg', GETDATE(), 'A strawberry muffin', 1);
-insert into SiteImages VALUES ('~/images/caramelmuffin.jpg', GETDATE(), 'A caramel muffin', 1);
-insert into SiteImages VALUES ('~/images/chocolatemuffin.jpg', GETDATE(), 'A chocolate muffin', 1);
-insert into SiteImages VALUES ('~/images/butterpecanmuffin.jpg', GETDATE(), 'A butter pecan muffin', 1);
+insert into SiteImages VALUES ('~/images/blueberrymuffin.jpg', GETDATE(), 'A blueberry muffin', 1, 1);
+insert into SiteImages VALUES ('~/images/raspberrymuffin.jpg', GETDATE(), 'A raspberry muffin', 1, 1);
+insert into SiteImages VALUES ('~/images/strawberrymuffin.jpg', GETDATE(), 'A strawberry muffin', 1, 1);
+insert into SiteImages VALUES ('~/images/caramelmuffin.jpg', GETDATE(), 'A caramel muffin', 1, 1);
+insert into SiteImages VALUES ('~/images/chocolatemuffin.jpg', GETDATE(), 'A chocolate muffin', 1, 1);
+insert into SiteImages VALUES ('~/images/butterpecanmuffin.jpg', GETDATE(), 'A butter pecan muffin', 1, 1);
 
 --Croissant images
-insert into SiteImages VALUES ('~/images/cheesecroissant.jpg', GETDATE(), 'A butter cheese croissant', 1);
-insert into SiteImages VALUES ('~/images/buttercroissant.jpg', GETDATE(), 'A butter croissant', 1);
-insert into SiteImages VALUES ('~/images/chocolatecroissant.jpg', GETDATE(), 'A chocolate croissant', 1);
-insert into SiteImages VALUES ('~/images/almondcroissant.jpg', GETDATE(), 'A almond croissant', 1);
-insert into SiteImages VALUES ('~/images/hamandcheesecroissant.jpg', GETDATE(), 'A ham and cheese croissant', 1);
-insert into SiteImages VALUES ('~/images/baconcroissant.jpg', GETDATE(), 'A bacon croissant', 1);
+insert into SiteImages VALUES ('~/images/cheesecroissant.jpg', GETDATE(), 'A butter cheese croissant', 1, 1);
+insert into SiteImages VALUES ('~/images/buttercroissant.jpg', GETDATE(), 'A butter croissant', 1, 1);
+insert into SiteImages VALUES ('~/images/chocolatecroissant.jpg', GETDATE(), 'A chocolate croissant', 1, 1);
+insert into SiteImages VALUES ('~/images/almondcroissant.jpg', GETDATE(), 'A almond croissant', 1, 1);
+insert into SiteImages VALUES ('~/images/hamandcheesecroissant.jpg', GETDATE(), 'A ham and cheese croissant', 1, 1);
+insert into SiteImages VALUES ('~/images/baconcroissant.jpg', GETDATE(), 'A bacon croissant', 1, 1);
 
 --Donut images
-insert into SiteImages VALUES ('~/images/blueberryfilleddonut.jpg', GETDATE(), 'A blueberry filled donut', 1);
-insert into SiteImages VALUES ('~/images/raspberryfilleddonut.jpg', GETDATE(), 'A raspberry filled donut', 1);
-insert into SiteImages VALUES ('~/images/strawberryfilleddonut.jpg', GETDATE(), 'A strawberry filled donut', 1);
-insert into SiteImages VALUES ('~/images/carameldonut.jpg', GETDATE(), 'A caramel donut', 1);
-insert into SiteImages VALUES ('~/images/chocolateglazeddonut.jpg', GETDATE(), 'A chocolate glazed donut', 1);
-insert into SiteImages VALUES ('~/images/sugardonut.jpg', GETDATE(), 'A sugar donut', 1);
-insert into SiteImages VALUES ('~/images/bostoncreamdonut.jpg', GETDATE(), 'A boston cream donut', 1);
+insert into SiteImages VALUES ('~/images/blueberryfilleddonut.jpg', GETDATE(), 'A blueberry filled donut', 1, 1);
+insert into SiteImages VALUES ('~/images/raspberryfilleddonut.jpg', GETDATE(), 'A raspberry filled donut', 1, 1);
+insert into SiteImages VALUES ('~/images/strawberryfilleddonut.jpg', GETDATE(), 'A strawberry filled donut', 1, 1);
+insert into SiteImages VALUES ('~/images/carameldonut.jpg', GETDATE(), 'A caramel donut', 1, 1);
+insert into SiteImages VALUES ('~/images/chocolateglazeddonut.jpg', GETDATE(), 'A chocolate glazed donut', 1, 1);
+insert into SiteImages VALUES ('~/images/sugardonut.jpg', GETDATE(), 'A sugar donut', 1, 1);
+insert into SiteImages VALUES ('~/images/bostoncreamdonut.jpg', GETDATE(), 'A boston cream donut', 1, 1);
 
 --Testing images
-insert into SiteImages VALUES ('~/images/whitebread2.jpg', GETDATE(), 'A loaf of white bread', 1);
-insert into SiteImages VALUES ('~/images/whitebread3.jpg', GETDATE(), 'A loaf of white bread', 1);
-insert into SiteImages VALUES ('~/images/whitebread4.jpg', GETDATE(), 'A loaf of white bread', 1);
+insert into SiteImages VALUES ('~/images/whitebread2.jpg', GETDATE(), 'A loaf of white bread', 1, 1);
+insert into SiteImages VALUES ('~/images/whitebread3.jpg', GETDATE(), 'A loaf of white bread', 1, 1);
+insert into SiteImages VALUES ('~/images/whitebread4.jpg', GETDATE(), 'A loaf of white bread', 1, 1);
 GO
 
 
@@ -200,6 +200,9 @@ GO
 insert into CartItems VALUES (1, 1001, 1, 3.50, null, 'AV');
 GO
 insert into Customers VALUES ('test@test.com', 'admin', 'admin', 'testfirstname', 'testlastname', '(902) 456-7894', 't', 'testverificationtoken', 1, 0);
+insert into Customers VALUES ('doop@test.com', 'admin2', 'admin', 'Bob', 'Billy', '(902) 456-1231', 'R', 'testverificationtoken', 1, 0);
+insert into Customers VALUES ('test@test.com', 'sala1', 'admin', 'John', 'Salazar', '(902) 425-4564', 'Q', 'testverificationtoken', 1, 0);
+insert into Customers VALUES ('test@test.com', 'raine', 'admin', 'Miranda', 'Raine', '(902) 456-7159', 'M', 'testverificationtoken', 1, 0);
 GO
 insert into Addresses VALUES ('123 Fake Street', 'FakeCity', 'FakeProv', 'Canada', 'E1C7W9', 'Billing', 1, GETDATE(), null);
 GO
@@ -756,8 +759,7 @@ GO
 CREATE PROCEDURE updateCustomer
     @email              NVARCHAR(50),
     @lastName           NVARCHAR(50),
-    @phone              NVARCHAR(14),
-    @archived           BIT
+    @phone              NVARCHAR(14)
 AS
 BEGIN
     UPDATE
@@ -765,8 +767,7 @@ BEGIN
     SET
         email = @email,
         lastName = @lastName,
-        phone = @phone,
-        archived = @archived
+        phone = @phone
 END
 GO
 
@@ -982,7 +983,8 @@ DROP PROCEDURE IF EXISTS dbo.insertImage
 GO
 CREATE PROCEDURE insertImage
 	@imageUrl	NVARCHAR(50),
-	@altText	NVARCHAR(50)
+	@altText	NVARCHAR(50),
+	@uploadedBy	INT
 AS
 BEGIN
     INSERT INTO
@@ -992,7 +994,8 @@ BEGIN
 			@imageUrl,
 			GETDATE(),
 			@altText,
-			0
+			0,
+			@uploadedBy
 		);
 END
 GO
@@ -1030,15 +1033,28 @@ GO
 DROP PROCEDURE IF EXISTS dbo.approveImage
 GO
 CREATE PROCEDURE approveImage
-	@imageId	INT
+	@imageId	INT,
+	@adminId	INT
 AS
 BEGIN
-	UPDATE
-		SiteImages
-	SET
-		approved = 1
-	WHERE
-		imageId = @imageId;
+	--returns 0 on success, returns -6 on fail...for whatever reason
+	BEGIN TRY
+		IF(@adminId != (SELECT uploadedBy FROM SiteImages WHERE imageId = @imageId))
+			BEGIN
+				UPDATE
+					SiteImages
+				SET
+					approved = 1
+				WHERE
+					imageId = @imageId;
+			END
+		ELSE
+			THROW 50001,'Image cannot be approved by the admin who uploaded it', 1
+	END TRY
+	BEGIN CATCH
+		PRINT 'An Error Has Occured.';
+		PRINT 'Message: '+ CONVERT(VARCHAR(50),ERROR_MESSAGE());
+	END CATCH
 END
 GO
 
@@ -1051,9 +1067,8 @@ CREATE PROCEDURE insertAddress
     @stateProv          NVARCHAR(15),
     @country            NVARCHAR(20),
     @postalCode         NVARCHAR(10),
-    @addressType        NVARCHAR(10),
     @customerId         INT,
-    @additionalNo       VARCHAR(50)     = null
+    @additionalNo       NVARCHAR(50)     = null
 AS
 BEGIN
     INSERT INTO
@@ -1087,14 +1102,49 @@ BEGIN
 END
 GO
 
-/*
 --Update Address
 DROP PROCEDURE IF EXISTS dbo.updateAddress
 GO
 CREATE PROCEDURE updateAddress
+    @street             NVARCHAR(50),
+    @city               NVARCHAR(50),
+    @stateProv          NVARCHAR(15),
+    @country            NVARCHAR(20),
+    @postalCode         NVARCHAR(10),
+    @addressType        NVARCHAR(10),
+    @customerId         INT,
+    @additionalNo       NVARCHAR(50)     = null
 AS
 BEGIN
-    procedureCodeHere
+    UPDATE
+		Addresses
+	SET
+		street = @street,
+		city = @city,
+		stateProv = @stateProv,
+		country = @country,
+		postalCode = @postalCode,
+		addressType = @addressType,
+		AdditionalNo = @additionalNo
+	WHERE
+		customerId = @customerId;
+END
+GO
+
+/*
+--Check for Billing Address
+DROP PROCEDURE IF EXISTS dbo.CheckForBilling
+GO
+CREATE PROCEDURE CheckForBilling
+	@CustomerId		INT
+AS
+BEGIN
+    SELECT
+		COUNT(*)
+	FROM
+		Addresses
+	WHERE
+		customerId = @CustomerId AND addressType = 'Billing';
 END
 GO
 */

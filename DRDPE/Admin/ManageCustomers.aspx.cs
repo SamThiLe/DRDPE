@@ -39,8 +39,9 @@ namespace DRDPE.Admin
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             Label myMessage = Master.FindControl("lblMessage") as Label;
-            SqlDataReader dr = default(SqlDataReader);
+            SqlDataAdapter da = default(SqlDataAdapter);
             SqlCommand cmd = default(SqlCommand);
+            DataSet ds = null;
             try
             {
                 using (SqlConnection conn = new SqlConnection(cnnString))
@@ -50,11 +51,13 @@ namespace DRDPE.Admin
                     cmd.Parameters.AddWithValue("@searchText", txtSearch.Text);
                     cmd.CommandType = CommandType.StoredProcedure;
                     conn.Open();
-                    dr = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-                    if (dr.HasRows)
+                    da = new SqlDataAdapter(cmd);
+                    ds = new DataSet();
+                    da.Fill(ds);
+                    if (ds != null)
                     {
-                        rptCust.DataSource = dr;
-                        rptCust.DataBind();
+                        grvCustomers.DataSource = ds;
+                        grvCustomers.DataBind();
                     }
                     else
                     {
@@ -68,6 +71,11 @@ namespace DRDPE.Admin
                 ShowError();
                 myMessage.Text = ex.Message.ToString();
             }
+        }
+
+        protected void grvCustomers_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+
         }
     }
 

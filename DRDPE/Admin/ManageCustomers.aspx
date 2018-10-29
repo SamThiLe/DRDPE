@@ -28,17 +28,17 @@
         <asp:button id="btnSearch"  class="btn btn-outline-light my-2 my-sm-0" type="submit" runat="server" Text="Search" OnClick="btnSearch_Click"></asp:button>
     </div>
 
-    <asp:GridView ID="grvCustomers" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" PageSize="5">
+    <asp:GridView ID="grvCustomers" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" PageSize="5" AutoGenerateEditButton="True" OnRowEditing="grvCustomers_RowEditing">
         <Columns>
-            <asp:BoundField HeaderText="Customer ID" ReadOnly="True" />
-            <asp:BoundField HeaderText="First Name" />
-            <asp:BoundField HeaderText="Middle Initial" />
-            <asp:BoundField HeaderText="Last Name" />
-            <asp:BoundField HeaderText="Email" />
-            <asp:BoundField HeaderText="Username" />
-            <asp:BoundField HeaderText="Phone" />
-            <asp:BoundField HeaderText="Verified" />
-            <asp:BoundField HeaderText="Archived" />
+            <asp:BoundField HeaderText="Customer ID" ReadOnly="True" DataField="customerId" />
+            <asp:BoundField HeaderText="First Name" DataField="firstName" />
+            <asp:BoundField HeaderText="Middle Initial" DataField="middleInitial" />
+            <asp:BoundField HeaderText="Last Name" DataField="lastName" />
+            <asp:BoundField HeaderText="Email" DataField="email" />
+            <asp:BoundField HeaderText="Username" DataField="username" ReadOnly="True" />
+            <asp:BoundField HeaderText="Phone" DataField="phone" />
+            <asp:BoundField HeaderText="Verified" DataField="verified" ReadOnly="True" />
+            <asp:BoundField HeaderText="Archived" DataField="archived" />
         </Columns>
     </asp:GridView>
 
