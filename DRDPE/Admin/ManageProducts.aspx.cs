@@ -18,20 +18,22 @@ namespace DRDPE
         protected void Page_Load(object sender, EventArgs e)
         {
             Label myMessage = Master.FindControl("lblMessage") as Label;
+            string catId = Server.UrlDecode(Request.QueryString["catId"]);
+            string prodId = Server.UrlDecode(Request.QueryString["prodId"]);
             if (myMessage.Text == "")
             {
                 HideError();
             }
             btnSave.Visible = false;
-            productContainer.Style.Add("display", "none");
-            string catId = Server.UrlDecode(Request.QueryString["catId"]);
-            string prodId = Server.UrlDecode(Request.QueryString["prodId"]);
+            //productContainer.Style.Add("display", "none");
+            
             if (!IsPostBack || (string)Session["changed"] == "yes")
             {
                 FillProductStatusDDL();
                 getCategoriesForDDL();
                 getCategories();
                 Session.Remove("changed");
+                GetApprovedImages();
             }
                 
             if (!String.IsNullOrEmpty(catId))
@@ -47,6 +49,45 @@ namespace DRDPE
                 rptProd.Visible = false;
             }
         }
+
+        private void GetApprovedImages()
+        {
+            Label myMessage = Master.FindControl("lblMessage") as Label;
+            SqlDataReader dr = default(SqlDataReader);
+            SqlCommand cmd = default(SqlCommand);
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(cnnString))
+                {
+                    cmd = new SqlCommand("getApprovedNotUsed", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    conn.Open();
+                    dr = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+                    if (dr.HasRows)
+                    {
+                        ddlImages.DataSource = dr;
+                        ddlImages.DataTextField = "imageUrl";
+                        ddlImages.DataValueField = "imageId";
+                        ddlImages.DataBind();
+                    }
+                    else
+                    {
+                        ShowError();
+                        myMessage.Text = "No rows found.";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowError();
+                myMessage.Text = ex.Message;
+            }
+            finally
+            {
+                dr.Close();
+            }
+        }
+
         private void FillProductStatusDDL()
         {
             ddlProductStatus.DataSource = Enumeration.GetAll<ProductStatus>();
@@ -213,7 +254,7 @@ namespace DRDPE
                         ddlProductStatus.SelectedValue = dr["statusCode"].ToString();
                         txtProductPrice.Text = Convert.ToDecimal(dr["price"]).ToString("c");
                         chkProductFeatured.Checked = Convert.ToBoolean(dr["featured"]);
-                        imgProd.ImageUrl = "../" + Convert.ToString(dr["imageUrl"]);
+                        imgProd.ImageUrl = Convert.ToString(dr["imageUrl"]);
                         ddlCat.SelectedIndex = Convert.ToInt16(dr["categoryId"]);
                     }
                 }
@@ -466,121 +507,14 @@ namespace DRDPE
         protected void ddlImages_SelectedIndexChanged(object sender, EventArgs e)
         {
             Label myMessage = Master.FindControl("lblMessage") as Label;
-            SqlDataReader dr = default(SqlDataReader);
-            SqlCommand cmd = default(SqlCommand);
             try
             {
-                using (SqlConnection cnn = new SqlConnection(cnnString))
-                {
-                    int productId = int.Parse(Request.QueryString["prodId"]);
-                    cmd = new SqlCommand("getSingleImaget", cnn);
-                    cmd.Parameters.AddWithValue("@imageId", productId);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cnn.Open();
-                    dr = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-
-                    while (dr.Read())
-                    {
-                        imgProd.ImageUrl = "../" + Convert.ToString(dr["imageUrl"]);
-                    }
-                }
+                imgProd.ImageUrl = "~/"+ddlImages.SelectedItem.Text;
             }
             catch (Exception ex)
             {
                 ShowError();
                 myMessage.Text = ex.Message;
-            }
-            finally
-            {
-                dr.Close();
-            }
-        }
-
-        protected void btnChoseImage_Click(object sender, EventArgs e)
-        {
-            Label myMessage = Master.FindControl("lblMessage") as Label;
-            try
-            {
-                int intSizeLimit = 1048576;
-                if (uplPics.HasFile == true)
-                {
-                    string stringPath = Server.MapPath("~/tempImages") + "\\"+uplPics.FileName;
-                    string strContentType = uplPics.PostedFile.ContentType;
-
-                    System.Drawing.Image img = System.Drawing.Image.FromStream(uplPics.PostedFile.InputStream);
-                    bool imgSaved = false;
-                    if (ImageFormat.Jpeg.Equals(img.RawFormat)|| ImageFormat.Gif.Equals(img.RawFormat)|| ImageFormat.Bmp.Equals(img.RawFormat)|| ImageFormat.Png.Equals(img.RawFormat)|| ImageFormat.Tiff.Equals(img.RawFormat))
-                    {
-                        imgSaved = SaveImage(stringPath);
-                        myMessage.Text = "Image Saved";
-                    }
-                    else
-                    {
-                        myMessage.Text = "Not a Valid Image";
-                    }
-
-                }
-                else
-                {
-                    myMessage.Text = "The File Is Too Big";
-                }
-            }
-            catch (Exception ex)
-            {
-                if(ex.Message.ToLower() == "Parameter is not valid.")
-                {
-                    myMessage.Text = "Oh no, thats not a valid image";
-                }
-                else
-                {
-                    myMessage.Text = ex.Message;
-                }
-            }
-        }
-
-        private bool SaveImage(string strPath)
-        {
-            Label myMessage = Master.FindControl("lblMessage") as Label;
-
-            if (File.Exists(strPath))
-            {
-                myMessage.Text = "File Already Exists... try again!";
-                return false;
-            }
-            else
-            {
-                uplPics.SaveAs(strPath);
-                myMessage.Text = "File upload to:" + strPath;
-
-                imgProd.ImageUrl = "~/tempImages/" + uplPics.FileName;
-                int intLength = uplPics.FileName.Length;
-                int intRem = intLength - 4;
-                string strNoExtension = uplPics.FileName.Substring(0, intLength - 3);
-
-                imgProd.AlternateText = strNoExtension;
-                imgProd.Visible = true;
-
-                SqlCommand cmd = default(SqlCommand);
-                using (SqlConnection conn = new SqlConnection(cnnString))
-                {
-                    cmd = new SqlCommand("insertImage", conn);
-                    cmd.Parameters.AddWithValue("@imageUrl", imgProd.ImageUrl);
-                    cmd.Parameters.AddWithValue("@altText", strNoExtension);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    try
-                    {
-                        conn.Open();
-                        int ar = cmd.ExecuteNonQuery();
-                        conn.Close();
-                        return true;
-                    }
-                    catch (Exception ex)
-                    {
-                        conn.Close();
-                        myMessage.Text = ex.Message;
-                    }
-                }
-                return false;
             }
         }
     }

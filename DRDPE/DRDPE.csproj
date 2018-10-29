@@ -69,7 +69,7 @@
   <ItemGroup>
     <Content Include="Admin\index.aspx" />
     <Content Include="Admin\ManageCustomers.aspx" />
-    <Content Include="Admin\ManageImageData.aspx" />
+    <Content Include="Admin\ManageImage.aspx" />
     <Content Include="Admin\ManageProducts.aspx" />
     <Content Include="Cart.aspx" />
     <Content Include="css\bootstrap.min.css" />
@@ -171,12 +171,12 @@
     <Compile Include="Admin\ManageCustomers.aspx.designer.cs">
       <DependentUpon>ManageCustomers.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\ManageImageData.aspx.cs">
-      <DependentUpon>ManageImageData.aspx</DependentUpon>
+    <Compile Include="Admin\ManageImage.aspx.cs">
+      <DependentUpon>ManageImage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\ManageImageData.aspx.designer.cs">
-      <DependentUpon>ManageImageData.aspx</DependentUpon>
+    <Compile Include="Admin\ManageImage.aspx.designer.cs">
+      <DependentUpon>ManageImage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ManageProducts.aspx.cs">
       <DependentUpon>ManageProducts.aspx</DependentUpon>

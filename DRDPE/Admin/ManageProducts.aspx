@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="ManageProducts.aspx.cs" Inherits="DRDPE.ManageProducts" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.Master" MaintainScrollPositionOnPostback="true" AutoEventWireup="true" CodeBehind="ManageProducts.aspx.cs" Inherits="DRDPE.ManageProducts" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -80,15 +80,15 @@
             </asp:DropDownList>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="Product category selection is Required" ControlToValidate="ddlCat" ForeColor="Orange" InitialValue="--Select a Category--">*</asp:RequiredFieldValidator>
             <br /><br />
-            <asp:FileUpload ID="uplPics" runat="server" />
-            <asp:LinkButton id="btnChoseImage" runat="server" class="btn btn-outline-light my-sm-0 nav-fill" Text="Upload an Image" AutoPostBack="false"  CausesValidation="false" OnClick="btnChoseImage_Click" /><br /><br />
+            
             <asp:Image ID="imgProd" runat="server" Width="200" Height="200" ImageUrl ='../<%#Eval("imageUrl")%>' />
             <br />
             <br />
-            <asp:DropDownList runat="server" ID="ddlImages" AutoPostBack="True" OnSelectedIndexChanged="ddlImages_SelectedIndexChanged" >
+            <asp:DropDownList runat="server" ID="ddlImages" AutoPostBack="true" OnSelectedIndexChanged="ddlImages_SelectedIndexChanged" >
                 <asp:ListItem Value="--Select an Image--"></asp:ListItem>
             </asp:DropDownList>
-
+            <br />
+            <br />
             <asp:Button ID="btnUpdate" class="btn btn-outline-light my-sm-0 nav-fill" runat="server" Text="Update Item" OnClick="btnUpdate_Click" />
             <asp:Button ID="btnDelete" class="btn btn-outline-light my-sm-0 nav-fill" runat="server" Text="Delete Item" OnClick="btnDelete_Click" />
             <br /><br />
