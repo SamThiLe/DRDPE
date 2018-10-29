@@ -676,7 +676,7 @@ CREATE PROCEDURE insertCustomer
     @password           NVARCHAR(15),
     @firstName          NVARCHAR(50),
     @lastName           NVARCHAR(50),
-    @phone              NVARCHAR(10),
+    @phone              NVARCHAR(14),
     @middleInitial      CHAR(1)         = null,
     @verificationToken  NVARCHAR(50),
     @street             NVARCHAR(50),
@@ -750,7 +750,7 @@ GO
 CREATE PROCEDURE updateCustomer
     @email              NVARCHAR(50),
     @lastName           NVARCHAR(50),
-    @phone              NVARCHAR(10),
+    @phone              NVARCHAR(14),
     @archived           BIT
 AS
 BEGIN
@@ -771,7 +771,7 @@ CREATE PROCEDURE updateCustomerAdmin
     @email              NVARCHAR(50),
     @firstName          NVARCHAR(50),
     @lastName           NVARCHAR(50),
-    @phone              NVARCHAR(10),
+    @phone              NVARCHAR(14),
     @middleInitial      CHAR(1)         = null,
     @archived           BIT
 AS
