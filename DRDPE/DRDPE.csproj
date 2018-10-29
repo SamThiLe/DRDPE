@@ -130,6 +130,9 @@
     <Content Include="images\sugardonut.jpg" />
     <Content Include="images\triplechocolatecake.jpg" />
     <Content Include="images\whitebread.jpg" />
+    <Content Include="images\whitebread2.jpg" />
+    <Content Include="images\whitebread3.jpg" />
+    <Content Include="images\whitebread4.jpg" />
     <Content Include="images\whitebun.jpg" />
     <Content Include="images\wholewheatbread.jpg" />
     <Content Include="images\wholewheatbun.jpg" />
