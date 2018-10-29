@@ -74,6 +74,8 @@
     <Content Include="Cart.aspx" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\style.css" />
+    <Content Include="databaseFiles\databaseData.sql" />
+    <Content Include="databaseFiles\DERPDERP.sql" />
     <Content Include="Global.asax" />
     <Content Include="images\almondcroissant.jpg" />
     <Content Include="images\angelfoodcake.jpg" />
