@@ -18,6 +18,11 @@ namespace DRDPE.Admin
         protected void Page_Load(object sender, EventArgs e)
         {
             Label myMessage = Master.FindControl("lblMessage") as Label;
+
+            if (!IsPostBack)
+            {
+                GetImages();
+            }
         }
         #region ErrorMessage
         private void ShowError()
@@ -31,6 +36,33 @@ namespace DRDPE.Admin
             myError.Style.Add("Display", "none");
         }
         #endregion
+
+        private void GetImages()
+        {
+            SqlDataReader dr = default(SqlDataReader);
+            SqlCommand cmd = default(SqlCommand);
+            using (SqlConnection conn = new SqlConnection(cnnString))
+            {
+                cmd = new SqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "getAllImages";
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                conn.Open();
+                dr = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+
+                if (dr.HasRows)
+                {
+                    grvImages.DataSource = dr;
+                    grvImages.DataBind();
+                }
+                else
+                {
+                    throw new Exception("No Details Found");
+                }
+                dr.Close();
+            }
+        }
         protected void btnChoseImage_Click(object sender, EventArgs e)
         {
             Label myMessage = Master.FindControl("lblMessage") as Label;
@@ -108,6 +140,7 @@ namespace DRDPE.Admin
                         conn.Open();
                         int ar = cmd.ExecuteNonQuery();
                         conn.Close();
+                        
                         return true;
                     }
                     catch (Exception ex)

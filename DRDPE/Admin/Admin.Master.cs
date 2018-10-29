@@ -11,10 +11,10 @@ namespace DRDPE.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["adminLogin"] == null)
-            {
-                Response.Redirect("~/Admin/AdminLogin.aspx");
-            }
+            //if (Session["adminLogin"] == null)
+            //{
+            //    Response.Redirect("~/Admin/AdminLogin.aspx");
+            //}
         }
     }
 }
