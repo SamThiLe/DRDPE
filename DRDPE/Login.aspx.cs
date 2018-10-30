@@ -18,7 +18,9 @@ namespace DRDPE
         private int customerId;
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session.RemoveAll();
+            Session.Remove("login");
+            Session.Remove("customerId");
+            Session.Remove("username");
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -32,7 +34,7 @@ namespace DRDPE
                 lblSuccess.Text = "<h3>Login succesful. Redirecting...</h3>";
                 if (Request.QueryString["CO"] == "1")
                 {
-                    Response.Redirect("~/ModifyAccount.aspx");
+                    Response.Redirect("~/ModifyAccount.aspx?CO=1");
                 }
                 
                 Response.Redirect("index.aspx");

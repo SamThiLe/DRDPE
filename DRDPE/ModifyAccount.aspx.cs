@@ -25,6 +25,7 @@ namespace DRDPE
             }
             if (!IsPostBack)
             {
+                divShippingAddressChk.Style.Add("Display", "None");
                 customerId = Convert.ToInt32(Session["customerId"]);
 
                 GetAccountInfo();
@@ -35,11 +36,11 @@ namespace DRDPE
                 rfvShipCountry.Enabled = false;
                 
             }
-            if((!IsPostBack && Request.Cookies["CheckingOut"].Value == "") || (!IsPostBack && Request.Cookies["CheckingOut"].Value == null))
+            if (!IsPostBack && Request.QueryString["CO"] == "1")
             {
                 customerId = Convert.ToInt32(Session["customerId"]);
 
-                divShippingAddressChk.Style.Add("display", "none");
+                divShippingAddressChk.Style.Remove("Display");
                 rfvShipStreetAddress.Enabled = false;
                 rfvShipCity.Enabled = false;
                 rfvShipProvince.Enabled = false;
@@ -149,7 +150,7 @@ namespace DRDPE
                 AddAddress();
                 Response.Redirect("Payment.aspx");
             }
-            else if(Request.Cookies["CheckingOut"].Value != "" && Request.Cookies["CheckingOut"].Value != null)
+            else if(Request.QueryString["CO"] == "1")
             {
                 Response.Redirect("Payment.aspx");
             }
