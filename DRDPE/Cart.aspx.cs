@@ -26,7 +26,15 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
-                lblMessage.Text = ex.Message;
+                if (ex.Message == "Object reference not set to an instance of an object.")
+                {
+                    lblMessage.Text = "Cart is empty.";
+                }
+                else
+                {
+                    lblMessage.Text = ex.Message;
+                }
+                
             }
         }
         private void calculateGrandTotal()
