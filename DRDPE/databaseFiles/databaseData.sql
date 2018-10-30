@@ -1045,7 +1045,8 @@ DROP PROCEDURE IF EXISTS dbo.approveImage
 GO
 CREATE PROCEDURE approveImage
 	@imageId	INT,
-	@adminId	INT
+	@adminId	INT,
+	@newURL		NVARCHAR(50)
 AS
 BEGIN
 	--returns 0 on success, returns -6 on fail...for whatever reason
@@ -1055,7 +1056,8 @@ BEGIN
 				UPDATE
 					SiteImages
 				SET
-					approved = 1
+					approved = 1,
+					imageUrl = @newURL
 				WHERE
 					imageId = @imageId;
 			END
