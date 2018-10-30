@@ -17,23 +17,27 @@ namespace DRDPE
         {
             try
             {
-                if (!IsPostBack)
+                if (!IsPostBack && Request.Cookies["cartId"] != null)
                 {
                     string cartID = Request.Cookies["cartId"].Value;
                     GetCart(cartID);
                     calculateGrandTotal();
                 }
-            }
-            catch (Exception ex)
-            {
-                if (ex.Message == "Object reference not set to an instance of an object.")
+                else if (Request.Cookies["cartId"] == null)
                 {
                     lblMessage.Text = "Cart is empty.";
                 }
-                else
-                {
+            }
+            catch (Exception ex)
+            {
+                //if (ex.Message == "Object reference not set to an instance of an object.")
+                //{
+                //    lblMessage.Text = "Cart is empty.";
+                //}
+                //else
+                //{
                     lblMessage.Text = ex.Message;
-                }
+                //}
                 
             }
         }
@@ -97,7 +101,7 @@ namespace DRDPE
         protected void btnCheckOut_Click(object sender, EventArgs e)
         {
             bool LoggedIn = Convert.ToBoolean(Session["login"]);
-            if (LoggedIn)
+            if (LoggedIn && Request.Cookies["cartId"] != null)
             {
                 Response.Cookies["CheckingOut"].Value = "true";
                 Response.Redirect("~/ModifyAccount.aspx");
