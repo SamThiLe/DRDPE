@@ -5,6 +5,11 @@ using System.Web;
 
 namespace DRDPE
 {
+    public enum OrderStatus
+    {
+        Awaiting_fulfillment, Fulfilled, Shipped, Canceled, Backordered
+    }
+
     public enum ProductStatus
     {
         Available = 1,
