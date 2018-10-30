@@ -3,6 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h3>Your Cart</h3>
+    <h5><%= DateTime.Now.ToShortDateString() %></h5><br />
     <asp:Label ID="lblMessage" runat="server" Text="" EnableViewState="False"></asp:Label>
     <asp:GridView ID="grvCart" runat="server" Font-Names="Verdana" BorderColor="Black"
         DataKeyNames="qty"

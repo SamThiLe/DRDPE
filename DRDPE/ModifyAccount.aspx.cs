@@ -25,6 +25,8 @@ namespace DRDPE
             }
             if (!IsPostBack)
             {
+                customerId = Convert.ToInt32(Session["customerId"]);
+
                 GetAccountInfo();
                 rfvShipStreetAddress.Enabled = false;
                 rfvShipCity.Enabled = false;
@@ -33,21 +35,21 @@ namespace DRDPE
                 rfvShipCountry.Enabled = false;
                 
             }
-            if(!IsPostBack && Request.Cookies["CheckingOut"].Value == "")
+            if((!IsPostBack && Request.Cookies["CheckingOut"].Value == "") || (!IsPostBack && Request.Cookies["CheckingOut"].Value == null))
             {
+                customerId = Convert.ToInt32(Session["customerId"]);
+
                 divShippingAddressChk.Style.Add("display", "none");
                 rfvShipStreetAddress.Enabled = false;
                 rfvShipCity.Enabled = false;
                 rfvShipProvince.Enabled = false;
                 rfvShipPostalCode.Enabled = false;
                 rfvShipCountry.Enabled = false;
-                btnModify.Visible = false;
             }
         }
 
         private void GetAccountInfo()
         {
-            customerId = (int)Session["customerId"];
             SqlDataReader dr = default(SqlDataReader);
             SqlCommand cmd = default(SqlCommand);
             try
@@ -84,10 +86,11 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
+                //Error logging
                 EventLog log = new EventLog();
-
-                log.Source = "Demo Error Log";
+                log.Source = "Pastry Emporium";
                 log.WriteEntry(ex.Message, EventLogEntryType.Error);
+                errLabel.InnerText = "There was a problem saving your changes. Please reload the page or contact the web administrator via the following link" + Environment.NewLine + "<a href='mailto:admin@pastryemporium.com'>admin@pastryemporium.com</a>";
             }
             finally
             {
@@ -127,61 +130,30 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
-                //logging
-
+                //Error logging
                 EventLog log = new EventLog();
-
-                log.Source = "Demo Error Log";
+                log.Source = "Pastry Emporium";
                 log.WriteEntry(ex.Message, EventLogEntryType.Error);
+                errLabel.InnerText = "There was a problem saving your changes. Please reload the page or contact the web administrator via the following link" + Environment.NewLine + "<a href='mailto:admin@pastryemporium.com'>admin@pastryemporium.com</a>";
                 return false;
             }
         }
 
         protected void btnModify_Click(object sender, EventArgs e)
         {
+            customerId = Convert.ToInt32(Session["customerId"]);
             UpdateAccount();
-
-            if (Request.Cookies["CheckingOut"].Value != "" && !chkSameAsBilling.Checked)
+            UpdateAddress();
+            if (!chkSameAsBilling.Checked)
             {
-                UpdateAccount();
-                UpdateAddress();
                 AddAddress();
+                Response.Redirect("Payment.aspx");
             }
-                
-        }
-
-        private void UpdateAddress()
-        {
-            int ar = 0;
-            SqlCommand cmd = default(SqlCommand);
-
-            try
+            else if(Request.Cookies["CheckingOut"].Value != "" && Request.Cookies["CheckingOut"].Value != null)
             {
-                using (SqlConnection conn = new SqlConnection(cnnString))
-                {
-                    cmd = new SqlCommand("updateCustomerAddress", conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@email", SqlDbType.NVarChar, 50).Value = txtEmail.Text;
-                    cmd.Parameters.Add("@lastName", SqlDbType.NVarChar, 50).Value = txtLastName.Text;
-                    cmd.Parameters.Add("@phone", SqlDbType.NVarChar, 14).Value = txtPhoneNumber.Text;
-
-                    using (conn)
-                    {
-                        conn.Open();
-                        ar = cmd.ExecuteNonQuery();
-                        conn.Close();
-                    }
-                }
+                Response.Redirect("Payment.aspx");
             }
-            catch (Exception ex)
-            {
-                //logging
-
-                EventLog log = new EventLog();
-
-                log.Source = "Demo Error Log";
-                log.WriteEntry(ex.Message, EventLogEntryType.Error);
-            }
+            Response.Redirect("index.aspx");
         }
 
         private void UpdateAccount()
@@ -195,6 +167,7 @@ namespace DRDPE
                 {
                     cmd = new SqlCommand("updateCustomer", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@customerId", SqlDbType.Int, 16).Value = customerId;
                     cmd.Parameters.Add("@email", SqlDbType.NVarChar, 50).Value = txtEmail.Text;
                     cmd.Parameters.Add("@lastName", SqlDbType.NVarChar, 50).Value = txtLastName.Text;
                     cmd.Parameters.Add("@phone", SqlDbType.NVarChar, 14).Value = txtPhoneNumber.Text;
@@ -209,15 +182,50 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
-                //logging
-
+                //Error logging
                 EventLog log = new EventLog();
-
-                log.Source = "Demo Error Log";
+                log.Source = "Pastry Emporium";
                 log.WriteEntry(ex.Message, EventLogEntryType.Error);
+                errLabel.InnerText = "There was a problem saving your changes. Please reload the page or contact the web administrator via the following link" + Environment.NewLine + "<a href='mailto:admin@pastryemporium.com'>admin@pastryemporium.com</a>";
             }
         }
 
+        private void UpdateAddress()
+        {
+            int ar = 0;
+            SqlCommand cmd = default(SqlCommand);
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(cnnString))
+                {
+                    cmd = new SqlCommand("updateAddress", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@customerId", SqlDbType.Int, 0).Value = customerId;
+                    cmd.Parameters.Add("@street", SqlDbType.NVarChar, 50).Value = txtStreetAddress.Text;
+                    cmd.Parameters.Add("@city", SqlDbType.NVarChar, 50).Value = txtCity.Text;
+                    cmd.Parameters.Add("@stateProv", SqlDbType.NVarChar, 15).Value = txtProvince.Text;
+                    cmd.Parameters.Add("@country", SqlDbType.NVarChar, 20).Value = txtCountry.Text;
+                    cmd.Parameters.Add("@postalCode", SqlDbType.NVarChar, 10).Value = txtPostalCode.Text;
+
+                    using (conn)
+                    {
+                        conn.Open();
+                        ar = cmd.ExecuteNonQuery();
+                        conn.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //Error logging
+                EventLog log = new EventLog();
+                log.Source = "Pastry Emporium";
+                log.WriteEntry(ex.Message, EventLogEntryType.Error);
+                errLabel.InnerText = "There was a problem saving your changes. Please reload the page or contact the web administrator via the following link" + Environment.NewLine + "<a href='mailto:admin@pastryemporium.com'>admin@pastryemporium.com</a>";
+            }
+        }
+        
         private void AddAddress()
         {
             int ar = 0;
@@ -235,7 +243,7 @@ namespace DRDPE
                     cmd.Parameters.Add("@stateProv", SqlDbType.NVarChar, 15).Value = txtShipProvince.Text;
                     cmd.Parameters.Add("@country", SqlDbType.NVarChar, 20).Value = txtShipCountry.Text;
                     cmd.Parameters.Add("@postalCode", SqlDbType.NVarChar, 10).Value = txtShipPostalCode.Text;
-                    cmd.Parameters.Add("@additionalNo", SqlDbType.NVarChar, 50).Value = "";
+                    cmd.Parameters.Add("@additionalNo", SqlDbType.NVarChar, 50).Value = txtAdditionalNotes.Text;
                     
                     using (conn)
                     {
@@ -247,12 +255,11 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
-                //logging
-
+                //Error logging
                 EventLog log = new EventLog();
-
-                log.Source = "Demo Error Log";
+                log.Source = "Pastry Emporium";
                 log.WriteEntry(ex.Message, EventLogEntryType.Error);
+                errLabel.InnerText = "There was a problem saving your changes. Please reload the page or contact the web administrator via the following link" + Environment.NewLine + "<a href='mailto:admin@pastryemporium.com'>admin@pastryemporium.com</a>";
             }
         }
 
