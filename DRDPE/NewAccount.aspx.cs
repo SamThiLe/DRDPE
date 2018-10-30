@@ -69,12 +69,12 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
-                //logging
-
+                //Error logging
                 EventLog log = new EventLog();
-
-                log.Source = "Demo Error Log";
+                log.Source = "Pastry Emporium";
                 log.WriteEntry(ex.Message, EventLogEntryType.Error);
+                errLabel.InnerText = "There was a problem with the signup process. Please reload the page or contact the web administrator via the following link" + Environment.NewLine + "<a href='mailto:admin@pastryemporium.com'>admin@pastryemporium.com</a>";
+
                 return true;
             }
         }
@@ -121,12 +121,12 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
-                //logging
-
+                //Error logging
                 EventLog log = new EventLog();
-
-                log.Source = "Demo Error Log";
+                log.Source = "Pastry Emporium";
                 log.WriteEntry(ex.Message, EventLogEntryType.Error);
+                errLabel.InnerText = "There was a problem with the signup process. Please reload the page or contact the web administrator via the following link" + Environment.NewLine + "<a href='mailto:admin@pastryemporium.com'>admin@pastryemporium.com</a>";
+
                 return false;
             }
         }
@@ -152,12 +152,12 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
-                //logging
+                //Error logging
                 EventLog log = new EventLog();
-
-                log.Source = "Demo Error Log";
+                log.Source = "Pastry Emporium";
                 log.WriteEntry(ex.Message, EventLogEntryType.Error);
 
+                errLabel.InnerText = "There was a problem with the signup process. Please reload the page or contact the web administrator via the following link" + Environment.NewLine + "<a href='mailto:admin@pastryemporium.com'>admin@pastryemporium.com</a>";
             }
         }
     }
