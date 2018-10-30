@@ -37,10 +37,8 @@ namespace DRDPE.Admin
                 cmd.Connection = conn;
                 cmd.CommandText = "getAllImages";
                 cmd.CommandType = CommandType.StoredProcedure;
-
                 conn.Open();
                 dr = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-
                 if (dr.HasRows)
                 {
                     grvImages.DataSource = dr;
@@ -61,7 +59,8 @@ namespace DRDPE.Admin
                 int intSizeLimit = 1048576;
                 if (uplPics.HasFile == true)
                 {
-                    string stringPath = Server.MapPath("~/tempImages") + "\\" + uplPics.FileName;
+                    string stringPath = Server.MapPath("~/Admin/tempImages") + "\\" + uplPics.FileName;
+                    
                     string strContentType = uplPics.PostedFile.ContentType;
 
                     System.Drawing.Image img = System.Drawing.Image.FromStream(uplPics.PostedFile.InputStream);
@@ -102,13 +101,15 @@ namespace DRDPE.Admin
                 {
                     Label lblId = (Label)grvImages.Rows[i].FindControl("imageId");
                     string imageId = lblId.Text;
-                    ApproveImage(imageId, i);
+                    Label lblImgUrl = (Label)grvImages.Rows[i].FindControl("imageUrl");
+                    string imageUrl = lblImgUrl.Text;
+                    MoveImage(imageUrl);
+                    ApproveImage(imageId, imageUrl, i);
+                    
                 }
-                
             }
         }
-
-        private void ApproveImage(string imageId, int row)
+        private void ApproveImage(string imageId,string imageUrl,int row)
         {
             Label lblId = (Label)grvImages.Rows[row].FindControl("lblAdminId");
             if (Session["AdminId"].ToString()==lblId.Text)
@@ -120,20 +121,47 @@ namespace DRDPE.Admin
                 SqlCommand cmd = default(SqlCommand);
                 using (SqlConnection conn = new SqlConnection(cnnString))
                 {
-                    cmd = new SqlCommand();
-                    cmd.Connection = conn;
-                    cmd.CommandText = "approveImage";
-                    cmd.Parameters.AddWithValue("@imageId", imageId);
-                    cmd.Parameters.AddWithValue("@adminId", lblId.Text);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
+                    try
+                    {
+                        cmd = new SqlCommand();
+                        cmd.Connection = conn;
+                        cmd.CommandText = "approveImage";
+                        
+                        cmd.Parameters.AddWithValue("@newURL", imageUrl);
+                        cmd.Parameters.AddWithValue("@imageId", imageId);
+                        cmd.Parameters.AddWithValue("@adminId", Session["adminId"]);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        conn.Close();
+                        ShowError(ex.Message);
+                    }
                 }
             }
-
         }
 
-            private bool SaveImage(string strPath)
+        private void MoveImage(string imageUrl)
+        {
+            //D:\School\Server Side Web Dev\5. Project DRD\DRDPE\DRDPE\DRDPE\tempImages
+            //"D:\\School\\Server Side Web Dev\\5. Project DRD\\DRDPE\\DRDPE\\DRDPE\\admin\\tempImages\\q54x9bbai7v11.jpg"
+
+            string strCurrentPath = Server.MapPath(imageUrl.Substring(2));
+            string strDestinationPath = Server.MapPath("/images" + imageUrl.Substring(12));
+            if (!System.IO.File.Exists(strDestinationPath))
+            {
+                System.IO.File.Move(strCurrentPath, strDestinationPath);
+                ShowError("Image Moved successfully");
+            }
+            else
+            {
+                ShowError("A file with That name already Exists");
+            }
+        }
+
+        private bool SaveImage(string strPath)
         {
             Label myMessage = Master.FindControl("lblMessage") as Label;
 
@@ -159,13 +187,7 @@ namespace DRDPE.Admin
                     cmd = new SqlCommand("insertImage", conn);
                     cmd.Parameters.AddWithValue("@imageUrl", imgProd.ImageUrl);
                     cmd.Parameters.AddWithValue("@altText", strNoExtension);
-
-                    ////this needs to be taken from the session
-                    //string adminId = Session["AdminId"].ToString();
-                    //cmd.Parameters.AddWithValue("@uploadedBy", adminId);
-                    
-
-                    cmd.Parameters.AddWithValue("@uploadedBy", 2);
+                    cmd.Parameters.AddWithValue("@uploadedBy", Session["adminId"]);
                     cmd.CommandType = CommandType.StoredProcedure;
                     try
                     {
@@ -173,7 +195,6 @@ namespace DRDPE.Admin
                         int ar = cmd.ExecuteNonQuery();
                         conn.Close();
                         ShowError("Image Saved");
-                        Response.Redirect("~/ManageImage.aspx");
                         return true;
                     }
                     catch (Exception ex)
@@ -196,7 +217,6 @@ namespace DRDPE.Admin
         }
         private void HideError()
         {
-
             System.Web.UI.HtmlControls.HtmlGenericControl myError = (System.Web.UI.HtmlControls.HtmlGenericControl)Master.FindControl("errorMessage");
             myError.Style.Add("Display", "none");
         }

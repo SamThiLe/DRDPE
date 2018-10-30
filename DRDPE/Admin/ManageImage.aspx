@@ -20,11 +20,16 @@
                           </span>
                         </ItemTemplate>
                     </asp:TemplateField>
-                      <asp:BoundField DataField="imageId" HeaderText="Image Id"></asp:BoundField>
                         <asp:ImageField HeaderText="Image" DataImageUrlField='imageUrl' >
                             <ControlStyle Height="100px" Width="100px" />
-                        </asp:ImageField>                        
-                      <asp:BoundField DataField="imageUrl" HeaderText="Image Url"></asp:BoundField>
+                        </asp:ImageField>  
+                    <asp:TemplateField HeaderText="Image Url">
+                        <ItemTemplate>
+                          <span style="text-align: center">
+                              <asp:Label ID="imageUrl" runat="server" Text='<%#Eval("imageUrl")%>'></asp:Label>
+                          </span>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                       <asp:BoundField DataField="uploadDate" HeaderText="Upload Date"></asp:BoundField>
                       <asp:BoundField DataField="altText" HeaderText="Alternate Text"></asp:BoundField>
                     <asp:TemplateField HeaderText="Uploader Id">
