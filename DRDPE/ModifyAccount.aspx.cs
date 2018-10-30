@@ -86,10 +86,11 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
+                //Error logging
                 EventLog log = new EventLog();
-
-                log.Source = "Demo Error Log";
+                log.Source = "Pastry Emporium";
                 log.WriteEntry(ex.Message, EventLogEntryType.Error);
+                errLabel.InnerText = "There was a problem saving your changes. Please reload the page or contact the web administrator via the following link" + Environment.NewLine + "<a href='mailto:admin@pastryemporium.com'>admin@pastryemporium.com</a>";
             }
             finally
             {
@@ -129,12 +130,11 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
-                //logging
-
+                //Error logging
                 EventLog log = new EventLog();
-
-                log.Source = "Demo Error Log";
+                log.Source = "Pastry Emporium";
                 log.WriteEntry(ex.Message, EventLogEntryType.Error);
+                errLabel.InnerText = "There was a problem saving your changes. Please reload the page or contact the web administrator via the following link" + Environment.NewLine + "<a href='mailto:admin@pastryemporium.com'>admin@pastryemporium.com</a>";
                 return false;
             }
         }
@@ -182,12 +182,11 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
-                //logging
-
+                //Error logging
                 EventLog log = new EventLog();
-
-                log.Source = "Demo Error Log";
+                log.Source = "Pastry Emporium";
                 log.WriteEntry(ex.Message, EventLogEntryType.Error);
+                errLabel.InnerText = "There was a problem saving your changes. Please reload the page or contact the web administrator via the following link" + Environment.NewLine + "<a href='mailto:admin@pastryemporium.com'>admin@pastryemporium.com</a>";
             }
         }
 
@@ -219,12 +218,11 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
-                //logging
-
+                //Error logging
                 EventLog log = new EventLog();
-
-                log.Source = "Demo Error Log";
+                log.Source = "Pastry Emporium";
                 log.WriteEntry(ex.Message, EventLogEntryType.Error);
+                errLabel.InnerText = "There was a problem saving your changes. Please reload the page or contact the web administrator via the following link" + Environment.NewLine + "<a href='mailto:admin@pastryemporium.com'>admin@pastryemporium.com</a>";
             }
         }
         
@@ -257,12 +255,11 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
-                //logging
-
+                //Error logging
                 EventLog log = new EventLog();
-
-                log.Source = "Demo Error Log";
+                log.Source = "Pastry Emporium";
                 log.WriteEntry(ex.Message, EventLogEntryType.Error);
+                errLabel.InnerText = "There was a problem saving your changes. Please reload the page or contact the web administrator via the following link" + Environment.NewLine + "<a href='mailto:admin@pastryemporium.com'>admin@pastryemporium.com</a>";
             }
         }
 
