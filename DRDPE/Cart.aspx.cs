@@ -105,8 +105,7 @@ namespace DRDPE
             {
                 if (LoggedIn)
                 {
-                    Response.Cookies["CO"].Value = "1";
-                    Response.Redirect("~/ModifyAccount.aspx");
+                    Response.Redirect("~/ModifyAccount.aspx?CO=1");
                 }
                 else
                 {
