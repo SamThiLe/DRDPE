@@ -37,6 +37,8 @@ DBCC CHECKIDENT ('Cart', RESEED, 0)
 GO
 DBCC CHECKIDENT ('CartItems', RESEED, 0)
 GO
+DBCC CHECKIDENT ('Addresses', RESEED, 0)
+GO
 DBCC CHECKIDENT ('Customers', RESEED, 0)
 GO
 DBCC CHECKIDENT ('adminLogin', RESEED, 0)
@@ -199,12 +201,15 @@ insert into Cart VALUES (getdate(), getdate(), 1, null);
 GO
 insert into CartItems VALUES (1, 1001, 1, 3.50, null, 'AV');
 GO
-insert into Customers VALUES ('test@test.com', 'admin', 'admin', 'testfirstname', 'testlastname', '(902) 456-7894', 't', 'testverificationtoken', 1, 0);
+insert into Customers VALUES ('test@test.com', 'admin', 'admin', 'test', 'test', '(902) 456-7894', 't', 'testverificationtoken', 1, 0);
 insert into Customers VALUES ('doop@test.com', 'admin2', 'admin', 'Bob', 'Billy', '(902) 456-1231', 'R', 'testverificationtoken', 1, 0);
 insert into Customers VALUES ('test@test.com', 'sala1', 'admin', 'John', 'Salazar', '(902) 425-4564', 'Q', 'testverificationtoken', 1, 0);
 insert into Customers VALUES ('test@test.com', 'raine', 'admin', 'Miranda', 'Raine', '(902) 456-7159', 'M', 'testverificationtoken', 1, 0);
 GO
 insert into Addresses VALUES ('123 Fake Street', 'FakeCity', 'FakeProv', 'Canada', 'E1C7W9', 'Billing', 1, GETDATE(), null);
+insert into Addresses VALUES ('123 Fake Street', 'FakeCity', 'FakeProv', 'Canada', 'E1C7W9', 'Billing', 2, GETDATE(), null);
+insert into Addresses VALUES ('123 Fake Street', 'FakeCity', 'FakeProv', 'Canada', 'E1C7W9', 'Billing', 3, GETDATE(), null);
+insert into Addresses VALUES ('123 Fake Street', 'FakeCity', 'FakeProv', 'Canada', 'E1C7W9', 'Billing', 4, GETDATE(), null);
 GO
 
 
@@ -547,7 +552,7 @@ GO
 DROP PROCEDURE IF EXISTS dbo.loginAdmin
 GO
 CREATE PROCEDURE loginAdmin
-    @email		NVARCHAR(15),
+    @email		NVARCHAR(50),
     @password   NVARCHAR(15)
 AS
 BEGIN
@@ -757,6 +762,7 @@ GO
 DROP PROCEDURE IF EXISTS dbo.updateCustomer
 GO
 CREATE PROCEDURE updateCustomer
+	@customerId			INT,
     @email              NVARCHAR(50),
     @lastName           NVARCHAR(50),
     @phone              NVARCHAR(14)
@@ -768,6 +774,8 @@ BEGIN
         email = @email,
         lastName = @lastName,
         phone = @phone
+	WHERE
+		customerId = @customerId;
 END
 GO
 
@@ -775,6 +783,7 @@ GO
 DROP PROCEDURE IF EXISTS dbo.updateCustomerAdmin
 GO
 CREATE PROCEDURE updateCustomerAdmin
+	@customerId			INT,
     @email              NVARCHAR(50),
     @firstName          NVARCHAR(50),
     @lastName           NVARCHAR(50),
@@ -792,6 +801,8 @@ BEGIN
         phone = @phone,
         middleInitial = @middleInitial,
         archived = @archived
+	WHERE
+		customerId = @customerId;
 END
 GO
 
@@ -924,7 +935,7 @@ CREATE PROCEDURE getFullCustomerInfo
 AS
 BEGIN
     SELECT
-        firstName, middleInitial, lastName, [password], phone, email, street, city, stateProv, postalCode, country
+        Customers.customerId, username, firstName, middleInitial, lastName, [password], phone, email, street, city, stateProv, postalCode, country, archived
     FROM
         Customers INNER JOIN
         Addresses ON Customers.customerId = Addresses.customerId
@@ -941,9 +952,9 @@ CREATE PROCEDURE getAllImages
 AS
 BEGIN
     SELECT
-		*
+		imageId, imageUrl, uploadDate, altText, approved, uploadedBy, email
 	FROM
-		SiteImages
+		SiteImages INNER JOIN adminLogin ON SiteImages.uploadedBy = adminLogin.id;
 END
 GO
 
@@ -1111,7 +1122,6 @@ CREATE PROCEDURE updateAddress
     @stateProv          NVARCHAR(15),
     @country            NVARCHAR(20),
     @postalCode         NVARCHAR(10),
-    @addressType        NVARCHAR(10),
     @customerId         INT,
     @additionalNo       NVARCHAR(50)     = null
 AS
@@ -1124,7 +1134,7 @@ BEGIN
 		stateProv = @stateProv,
 		country = @country,
 		postalCode = @postalCode,
-		addressType = @addressType,
+		addressType = 'Billing',
 		AdditionalNo = @additionalNo
 	WHERE
 		customerId = @customerId;
