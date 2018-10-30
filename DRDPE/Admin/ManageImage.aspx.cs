@@ -103,18 +103,25 @@ namespace DRDPE.Admin
                     string imageId = lblId.Text;
                     Label lblImgUrl = (Label)grvImages.Rows[i].FindControl("imageUrl");
                     string imageUrl = lblImgUrl.Text;
-                    MoveImage(imageUrl);
-                    ApproveImage(imageId, imageUrl, i);
-                    
+                    if(ApproveImage(imageId, imageUrl, i))
+                        MoveImage(imageUrl);
                 }
             }
+            ReloadGRDImage();
         }
-        private void ApproveImage(string imageId,string imageUrl,int row)
+
+        private void ReloadGRDImage()
+        {
+            
+        }
+
+        private bool ApproveImage(string imageId,string imageUrl,int row)
         {
             Label lblId = (Label)grvImages.Rows[row].FindControl("lblAdminId");
             if (Session["AdminId"].ToString()==lblId.Text)
             {
                 ShowError("You can approve an Image you uploaded yourself");
+                return false;
             }
             else
             {
@@ -127,17 +134,20 @@ namespace DRDPE.Admin
                         cmd.Connection = conn;
                         cmd.CommandText = "approveImage";
                         
-                        cmd.Parameters.AddWithValue("@newURL", imageUrl);
+                        cmd.Parameters.AddWithValue("@newURL", "../" + imageUrl.Substring(12));
                         cmd.Parameters.AddWithValue("@imageId", imageId);
                         cmd.Parameters.AddWithValue("@adminId", Session["adminId"]);
                         cmd.CommandType = CommandType.StoredProcedure;
                         conn.Open();
                         cmd.ExecuteNonQuery();
+                        conn.Close();
+                        return true;
                     }
                     catch (Exception ex)
                     {
                         conn.Close();
                         ShowError(ex.Message);
+                        return false;
                     }
                 }
             }
@@ -145,11 +155,12 @@ namespace DRDPE.Admin
 
         private void MoveImage(string imageUrl)
         {
+
             //D:\School\Server Side Web Dev\5. Project DRD\DRDPE\DRDPE\DRDPE\tempImages
             //"D:\\School\\Server Side Web Dev\\5. Project DRD\\DRDPE\\DRDPE\\DRDPE\\admin\\tempImages\\q54x9bbai7v11.jpg"
 
-            string strCurrentPath = Server.MapPath(imageUrl.Substring(2));
-            string strDestinationPath = Server.MapPath("/images" + imageUrl.Substring(12));
+            string strCurrentPath = Server.MapPath(imageUrl.Substring(1));
+            string strDestinationPath = Server.MapPath("../"+ imageUrl.Substring(12));
             if (!System.IO.File.Exists(strDestinationPath))
             {
                 System.IO.File.Move(strCurrentPath, strDestinationPath);
@@ -174,7 +185,7 @@ namespace DRDPE.Admin
             {
                 uplPics.SaveAs(strPath);
                 myMessage.Text = "File upload to:" + strPath;
-                imgProd.ImageUrl = "~/tempImages/" + uplPics.FileName;
+                imgProd.ImageUrl = "~/Admin/tempImages/" + uplPics.FileName;
                 int intLength = uplPics.FileName.Length;
                 int intRem = intLength - 4;
                 string strNoExtension = uplPics.FileName.Substring(0, intLength - 3);
