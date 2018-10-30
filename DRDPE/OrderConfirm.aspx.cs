@@ -15,11 +15,12 @@ namespace DRDPE
     public partial class OrderConfirm : System.Web.UI.Page
     {
         private string orderDetails = "";
-        private Guid orderConfirmationCode = Guid.NewGuid();
+        private string orderConfirmationCode;
         private string email="";
         private string cnnString = ConfigurationManager.ConnectionStrings["cnn"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
+            orderConfirmationCode = Session["authNumber"].ToString();
             if ((string)Session["order"] == "shipped")
             {
                 GetAccountInfo();
@@ -62,8 +63,8 @@ namespace DRDPE
         }
         private void SendConfirmationEmail()
         {
-            lblCC.Text = orderConfirmationCode.ToString();
-
+            lblCC.Text = orderConfirmationCode;
+            Response.Cookies["cartId"].Value = "";
             try
             {
                 MailMessage mailMessage = new MailMessage();
@@ -75,7 +76,7 @@ namespace DRDPE
                     "<p>Your Payment has been processed and you pasteries are on there way</p>" +
                     "<a>View Your Order: " + orderConfirmationCode + "</a><br>" +
                     orderDetails +
-                    "Not sure why you're seeing this? Disregard this email.</p>";
+                    "<br><br><hr>Not sure why you're seeing this? Disregard this email.</p>";
                 SmtpClient smtpClient = new SmtpClient("localhost");
                 smtpClient.Send(mailMessage);
             }

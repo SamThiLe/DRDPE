@@ -14,7 +14,6 @@ namespace DRDPE
     public partial class Payment : System.Web.UI.Page
     {
         private string cnnString = ConfigurationManager.ConnectionStrings["cnn"].ConnectionString;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -118,7 +117,8 @@ namespace DRDPE
 
         protected void btnFinish_Click(object sender, EventArgs e)
         {
-
+            string authCode = Guid.NewGuid().ToString();
+            Session["authNumber"] = authCode;
             if (rblPaymentType.SelectedItem != null)
             {
                 lblMessage.Text = "payment type Selected";
@@ -144,6 +144,12 @@ namespace DRDPE
                     cmd = new SqlCommand("InsertOrder", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@cartId", SqlDbType.Int, 0).Value = Request.Cookies["cartId"].Value;
+                    cmd.Parameters.Add("@shippingAddress", SqlDbType.Int, 0).Value = Request.Cookies["addressId"].Value;
+                    if (rblPaymentType.SelectedIndex == 0)
+                        cmd.Parameters.Add("@payType", SqlDbType.NVarChar, 2).Value = "DB";
+                    else
+                        cmd.Parameters.Add("@payType", SqlDbType.NVarChar, 2).Value = "CR";
+                    cmd.Parameters.Add("@authNumber", SqlDbType.NVarChar, 50).Value = Session["authNumber"];
 
 
                     using (conn)
