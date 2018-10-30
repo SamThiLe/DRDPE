@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -117,16 +118,57 @@ namespace DRDPE
 
         protected void btnFinish_Click(object sender, EventArgs e)
         {
-            
+
             if (rblPaymentType.SelectedItem != null)
             {
                 lblMessage.Text = "payment type Selected";
                 Session["order"] = "shipped";
+                CreateOrder();
                 Response.Redirect("~/OrderConfirm.aspx");
             }
             else
             {
                 lblMessage.Text = "Please select a payment type";
+            }
+        }
+
+        private bool CreateOrder()
+        {
+            int ar = 0;
+            SqlCommand cmd = default(SqlCommand);
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(cnnString))
+                {
+                    cmd = new SqlCommand("InsertOrder", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@cartId", SqlDbType.Int, 0).Value = Request.Cookies["cartId"].Value;
+
+
+                    using (conn)
+                    {
+                        conn.Open();
+                        ar = cmd.ExecuteNonQuery();
+                        conn.Close();
+                    }
+                    if (ar > 0)
+                    {
+                        return true;
+                    }
+                    else
+                        return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                //Error logging
+                EventLog log = new EventLog();
+                log.Source = "Pastry Emporium";
+                log.WriteEntry(ex.Message, EventLogEntryType.Error);
+                errLabel.InnerText = "There was a problem with the signup process. Please reload the page or contact the web administrator via the following link" + Environment.NewLine + "<a href='mailto:admin@pastryemporium.com'>admin@pastryemporium.com</a>";
+
+                return false;
             }
         }
     }

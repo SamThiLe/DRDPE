@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <h5 id="errLabel" runat="server" ForeColor="Red"></h5>
     <asp:GridView ID="grvCart" runat="server" Font-Names="Verdana" BorderColor="Black"
         DataKeyNames="qty"
         GridLines="Vertical"
