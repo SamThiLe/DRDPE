@@ -13,6 +13,15 @@ namespace DRDPE {
     public partial class ModifyAccount {
         
         /// <summary>
+        /// errLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl errLabel;
+        
+        /// <summary>
         /// valSummary control.
         /// </summary>
         /// <remarks>
@@ -391,22 +400,13 @@ namespace DRDPE {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator revShipPostalCode;
         
         /// <summary>
-        /// Textbox1 control.
+        /// txtAdditionalNotes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Textbox1;
-        
-        /// <summary>
-        /// RequiredFieldValidator1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.TextBox txtAdditionalNotes;
         
         /// <summary>
         /// btnModify control.
