@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -21,8 +22,16 @@ namespace DRDPE.Admin
             {
                 HideError();
             }
+            editCustomer.Style.Add("Display", "none");
+            string id = Request.QueryString["id"];
+            if (!IsPostBack && !string.IsNullOrEmpty(id))
+            {
+                searchResults.Style.Add("Display", "none");
+                searchDiv.Style.Add("Display", "none");
+                editCustomer.Style.Remove("Display");
+                getCustomer(id);
+            }
         }
-
         #region ErrorMessage
         private void ShowError()
         {
@@ -38,10 +47,10 @@ namespace DRDPE.Admin
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            HideError();
             Label myMessage = Master.FindControl("lblMessage") as Label;
-            SqlDataAdapter da = default(SqlDataAdapter);
+            SqlDataReader dr = default(SqlDataReader);
             SqlCommand cmd = default(SqlCommand);
-            DataSet ds = null;
             try
             {
                 using (SqlConnection conn = new SqlConnection(cnnString))
@@ -51,13 +60,11 @@ namespace DRDPE.Admin
                     cmd.Parameters.AddWithValue("@searchText", txtSearch.Text);
                     cmd.CommandType = CommandType.StoredProcedure;
                     conn.Open();
-                    da = new SqlDataAdapter(cmd);
-                    ds = new DataSet();
-                    da.Fill(ds);
-                    if (ds != null)
+                    dr = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+                    if (dr.HasRows)
                     {
-                        grvCustomers.DataSource = ds;
-                        grvCustomers.DataBind();
+                        rptCust.DataSource = dr;
+                        rptCust.DataBind();
                     }
                     else
                     {
@@ -71,13 +78,98 @@ namespace DRDPE.Admin
                 ShowError();
                 myMessage.Text = ex.Message.ToString();
             }
+            searchResults.Style.Remove("Display");
         }
 
-        protected void grvCustomers_RowEditing(object sender, GridViewEditEventArgs e)
+        private void getCustomer(string id)
         {
-            grvCustomers.EditIndex = e.NewEditIndex;
-            grvCustomers.DataBind();
+            Label myMessage = Master.FindControl("lblMessage") as Label;
+            SqlDataReader dr = default(SqlDataReader);
+            SqlCommand cmd = default(SqlCommand);
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(cnnString))
+                {
+                    cmd = new SqlCommand("getFullCustomerInfo", conn);
+                    cmd.Parameters.Add("@customerId", SqlDbType.Int, 0).Value = id;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    conn.Open();
+                    dr = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+                    while (dr.Read())
+                    {
+                        txtCustomerId.Text = dr["customerId"].ToString();
+                        txtFirstName.Text = dr["firstName"].ToString();
+                        txtMiddleInitial.Text = dr["middleInitial"].ToString();
+                        txtLastName.Text = dr["lastName"].ToString();
+                        txtPhoneNumber.Text = dr["phone"].ToString();
+                        txtEmail.Text = dr["email"].ToString();
+                        txtUserName.Text = dr["username"].ToString();
+                        if (Convert.ToInt32(dr["archived"]) == 1)
+                        {
+                            chkArchived.Checked = true;
+                        }
+                        else
+                        {
+                            chkArchived.Checked = false;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowError();
+                myMessage.Text = ex.Message.ToString();
+            }
+        }
+
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+            Label myMessage = Master.FindControl("lblMessage") as Label;
+            int ar = 0;
+            SqlCommand cmd = default(SqlCommand);
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(cnnString))
+                {
+                    string id = Request.QueryString["id"];
+                    cmd = new SqlCommand("updateCustomerAdmin", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@customerId", SqlDbType.Int, 0).Value = id;
+                    cmd.Parameters.Add("@firstName", SqlDbType.NVarChar, 50).Value = txtFirstName.Text;
+                    cmd.Parameters.Add("@middleInitial", SqlDbType.Char, 1).Value = txtMiddleInitial.Text;
+                    cmd.Parameters.Add("@lastName", SqlDbType.NVarChar, 50).Value = txtLastName.Text;
+                    cmd.Parameters.Add("@phone", SqlDbType.NVarChar, 14).Value = txtPhoneNumber.Text;
+                    cmd.Parameters.Add("@email", SqlDbType.NVarChar, 50).Value = txtEmail.Text;
+                    if (chkArchived.Checked)
+                    {
+                        ar = 1;
+                    }
+                    else
+                    {
+                        ar = 0;
+                    }
+                    cmd.Parameters.Add("@archived", SqlDbType.Bit, 1).Value = ar;
+                    using (conn)
+                    {
+                        conn.Open();
+                        ar = cmd.ExecuteNonQuery();
+                        conn.Close();
+                    }
+                    searchDiv.Style.Remove("Display");
+                    ShowError();
+                    myMessage.Text = "Update Successful";
+                }
+            }
+            catch (Exception ex)
+            {
+                //logging
+
+                EventLog log = new EventLog();
+
+                log.Source = "Demo Error Log";
+                log.WriteEntry(ex.Message, EventLogEntryType.Error);
+            }
         }
     }
-
 }
