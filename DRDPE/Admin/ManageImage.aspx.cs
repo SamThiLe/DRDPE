@@ -18,25 +18,15 @@ namespace DRDPE.Admin
         protected void Page_Load(object sender, EventArgs e)
         {
             Label myMessage = Master.FindControl("lblMessage") as Label;
-
+            if (myMessage.Text == "")
+            {
+                HideError();
+            }
             if (!IsPostBack)
             {
                 GetImages();
             }
         }
-        #region ErrorMessage
-        private void ShowError()
-        {
-            System.Web.UI.HtmlControls.HtmlGenericControl myError = (System.Web.UI.HtmlControls.HtmlGenericControl)Master.FindControl("errorMessage");
-            myError.Style.Remove("Display");
-        }
-        private void HideError()
-        {
-            System.Web.UI.HtmlControls.HtmlGenericControl myError = (System.Web.UI.HtmlControls.HtmlGenericControl)Master.FindControl("errorMessage");
-            myError.Style.Add("Display", "none");
-        }
-        #endregion
-
         private void GetImages()
         {
             SqlDataReader dr = default(SqlDataReader);
@@ -79,42 +69,77 @@ namespace DRDPE.Admin
                     if (ImageFormat.Jpeg.Equals(img.RawFormat) || ImageFormat.Gif.Equals(img.RawFormat) || ImageFormat.Bmp.Equals(img.RawFormat) || ImageFormat.Png.Equals(img.RawFormat) || ImageFormat.Tiff.Equals(img.RawFormat))
                     {
                         imgSaved = SaveImage(stringPath);
-                        myMessage.Text = "Image Saved";
                     }
                     else
                     {
-                        ShowError();
-                        myMessage.Text = "Not a Valid Image";
+                        ShowError("Not a Valid Image");
                     }
                 }
                 else
                 {
-                    ShowError();
-                    myMessage.Text = "The File Is Too Big";
+                    ShowError("Please select a file");
                 }
             }
             catch (Exception ex)
             {
                 if (ex.Message.ToLower() == "Parameter is not valid.")
                 {
-                    ShowError();
-                    myMessage.Text = "Oh no, thats not a valid image";
+                    ShowError("Oh no, thats not a valid image");
                 }
                 else
                 {
-                    ShowError();
-                    myMessage.Text = ex.Message;
+                    ShowError(ex.Message);
                 }
             }
         }
+        protected void BtnApprove_Click(object sender, EventArgs e)
+        {
+            Button myButton = (Button)sender;
+            int count = grvImages.Rows.Count;
+            for (int i = 0; i < count; i++)
+            {
+                if ((Button)grvImages.Rows[i].FindControl("btnApprove")==myButton)
+                {
+                    Label lblId = (Label)grvImages.Rows[i].FindControl("imageId");
+                    string imageId = lblId.Text;
+                    ApproveImage(imageId, i);
+                }
+                
+            }
+        }
 
-        private bool SaveImage(string strPath)
+        private void ApproveImage(string imageId, int row)
+        {
+            Label lblId = (Label)grvImages.Rows[row].FindControl("lblAdminId");
+            if (Session["AdminId"].ToString()==lblId.Text)
+            {
+                ShowError("You can approve an Image you uploaded yourself");
+            }
+            else
+            {
+                SqlCommand cmd = default(SqlCommand);
+                using (SqlConnection conn = new SqlConnection(cnnString))
+                {
+                    cmd = new SqlCommand();
+                    cmd.Connection = conn;
+                    cmd.CommandText = "approveImage";
+                    cmd.Parameters.AddWithValue("@imageId", imageId);
+                    cmd.Parameters.AddWithValue("@adminId", lblId.Text);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+        }
+
+            private bool SaveImage(string strPath)
         {
             Label myMessage = Master.FindControl("lblMessage") as Label;
 
             if (File.Exists(strPath))
             {
-                myMessage.Text = "File Already Exists... try again!";
+                ShowError("File Already Exists... try again!");
                 return false;
             }
             else
@@ -134,23 +159,47 @@ namespace DRDPE.Admin
                     cmd = new SqlCommand("insertImage", conn);
                     cmd.Parameters.AddWithValue("@imageUrl", imgProd.ImageUrl);
                     cmd.Parameters.AddWithValue("@altText", strNoExtension);
+
+                    ////this needs to be taken from the session
+                    //string adminId = Session["AdminId"].ToString();
+                    //cmd.Parameters.AddWithValue("@uploadedBy", adminId);
+                    
+
+                    cmd.Parameters.AddWithValue("@uploadedBy", 2);
                     cmd.CommandType = CommandType.StoredProcedure;
                     try
                     {
                         conn.Open();
                         int ar = cmd.ExecuteNonQuery();
                         conn.Close();
-                        
+                        ShowError("Image Saved");
+                        Response.Redirect("~/ManageImage.aspx");
                         return true;
                     }
                     catch (Exception ex)
                     {
                         conn.Close();
-                        myMessage.Text = ex.Message;
+                        ShowError(ex.Message);
                     }
                 }
                 return false;
             }
         }
+
+        #region ErrorMessage
+        private void ShowError(string msg)
+        {
+            Label myMessage = Master.FindControl("lblMessage") as Label;
+            myMessage.Text = msg;
+            System.Web.UI.HtmlControls.HtmlGenericControl myError = (System.Web.UI.HtmlControls.HtmlGenericControl)Master.FindControl("errorMessage");
+            myError.Style.Remove("Display");
+        }
+        private void HideError()
+        {
+
+            System.Web.UI.HtmlControls.HtmlGenericControl myError = (System.Web.UI.HtmlControls.HtmlGenericControl)Master.FindControl("errorMessage");
+            myError.Style.Add("Display", "none");
+        }
+        #endregion
     }
 }
