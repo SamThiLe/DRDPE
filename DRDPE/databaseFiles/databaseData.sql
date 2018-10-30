@@ -1143,7 +1143,6 @@ BEGIN
 END
 GO
 
-/*
 --Check for Billing Address
 DROP PROCEDURE IF EXISTS dbo.CheckForBilling
 GO
@@ -1159,7 +1158,53 @@ BEGIN
 		customerId = @CustomerId AND addressType = 'Billing';
 END
 GO
-*/
+
+--Insert Order to OrderHistory
+DROP PROCEDURE IF EXISTS dbo.InsertOrder
+GO
+CREATE PROCEDURE InsertOrder
+	@cartId				INT,
+	@shippingAddress	INT,
+	@payType			NVARCHAR(2),
+	@authNumber			NVARCHAR(10)
+AS
+BEGIN
+	--DB for Debit / CR for Credit
+    INSERT INTO
+		OrderHistory
+	VALUES
+		(
+		@cartId,
+		@shippingAddress,
+		@payType,
+		@authNumber
+		);
+END
+GO
+
+--Get Order details
+DROP PROCEDURE IF EXISTS dbo.getOrderDetails
+GO
+CREATE PROCEDURE getOrderDetails
+	@cartId		int
+AS
+BEGIN
+    SELECT
+		*
+	FROM
+		Cart INNER JOIN CartItems
+			ON Cart.cartId = CartItems.cartId
+		INNER JOIN OrderHistory
+			ON CartItems.cartId = OrderHistory.cartId
+	WHERE
+		Cart.cartId = @cartId;
+END
+GO
+
+--all cart rows
+--customer id
+--no billing address or personal info
+--
 
 /*
 DROP PROCEDURE IF EXISTS dbo.procedureName
