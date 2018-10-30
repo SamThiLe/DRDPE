@@ -18,7 +18,9 @@ namespace DRDPE
         private int customerId;
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session.RemoveAll();
+            Session.Remove("login");
+            Session.Remove("customerId");
+            Session.Remove("username");
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
