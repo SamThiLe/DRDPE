@@ -101,14 +101,21 @@ namespace DRDPE
         protected void btnCheckOut_Click(object sender, EventArgs e)
         {
             bool LoggedIn = Convert.ToBoolean(Session["login"]);
-            if (LoggedIn && Request.Cookies["cartId"] != null)
+            if (Request.Cookies["cartId"] != null)
             {
-                Response.Cookies["CO"].Value = "1";
-                Response.Redirect("~/ModifyAccount.aspx");
+                if (LoggedIn)
+                {
+                    Response.Cookies["CO"].Value = "1";
+                    Response.Redirect("~/ModifyAccount.aspx");
+                }
+                else
+                {
+                    Response.Redirect("~/Login.aspx?CO=1");
+                }
             }
             else
             {
-                Response.Redirect("~/Login.aspx?CO=1");
+                lblMessage.Text = "Add products before checking out.";
             }
         }
 
