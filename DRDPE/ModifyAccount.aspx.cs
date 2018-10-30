@@ -35,7 +35,7 @@ namespace DRDPE
                 rfvShipCountry.Enabled = false;
                 
             }
-            if((!IsPostBack && Request.Cookies["CheckingOut"].Value == "") || (!IsPostBack && Request.Cookies["CheckingOut"].Value == null))
+            if (chkSameAsBilling.Visible == true)
             {
                 customerId = Convert.ToInt32(Session["customerId"]);
 
@@ -149,7 +149,7 @@ namespace DRDPE
                 AddAddress();
                 Response.Redirect("Payment.aspx");
             }
-            else if(Request.Cookies["CheckingOut"].Value != "" && Request.Cookies["CheckingOut"].Value != null)
+            else if(Request.Cookies["CO"].Value.ToString() == "1")
             {
                 Response.Redirect("Payment.aspx");
             }

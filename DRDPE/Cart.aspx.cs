@@ -103,7 +103,7 @@ namespace DRDPE
             bool LoggedIn = Convert.ToBoolean(Session["login"]);
             if (LoggedIn && Request.Cookies["cartId"] != null)
             {
-                Response.Cookies["CheckingOut"].Value = "true";
+                Response.Cookies["CO"].Value = "1";
                 Response.Redirect("~/ModifyAccount.aspx");
             }
             else

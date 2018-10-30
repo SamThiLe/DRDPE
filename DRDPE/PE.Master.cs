@@ -53,9 +53,9 @@ namespace DRDPE
 
         protected void linkAccountInfo_Click(object sender, EventArgs e)
         {
-            if(Response.Cookies["CheckingOut"] != null)
+            if(Response.Cookies["CO"] != null)
             {
-                Response.Cookies["CheckingOut"].Value = "";
+                Response.Cookies["CO"].Value = "";
             }
             Response.Redirect("ModifyAccount.aspx");
         }
