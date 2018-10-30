@@ -68,6 +68,7 @@ namespace DRDPE.Admin
                     if (ImageFormat.Jpeg.Equals(img.RawFormat) || ImageFormat.Gif.Equals(img.RawFormat) || ImageFormat.Bmp.Equals(img.RawFormat) || ImageFormat.Png.Equals(img.RawFormat) || ImageFormat.Tiff.Equals(img.RawFormat))
                     {
                         imgSaved = SaveImage(stringPath);
+                        ReloadGrid();
                     }
                     else
                     {
@@ -107,11 +108,105 @@ namespace DRDPE.Admin
                         MoveImage(imageUrl);
                 }
             }
-            ReloadGRDImage();
+            ReloadGrid();
+        }
+        protected void BtnDelete_Click(object sender, EventArgs e)
+        {
+            Button myButton = (Button)sender;
+            int count = grvImages.Rows.Count;
+            for (int i = 0; i < count; i++)
+            {
+                if ((Button)grvImages.Rows[i].FindControl("btnDelete") == myButton)
+                {
+                    Label lblId = (Label)grvImages.Rows[i].FindControl("imageId");
+                    string imageId = lblId.Text;
+                    if (ImageNotInUse(imageId))
+                        DeleteImage(imageId);
+                }
+            }
+            ReloadGrid();
         }
 
-        private void ReloadGRDImage()
+        private void DeleteImage(string imageId)
         {
+            SqlCommand cmd = default(SqlCommand);
+            int ar;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(cnnString))
+                {
+                    cmd = new SqlCommand("deleteImage", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@imageId", imageId);
+                    using (conn)
+                    {
+                        conn.Open();
+                        ar = cmd.ExecuteNonQuery();
+                        conn.Close();
+                    }
+                    if (ar > 0)
+                    {
+                        ShowError("ImageDeleted");
+                        ReloadGrid();
+                    }
+                    else
+                    {
+                        ShowError("Image was not deleted please contact your Admin");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowError(ex.Message);
+            }
+        }
+
+        private bool ImageNotInUse(string imageId)
+        {
+            SqlCommand cmd = default(SqlCommand);
+            string ar;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(cnnString))
+                {
+                    cmd = new SqlCommand("checkImageInUse", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@imageId", imageId);
+                    using (conn)
+                    {
+                        conn.Open();
+                        ar = cmd.ExecuteScalar().ToString();
+                        conn.Close();
+                    }
+                    if (ar == "1")
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowError(ex.Message);
+                return false;
+            }
+        }
+
+        private void ReloadGrid()
+        {
+            if(txtSearch.Text == "")
+            {
+                grvImages.DataSource = null;
+                grvImages.DataBind();
+                GetImages();
+            }
+            else
+            {
+                SearchImages();
+            }
             
         }
 
@@ -232,5 +327,44 @@ namespace DRDPE.Admin
             myError.Style.Add("Display", "none");
         }
         #endregion
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            SearchImages();
+        }
+
+        private void SearchImages()
+        {
+            grvImages.DataSource = null;
+            grvImages.DataBind();
+            HideError();
+            Label myMessage = Master.FindControl("lblMessage") as Label;
+            SqlDataReader dr = default(SqlDataReader);
+            SqlCommand cmd = default(SqlCommand);
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(cnnString))
+                {
+                    cmd = new SqlCommand("searchImages", conn);
+                    cmd.Parameters.AddWithValue("@searchText", txtSearch.Text);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    conn.Open();
+                    dr = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+                    if (dr.HasRows)
+                    {
+                        grvImages.DataSource = dr;
+                        grvImages.DataBind();
+                    }
+                    else
+                    {
+                        ShowError("No Images found.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowError(ex.Message);
+            }
+        }
     }
 }
