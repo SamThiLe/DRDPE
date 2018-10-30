@@ -79,10 +79,6 @@ namespace DRDPE
                         txtPostalCode.Text = dr["postalCode"].ToString();
                         txtCountry.Text = dr["country"].ToString();
                     }
-                    if (!dr.HasRows)
-                    {
-
-                    }
                 }
             }
             catch (Exception ex)
@@ -193,7 +189,6 @@ namespace DRDPE
 
         private void UpdateAddress()
         {
-            int ar = 0;
             SqlCommand cmd = default(SqlCommand);
 
             try
@@ -212,7 +207,7 @@ namespace DRDPE
                     using (conn)
                     {
                         conn.Open();
-                        ar = cmd.ExecuteNonQuery();
+                        Response.Cookies["addressId"].Value = cmd.ExecuteScalar().ToString();
                         conn.Close();
                     }
                 }
@@ -229,7 +224,6 @@ namespace DRDPE
         
         private void AddAddress()
         {
-            int ar = 0;
             SqlCommand cmd = default(SqlCommand);
 
             try
@@ -249,7 +243,7 @@ namespace DRDPE
                     using (conn)
                     {
                         conn.Open();
-                        ar = cmd.ExecuteNonQuery();
+                        Response.Cookies["addressId"].Value = cmd.ExecuteScalar().ToString();
                         conn.Close();
                     }
                 }
