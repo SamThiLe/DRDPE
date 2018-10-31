@@ -79,10 +79,12 @@ namespace DRDPE
                     cmd.CommandType = CommandType.StoredProcedure;
                     conn.Open();
                     dr = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+                    orderDetails = "<table><tr><th>Product</th><th>Qty</th><th>Subtotal</th></tr>";
                     while (dr.Read())
                     {
-                        orderDetails += dr["productName"].ToString() + " " + dr["qty"].ToString() + " " + dr["ItemSubtotal"].ToString() + "<br />";
+                        orderDetails += "<tr><td>" + dr["productName"].ToString() + "</td><td>" + dr["qty"].ToString() + "</td><td>" + dr["ItemSubtotal"].ToString() + "</tr>";
                     }
+                    orderDetails += "</table>";
                 }
 
                 using (SqlConnection conn = new SqlConnection(cnnString))
