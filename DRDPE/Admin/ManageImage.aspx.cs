@@ -51,47 +51,7 @@ namespace DRDPE.Admin
                 dr.Close();
             }
         }
-        protected void btnChoseImage_Click(object sender, EventArgs e)
-        {
-            Label myMessage = Master.FindControl("lblMessage") as Label;
-            try
-            {
-                int intSizeLimit = 1048576;
-                if (uplPics.HasFile == true)
-                {
-                    string stringPath = Server.MapPath("~/Admin/tempImages") + "\\" + uplPics.FileName;
-                    
-                    string strContentType = uplPics.PostedFile.ContentType;
-
-                    System.Drawing.Image img = System.Drawing.Image.FromStream(uplPics.PostedFile.InputStream);
-                    bool imgSaved = false;
-                    if (ImageFormat.Jpeg.Equals(img.RawFormat) || ImageFormat.Gif.Equals(img.RawFormat) || ImageFormat.Bmp.Equals(img.RawFormat) || ImageFormat.Png.Equals(img.RawFormat) || ImageFormat.Tiff.Equals(img.RawFormat))
-                    {
-                        imgSaved = SaveImage(stringPath);
-                        ReloadGrid();
-                    }
-                    else
-                    {
-                        ShowError("Not a Valid Image");
-                    }
-                }
-                else
-                {
-                    ShowError("Please select a file");
-                }
-            }
-            catch (Exception ex)
-            {
-                if (ex.Message.ToLower() == "Parameter is not valid.")
-                {
-                    ShowError("Oh no, thats not a valid image");
-                }
-                else
-                {
-                    ShowError(ex.Message);
-                }
-            }
-        }
+        
         protected void BtnApprove_Click(object sender, EventArgs e)
         {
             Button myButton = (Button)sender;
@@ -122,6 +82,8 @@ namespace DRDPE.Admin
                     string imageId = lblId.Text;
                     if (ImageNotInUse(imageId))
                         DeleteImage(imageId);
+                    else
+                        ShowError("Error: Cannot delete an image that is in use");
                 }
             }
             ReloadGrid();
@@ -267,51 +229,7 @@ namespace DRDPE.Admin
             }
         }
 
-        private bool SaveImage(string strPath)
-        {
-            Label myMessage = Master.FindControl("lblMessage") as Label;
 
-            if (File.Exists(strPath))
-            {
-                ShowError("File Already Exists... try again!");
-                return false;
-            }
-            else
-            {
-                uplPics.SaveAs(strPath);
-                myMessage.Text = "File upload to:" + strPath;
-                imgProd.ImageUrl = "~/Admin/tempImages/" + uplPics.FileName;
-                int intLength = uplPics.FileName.Length;
-                int intRem = intLength - 4;
-                string strNoExtension = uplPics.FileName.Substring(0, intLength - 3);
-                imgProd.AlternateText = strNoExtension;
-                imgProd.Visible = true;
-
-                SqlCommand cmd = default(SqlCommand);
-                using (SqlConnection conn = new SqlConnection(cnnString))
-                {
-                    cmd = new SqlCommand("insertImage", conn);
-                    cmd.Parameters.AddWithValue("@imageUrl", imgProd.ImageUrl);
-                    cmd.Parameters.AddWithValue("@altText", strNoExtension);
-                    cmd.Parameters.AddWithValue("@uploadedBy", Session["adminId"]);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    try
-                    {
-                        conn.Open();
-                        int ar = cmd.ExecuteNonQuery();
-                        conn.Close();
-                        ShowError("Image Saved");
-                        return true;
-                    }
-                    catch (Exception ex)
-                    {
-                        conn.Close();
-                        ShowError(ex.Message);
-                    }
-                }
-                return false;
-            }
-        }
 
         #region ErrorMessage
         private void ShowError(string msg)

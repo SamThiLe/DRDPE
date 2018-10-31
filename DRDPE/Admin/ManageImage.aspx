@@ -3,23 +3,11 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
-        <div class="row">
-
-   
-            <div class="col-6">
-                <div id="searchDiv" style="text-align: center" runat="server">
-                    <label>Search for Images</label>
-                    <br />
-                    <asp:TextBox ID="txtSearch" runat="server" type="text" class="form-control mr-sm-2  custom-search-box" style="display:inline;" placeholder="Search" name="q"></asp:TextBox>
-                    <asp:button id="btnSearch"  class="btn btn-outline-light my-2 my-sm-0" type="submit" runat="server" Text="Search" CausesValidation="false" OnClick="btnSearch_Click"></asp:button>
-                </div>
-                
-            </div>
-            <div class="col-6">
-                <asp:FileUpload ID="uplPics" runat="server" /><br />
-                <asp:Button id="btnChoseImage" runat="server" class="btn btn-outline-light my-sm-0 nav-fill" Text="Upload an Image" AutoPostBack="true"  CausesValidation="false" OnClick="btnChoseImage_Click" /><br /><br />
-                <asp:Image ID="imgProd" runat="server" Width="200" Height="200" ImageUrl ='<%#Eval("imageUrl")%>' />
-            </div>
+        <div id="searchDiv" style="text-align: center" runat="server">
+            <label>Search for Images</label>
+            <br />
+            <asp:TextBox ID="txtSearch" runat="server" type="text" class="form-control mr-sm-2  custom-search-box" style="display:inline;" placeholder="Search" name="q"></asp:TextBox>
+            <asp:button id="btnSearch"  class="btn btn-outline-light my-2 my-sm-0" type="submit" runat="server" Text="Search" CausesValidation="false" OnClick="btnSearch_Click"></asp:button>
         </div>
         <br />
         <asp:GridView ID="grvImages" runat="server" AutoGenerateColumns="False">

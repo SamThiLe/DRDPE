@@ -260,6 +260,10 @@ namespace DRDPE
                         GetApprovedImages();
                         ddlImages.Items.FindByValue(dr["imageId"].ToString()).Selected = true;
                         ddlCat.Items.FindByValue(dr["categoryId"].ToString()).Selected = true;
+                        btnCancel.Visible = false;
+                        btnSave.Visible = false;
+                        btnDelete.Visible = true;
+                        btnUpdate.Visible = true;
                     }
                 }
             }
@@ -387,12 +391,14 @@ namespace DRDPE
             ddlProductStatus.SelectedIndex = -1;
             txtProductPrice.Text = "";
             chkProductFeatured.Checked = false;
-            imgProd.ImageUrl = "";
+            GetApprovedImages();
             ddlCat.SelectedIndex = -1;
+            ImagePreview();
             btnCancel.Visible = true;
+            btnSave.Visible = true;
             btnDelete.Visible = false;
             btnUpdate.Visible = false;
-            btnSave.Visible = true;
+            
         }
         protected bool AddProduct()
         {
@@ -512,6 +518,11 @@ namespace DRDPE
         #endregion
 
         protected void ddlImages_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ImagePreview();
+        }
+
+        private void ImagePreview()
         {
             Label myMessage = Master.FindControl("lblMessage") as Label;
             try

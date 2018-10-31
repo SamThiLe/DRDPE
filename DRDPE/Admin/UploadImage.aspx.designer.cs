@@ -10,42 +10,33 @@
 namespace DRDPE.Admin {
     
     
-    public partial class ManageImage {
+    public partial class UploadImage {
         
         /// <summary>
-        /// searchDiv control.
+        /// uplPics control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl searchDiv;
+        protected global::System.Web.UI.WebControls.FileUpload uplPics;
         
         /// <summary>
-        /// txtSearch control.
+        /// btnChoseImage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearch;
+        protected global::System.Web.UI.WebControls.Button btnChoseImage;
         
         /// <summary>
-        /// btnSearch control.
+        /// imgProd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearch;
-        
-        /// <summary>
-        /// grvImages control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grvImages;
+        protected global::System.Web.UI.WebControls.Image imgProd;
     }
 }

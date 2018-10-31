@@ -15,5 +15,8 @@
         <li class="nav-item bg-dark" style="padding-top:0.5%;padding-bottom:0.5%;">
             <a class="btn btn-outline-light my-sm-0 nav-fill" style="width:90%;" href="ManageImage.aspx">Manage Image Data</a>
         </li>
+        <li class="nav-item bg-dark" style="padding-top:0.5%;padding-bottom:0.5%;">
+            <a class="btn btn-outline-light my-sm-0 nav-fill" style="width:90%;" href="UploadImage.aspx">Upload Image</a>
+        </li>
     </ul>
 </asp:Content>

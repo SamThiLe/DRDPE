@@ -72,6 +72,7 @@
     <Content Include="Admin\ManageCustomers.aspx" />
     <Content Include="Admin\ManageImage.aspx" />
     <Content Include="Admin\ManageProducts.aspx" />
+    <Content Include="Admin\UploadImage.aspx" />
     <Content Include="Cart.aspx" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\style.css" />
@@ -197,6 +198,13 @@
     </Compile>
     <Compile Include="Admin\ManageProducts.aspx.designer.cs">
       <DependentUpon>ManageProducts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UploadImage.aspx.cs">
+      <DependentUpon>UploadImage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\UploadImage.aspx.designer.cs">
+      <DependentUpon>UploadImage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Cart.aspx.cs">
       <DependentUpon>Cart.aspx</DependentUpon>
