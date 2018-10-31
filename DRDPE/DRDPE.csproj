@@ -149,6 +149,7 @@
     <Content Include="ModifyAccount.aspx" />
     <Content Include="NewAccount.aspx" />
     <Content Include="OrderConfirm.aspx" />
+    <Content Include="OrderDetails.aspx" />
     <Content Include="Payment.aspx" />
     <Content Include="ProductPage.aspx" />
     <Content Include="Registered.aspx" />
@@ -258,6 +259,13 @@
     </Compile>
     <Compile Include="OrderConfirm.aspx.designer.cs">
       <DependentUpon>OrderConfirm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OrderDetails.aspx.cs">
+      <DependentUpon>OrderDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrderDetails.aspx.designer.cs">
+      <DependentUpon>OrderDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Payment.aspx.cs">
       <DependentUpon>Payment.aspx</DependentUpon>
