@@ -65,8 +65,40 @@ namespace DRDPE
         {
             lblCC.Text = orderConfirmationCode;
             Response.Cookies["cartId"].Value = "";
+            SqlDataReader dr = default(SqlDataReader);
+            SqlCommand cmd = default(SqlCommand);
             try
             {
+                //data variables
+                string orderTotal = "";
+
+                using (SqlConnection conn = new SqlConnection(cnnString))
+                {
+                    cmd = new SqlCommand("getOrderDetails", conn);
+                    cmd.Parameters.AddWithValue("@authNumber", orderConfirmationCode);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    conn.Open();
+                    dr = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+                    while (dr.Read())
+                    {
+                        orderDetails += dr["productName"].ToString() + " " + dr["qty"].ToString() + " " + dr["ItemSubtotal"].ToString() + "<br />";
+                    }
+                }
+
+                using (SqlConnection conn = new SqlConnection(cnnString))
+                {
+                    cmd = new SqlCommand("getOrderTotal", conn);
+                    cmd.Parameters.AddWithValue("@authNumber", orderConfirmationCode);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    conn.Open();
+                    dr = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+                    while (dr.Read())
+                    {
+                        orderTotal = dr["GrandTotal"].ToString();
+                    }
+                }
+
+                //orderConfirmationCode
                 MailMessage mailMessage = new MailMessage();
                 mailMessage.To.Add(email);
                 mailMessage.From = new MailAddress("admin@PastryEmporium.com");
@@ -74,9 +106,12 @@ namespace DRDPE
                 mailMessage.IsBodyHtml = true;
                 mailMessage.Body = "<h2>Our dear client,</h2>" +
                     "<p>Your Payment has been processed and you pasteries are on there way</p>" +
-                    "View Your Order: <a href='http://localhost:2443/OrderDetails.aspx?auth=" + orderConfirmationCode + "'>" + orderConfirmationCode + "</a><br>" +
-                    orderDetails +
-                    "<br><br><hr>Not sure why you're seeing this? Disregard this email.</p>";
+                    "View Your Order: <a href='http://localhost:2443/OrderDetails.aspx?auth=" + orderConfirmationCode + "'>" + orderConfirmationCode + "</a><br />"
+                    +
+                    orderDetails
+                    + 
+                    "<br />"+ (Convert.ToDecimal(orderTotal)).ToString("c") +
+                    "<br /><br /><hr>Not sure why you're seeing this? Disregard this email.</p>";
                 SmtpClient smtpClient = new SmtpClient("localhost");
                 smtpClient.Send(mailMessage);
             }
