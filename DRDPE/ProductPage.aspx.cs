@@ -73,7 +73,7 @@ namespace DRDPE
             try
             {
                 string productId = Request.QueryString["productId"];
-                if (Request.Cookies["cartId"] != null)
+                if (Request.Cookies["cartId"] != null && Request.Cookies["cartId"].Value != "")
                 {
                     cartId = Convert.ToInt32(Request.Cookies["cartId"].Value);
                     UpdateCart(cartId, productId);
