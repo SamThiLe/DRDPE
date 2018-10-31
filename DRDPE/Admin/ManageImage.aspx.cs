@@ -83,7 +83,12 @@ namespace DRDPE.Admin
                         Label lblId = (Label)grvImages.Rows[i].FindControl("imageId");
                         string imageId = lblId.Text;
                         if (ImageNotInUse(imageId))
-                            DeleteImage(imageId);
+                        {
+                            Label lblImageUrl = (Label)grvImages.Rows[i].FindControl("imageUrl");
+                            string strPath = lblImageUrl.Text;
+                            DeleteImage(imageId, Server.MapPath(strPath.Substring(1)));
+                        }
+                            
                         else
                             ShowError("Error: Cannot delete an image that is in use");
                     }
@@ -97,7 +102,7 @@ namespace DRDPE.Admin
             
         }
 
-        private void DeleteImage(string imageId)
+        private void DeleteImage(string imageId , string strPath)
         {
             SqlCommand cmd = default(SqlCommand);
             int ar;
@@ -117,7 +122,7 @@ namespace DRDPE.Admin
                     if (ar > 0)
                     {
                         ShowError("ImageDeleted");
-
+                        File.Delete(strPath);
                         ReloadGrid();
                     }
                     else

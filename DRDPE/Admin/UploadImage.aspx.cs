@@ -32,17 +32,33 @@ namespace DRDPE.Admin
                 int intSizeLimit = 1048576;
                 if (uplPics.HasFile == true)
                 {
-                    string stringPath = Server.MapPath("~/Admin/tempImages") + "\\" + uplPics.FileName;
+                    string strPath = Server.MapPath("~/Admin/tempImages") + "\\" + uplPics.FileName;
 
                     string strContentType = uplPics.PostedFile.ContentType;
 
                     System.Drawing.Image img = System.Drawing.Image.FromStream(uplPics.PostedFile.InputStream);
                     bool imgSaved = false;
-                    if (ImageFormat.Jpeg.Equals(img.RawFormat) || ImageFormat.Gif.Equals(img.RawFormat) || ImageFormat.Bmp.Equals(img.RawFormat) || ImageFormat.Png.Equals(img.RawFormat) || ImageFormat.Tiff.Equals(img.RawFormat))
+                    if (ImageFormat.Jpeg.Equals(img.RawFormat))
                     {
-                        imgSaved = SaveImage(stringPath);
+                        imgSaved = SaveImage(strPath,".jpg");
                         
+                    }else if (ImageFormat.Gif.Equals(img.RawFormat))
+                    {
+                        imgSaved = SaveImage(strPath, ".gif");
                     }
+                    else if (ImageFormat.Bmp.Equals(img.RawFormat))
+                    {
+                        imgSaved = SaveImage(strPath, ".bmp");
+                    }
+                    else if (ImageFormat.Png.Equals(img.RawFormat))
+                    {
+                        imgSaved = SaveImage(strPath, ".png");
+                    }
+                    else if (ImageFormat.Tiff.Equals(img.RawFormat))
+                    {
+                        imgSaved = SaveImage(strPath, ".tiff");
+                    }
+
                     else
                     {
                         ShowError("Not a Valid Image");
@@ -65,7 +81,7 @@ namespace DRDPE.Admin
                 }
             }
         }
-        private bool SaveImage(string strPath)
+        private bool SaveImage(string strPath, string extension)
         {
             Label myMessage = Master.FindControl("lblMessage") as Label;
 
@@ -76,9 +92,9 @@ namespace DRDPE.Admin
             }
             else
             {
-                uplPics.SaveAs(strPath);
+                uplPics.SaveAs(Server.MapPath("~/Admin/tempImages/" + txtImgName.Text + extension));
                 myMessage.Text = "File upload to:" + strPath;
-                imgProd.ImageUrl = "~/Admin/tempImages/" + uplPics.FileName;
+                imgProd.ImageUrl = "~/Admin/tempImages/" + txtImgName.Text+extension;
                 int intLength = uplPics.FileName.Length;
                 int intRem = intLength - 4;
                 string strNoExtension = uplPics.FileName.Substring(0, intLength - 3);
@@ -90,7 +106,8 @@ namespace DRDPE.Admin
                 {
                     cmd = new SqlCommand("insertImage", conn);
                     cmd.Parameters.AddWithValue("@imageUrl", imgProd.ImageUrl);
-                    cmd.Parameters.AddWithValue("@altText", strNoExtension);
+                    cmd.Parameters.AddWithValue("@imageName", txtImgName.Text);
+                    cmd.Parameters.AddWithValue("@altText", txtAltText.Text);
                     cmd.Parameters.AddWithValue("@uploadedBy", Session["adminId"]);
                     cmd.CommandType = CommandType.StoredProcedure;
                     try

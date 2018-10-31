@@ -31,7 +31,14 @@
                 </ItemTemplate>
             </asp:TemplateField>
                 <asp:BoundField DataField="uploadDate" HeaderText="Upload Date"></asp:BoundField>
-                <asp:BoundField DataField="altText" HeaderText="Alternate Text"></asp:BoundField>
+            <asp:TemplateField HeaderText="Alternate Text">
+                <ItemTemplate>
+                    <span style="text-align: center">
+                        <asp:TextBox ID="lblAltText" runat="server" Text='<%#Eval("altText")%>'></asp:TextBox>
+                    </span>
+                </ItemTemplate>
+            </asp:TemplateField>
+
             <asp:TemplateField HeaderText="Uploader Id">
                 <ItemTemplate>
                     <span style="text-align: center">
