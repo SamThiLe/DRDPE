@@ -144,12 +144,13 @@ namespace DRDPE
                     cmd = new SqlCommand("InsertOrder", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@cartId", SqlDbType.Int, 0).Value = Request.Cookies["cartId"].Value;
-                    cmd.Parameters.Add("@shippingAddress", SqlDbType.Int, 0).Value = Request.Cookies["addressId"].Value;
+                    cmd.Parameters.Add("@shippingAddress", SqlDbType.Int, 0).Value = Request.Cookies["addressOutput"].Value;
                     if (rblPaymentType.SelectedIndex == 0)
                         cmd.Parameters.Add("@payType", SqlDbType.NVarChar, 2).Value = "DB";
                     else
                         cmd.Parameters.Add("@payType", SqlDbType.NVarChar, 2).Value = "CR";
-                    cmd.Parameters.Add("@authNumber", SqlDbType.NVarChar, 50).Value = Session["authNumber"];
+                    cmd.Parameters.Add("@authNumber", SqlDbType.NVarChar, 50).Value = Session["authNumber"].ToString();
+                    cmd.Parameters.Add("@customerId", SqlDbType.Int, 0).Value = Session["customerId"];
 
 
                     using (conn)

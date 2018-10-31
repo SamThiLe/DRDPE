@@ -19,7 +19,7 @@ namespace DRDPE
         private Guid userVerificationCode = Guid.NewGuid();
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Cookies["addressId"].Value = "";
+            Response.Cookies["addressOutput"].Value = "";
             if(Session["login"] == null)
             {
                 Response.Redirect("index.aspx");
@@ -204,13 +204,13 @@ namespace DRDPE
                     cmd.Parameters.Add("@stateProv", SqlDbType.NVarChar, 15).Value = txtProvince.Text;
                     cmd.Parameters.Add("@country", SqlDbType.NVarChar, 20).Value = txtCountry.Text;
                     cmd.Parameters.Add("@postalCode", SqlDbType.NVarChar, 10).Value = txtPostalCode.Text;
-                    cmd.Parameters.Add("@addressId", SqlDbType.Int, 0).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("@addressOutput", SqlDbType.Int, 0).Direction = ParameterDirection.Output;
 
                     using (conn)
                     {
                         conn.Open();
                         cmd.ExecuteNonQuery();
-                        Response.Cookies["addressId"].Value = cmd.Parameters["@addressId"].Value.ToString();
+                        Response.Cookies["addressOutput"].Value = cmd.Parameters["@addressOutput"].Value.ToString();
                         conn.Close();
                     }
                 }
@@ -242,13 +242,13 @@ namespace DRDPE
                     cmd.Parameters.Add("@country", SqlDbType.NVarChar, 20).Value = txtShipCountry.Text;
                     cmd.Parameters.Add("@postalCode", SqlDbType.NVarChar, 10).Value = txtShipPostalCode.Text;
                     cmd.Parameters.Add("@additionalNo", SqlDbType.NVarChar, 50).Value = txtAdditionalNotes.Text;
-                    cmd.Parameters.Add("@addressId", SqlDbType.Int, 0).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("@addressOutput", SqlDbType.Int, 0).Direction = ParameterDirection.Output;
 
                     using (conn)
                     {
                         conn.Open();
                         cmd.ExecuteNonQuery();
-                        Response.Cookies["addressId"].Value = cmd.Parameters["@addressId"].Value.ToString();
+                        Response.Cookies["addressOutput"].Value = cmd.Parameters["@addressOutput"].Value.ToString();
                         conn.Close();
                     }
                 }

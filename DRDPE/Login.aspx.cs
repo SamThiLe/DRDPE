@@ -39,10 +39,7 @@ namespace DRDPE
                 
                 Response.Redirect("index.aspx");
             }
-            else
-            {
-                lblSuccess.Text = "<h3>Login unsuccessful. No existing user with those matching credentials.</h3>";
-            }
+
 
         }
         private bool CustomerLogin()
@@ -70,6 +67,11 @@ namespace DRDPE
                     else
                         return false;
                 }
+            }
+            catch (SqlException ex)
+            {
+                lblSuccess.Text = "<h4>" + ex.Message + "</h4><br>";
+                return false;
             }
             catch (Exception ex)
             {
