@@ -6,7 +6,7 @@
         <div class="col-md-2">
             <h3>Your Order</h3>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-5">
 
         </div>
         <div class="col-md-2">
@@ -17,24 +17,50 @@
         <div class="col-md-2">
             <label runat="server">Order Status: </label>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <asp:Label runat="server" ID="lblOrderStatus"></asp:Label>
+        </div>
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-2">
+            <asp:Label runat="server" ID="lblStreetAddress"></asp:Label>
         </div>
     </div>    
     <div class="row">
         <div class="col-md-2">
             <label runat="server">Order Placed On: </label>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <asp:Label runat="server" ID="lblOrderDate"></asp:Label>
+        </div>
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-2">
+            <asp:Label runat="server" ID="lblCity"></asp:Label>
         </div>
     </div>    
     <div class="row">
         <div class="col-md-2">
             <label runat="server">Order Total:</label>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <asp:Label runat="server" ID="lblOrderTotal"></asp:Label>
         </div>
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-2">
+            <asp:Label runat="server" ID="lblProvPostCount"></asp:Label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <h3>Items</h3>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <asp:Label runat="server" ID="lblItems"></asp:Label>
     </div>
 </asp:Content>

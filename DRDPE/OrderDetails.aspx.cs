@@ -36,6 +36,9 @@ namespace DRDPE
                     {
                         lblOrderStatus.Text = ((OrderStatus)(Convert.ToInt32(dr["orderStatus"]))).ToString();
                         lblOrderDate.Text = DateTime.Parse(dr["orderDate"].ToString()).ToString();
+                        lblStreetAddress.Text = dr["street"].ToString();
+                        lblCity.Text = dr["city"].ToString();
+                        lblProvPostCount.Text = dr["stateProv"] + ", " + dr["postalCode"] + ", " + dr["country"];
                     }
                     conn.Close();
                     cmd = new SqlCommand("getOrderTotal", conn);
