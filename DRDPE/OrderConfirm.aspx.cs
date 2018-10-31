@@ -112,7 +112,7 @@ namespace DRDPE
                     +
                     orderDetails
                     + 
-                    "<br />"+ (Convert.ToDecimal(orderTotal)).ToString("c") +
+                    "<br /> Order Total: "+ (Convert.ToDecimal(orderTotal)).ToString("c") +
                     "<br /><br /><hr>Not sure why you're seeing this? Disregard this email.</p>";
                 SmtpClient smtpClient = new SmtpClient("localhost");
                 smtpClient.Send(mailMessage);
