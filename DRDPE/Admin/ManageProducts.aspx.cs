@@ -478,7 +478,7 @@ namespace DRDPE
                 using (SqlConnection conn = new SqlConnection(cnnString))
                 {
                     cmd = new SqlCommand("deleteProduct", conn);
-                    cmd.Parameters.AddWithValue("@ProdId", txtProduct.Text);
+                    cmd.Parameters.AddWithValue("@ProductId", txtProduct.Text);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     using (conn)
