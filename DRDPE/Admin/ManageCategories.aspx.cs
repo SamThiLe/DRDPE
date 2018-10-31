@@ -127,6 +127,8 @@ namespace DRDPE
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@name", SqlDbType.VarChar, 20).Value = txtCategoryNameAdd.Text;
                     cmd.Parameters.Add("@description", SqlDbType.VarChar, 8000).Value = txtCategoryDescriptionAdd.Text;
+                    SqlParameter sqlP = new SqlParameter();
+                    
                     using (conn)
                     {
                         conn.Open();

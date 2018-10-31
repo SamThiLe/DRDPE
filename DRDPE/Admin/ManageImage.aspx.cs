@@ -72,21 +72,29 @@ namespace DRDPE.Admin
         }
         protected void BtnDelete_Click(object sender, EventArgs e)
         {
-            Button myButton = (Button)sender;
-            int count = grvImages.Rows.Count;
-            for (int i = 0; i < count; i++)
+            try
             {
-                if ((Button)grvImages.Rows[i].FindControl("btnDelete") == myButton)
+                Button myButton = (Button)sender;
+                int count = grvImages.Rows.Count;
+                for (int i = 0; i < count; i++)
                 {
-                    Label lblId = (Label)grvImages.Rows[i].FindControl("imageId");
-                    string imageId = lblId.Text;
-                    if (ImageNotInUse(imageId))
-                        DeleteImage(imageId);
-                    else
-                        ShowError("Error: Cannot delete an image that is in use");
+                    if ((Button)grvImages.Rows[i].FindControl("btnDelete") == myButton)
+                    {
+                        Label lblId = (Label)grvImages.Rows[i].FindControl("imageId");
+                        string imageId = lblId.Text;
+                        if (ImageNotInUse(imageId))
+                            DeleteImage(imageId);
+                        else
+                            ShowError("Error: Cannot delete an image that is in use");
+                    }
                 }
+                ReloadGrid();
             }
-            ReloadGrid();
+            catch (Exception ex)
+            {
+                ShowError(ex.Message);
+            }
+            
         }
 
         private void DeleteImage(string imageId)
@@ -109,6 +117,7 @@ namespace DRDPE.Admin
                     if (ar > 0)
                     {
                         ShowError("ImageDeleted");
+
                         ReloadGrid();
                     }
                     else
@@ -177,7 +186,7 @@ namespace DRDPE.Admin
             Label lblId = (Label)grvImages.Rows[row].FindControl("lblAdminId");
             if (Session["AdminId"].ToString()==lblId.Text)
             {
-                ShowError("You can approve an Image you uploaded yourself");
+                ShowError("You can't not approve an Image you uploaded yourself");
                 return false;
             }
             else

@@ -24,7 +24,7 @@ namespace DRDPE
             {
                 HideError();
             }
-            btnSave.Visible = false;
+            //btnSave.Visible = false;
             //productContainer.Style.Add("display", "none");
             
             if (!IsPostBack || (string)Session["changed"] == "yes")
