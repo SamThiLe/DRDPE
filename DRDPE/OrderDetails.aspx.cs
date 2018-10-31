@@ -31,24 +31,25 @@ namespace DRDPE
                     cmd.Parameters.Add("@authNumber", SqlDbType.NVarChar, 50).Value = authNumber;
                     cmd.CommandType = CommandType.StoredProcedure;
                     conn.Open();
-                    dr = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+                    dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
                     while (dr.Read())
                     {
                         lblOrderStatus.Text = ((OrderStatus)(Convert.ToInt32(dr["orderStatus"]))).ToString();
-                        lblOrderDate.Text = Convert.ToDateTime(dr["orderDate"]).ToString("dd/MM/yyyy");
+                        lblOrderDate.Text = DateTime.Parse(dr["orderDate"].ToString()).ToString();
                     }
-                    dr.Close();
+                    conn.Close();
                     cmd = new SqlCommand("getOrderTotal", conn);
                     cmd.Parameters.Add("@authNumber", SqlDbType.NVarChar, 50).Value = authNumber;
                     cmd.CommandType = CommandType.StoredProcedure;
                     conn.Open();
+                    dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
                     while (dr.Read())
                     {
-                        lblOrderTotal.Text = dr["GrandTotal"].ToString();
+                        lblOrderTotal.Text = (Convert.ToDecimal(dr["GrandTotal"]).ToString("c"));
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception Kowalski)
             {
 
             }

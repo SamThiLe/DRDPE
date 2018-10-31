@@ -2,13 +2,39 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h3>Your Order</h3>
-    <label runat="server" id="lblForOrderStatus">Order Status: </label>
-    <asp:Label runat="server" ID="lblOrderStatus"></asp:Label>
-    <br />
-    <label runat="server" id="lblForOrderDate">Order Placed On: </label>
-    <asp:Label runat="server" ID="lblOrderDate"></asp:Label>
-    <br />
-    <label runat="server" id="lblForOrderTotal">Order Total: $</label>
-    <asp:Label runat="server" ID="lblOrderTotal"></asp:Label>
+    <div class="row">
+        <div class="col-md-2">
+            <h3>Your Order</h3>
+        </div>
+        <div class="col-md-6">
+
+        </div>
+        <div class="col-md-2">
+            <h3>Shipping Address</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <label runat="server">Order Status: </label>
+        </div>
+        <div class="col-md-3">
+            <asp:Label runat="server" ID="lblOrderStatus"></asp:Label>
+        </div>
+    </div>    
+    <div class="row">
+        <div class="col-md-2">
+            <label runat="server">Order Placed On: </label>
+        </div>
+        <div class="col-md-3">
+            <asp:Label runat="server" ID="lblOrderDate"></asp:Label>
+        </div>
+    </div>    
+    <div class="row">
+        <div class="col-md-2">
+            <label runat="server">Order Total:</label>
+        </div>
+        <div class="col-md-3">
+            <asp:Label runat="server" ID="lblOrderTotal"></asp:Label>
+        </div>
+    </div>
 </asp:Content>

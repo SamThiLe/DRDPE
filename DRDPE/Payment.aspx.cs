@@ -150,6 +150,7 @@ namespace DRDPE
                     else
                         cmd.Parameters.Add("@payType", SqlDbType.NVarChar, 2).Value = "CR";
                     cmd.Parameters.Add("@authNumber", SqlDbType.NVarChar, 50).Value = Session["authNumber"].ToString();
+                    cmd.Parameters.Add("@customerId", SqlDbType.Int, 0).Value = Session["customerId"];
 
 
                     using (conn)

@@ -13,15 +13,6 @@ namespace DRDPE {
     public partial class OrderDetails {
         
         /// <summary>
-        /// lblForOrderStatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblForOrderStatus;
-        
-        /// <summary>
         /// lblOrderStatus control.
         /// </summary>
         /// <remarks>
@@ -31,15 +22,6 @@ namespace DRDPE {
         protected global::System.Web.UI.WebControls.Label lblOrderStatus;
         
         /// <summary>
-        /// lblForOrderDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblForOrderDate;
-        
-        /// <summary>
         /// lblOrderDate control.
         /// </summary>
         /// <remarks>
@@ -47,15 +29,6 @@ namespace DRDPE {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblOrderDate;
-        
-        /// <summary>
-        /// lblForOrderTotal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblForOrderTotal;
         
         /// <summary>
         /// lblOrderTotal control.
