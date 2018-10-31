@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <asp:FileUpload ID="uplPics" runat="server" /><br />
+    <asp:FileUpload ID="uplPics" class="btn btn-outline-light my-sm-0 nav-fill" runat="server" /><br />
     <br /><br />
     <asp:Image ID="imgProd" runat="server" Width="200" Height="200" ImageUrl ='<%#Eval("imageUrl")%>' />
 

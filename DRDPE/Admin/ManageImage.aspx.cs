@@ -51,7 +51,6 @@ namespace DRDPE.Admin
                 dr.Close();
             }
         }
-        
         protected void BtnApprove_Click(object sender, EventArgs e)
         {
             Button myButton = (Button)sender;
@@ -101,7 +100,6 @@ namespace DRDPE.Admin
             }
             
         }
-
         private void DeleteImage(string imageId , string strPath)
         {
             SqlCommand cmd = default(SqlCommand);
@@ -136,7 +134,6 @@ namespace DRDPE.Admin
                 ShowError(ex.Message);
             }
         }
-
         private bool ImageNotInUse(string imageId)
         {
             SqlCommand cmd = default(SqlCommand);
@@ -170,7 +167,6 @@ namespace DRDPE.Admin
                 return false;
             }
         }
-
         private void ReloadGrid()
         {
             if(txtSearch.Text == "")
@@ -185,7 +181,6 @@ namespace DRDPE.Admin
             }
             
         }
-
         private bool ApproveImage(string imageId,string imageUrl,int row)
         {
             Label lblId = (Label)grvImages.Rows[row].FindControl("lblAdminId");
@@ -223,7 +218,6 @@ namespace DRDPE.Admin
                 }
             }
         }
-
         private void MoveImage(string imageUrl)
         {
 
@@ -242,9 +236,6 @@ namespace DRDPE.Admin
                 ShowError("A file with That name already Exists");
             }
         }
-
-
-
         #region ErrorMessage
         private void ShowError(string msg)
         {
@@ -259,12 +250,65 @@ namespace DRDPE.Admin
             myError.Style.Add("Display", "none");
         }
         #endregion
+        protected void BtnUpdate_Click(object sender, EventArgs e)
+        {
+            Button myButton = (Button)sender;
+            int count = grvImages.Rows.Count;
+            for (int i = 0; i < count; i++)
+            {
+                if ((Button)grvImages.Rows[i].FindControl("btnUpdate") == myButton)
+                {
+                    TextBox txtAlt = (TextBox)grvImages.Rows[i].FindControl("txtAltText");
+                    string altText = txtAlt.Text;
+                    if (altText == "")
+                    {
+                        ShowError("You must chose an alternate to update");
+                    }
+                    else
+                    {
+                        Label lblId = (Label)grvImages.Rows[i].FindControl("imageId");
+                        string imageId = lblId.Text;
+                        TextBox txtImageName = (TextBox)grvImages.Rows[i].FindControl("txtName");
+                        string imageName = txtImageName.Text;
+                        UpdateImage(imageId, imageName, altText);
+                        ShowError("The Image data was Updated Successfully");
+                    }
+                }
+            }
+            ReloadGrid();
+        }
+
+        private void UpdateImage(string imageId, string imageName, string altText)
+        {
+            int ar = 0;
+            SqlCommand cmd = default(SqlCommand);
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(cnnString))
+                {
+                    cmd = new SqlCommand("updateImage", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@imageId",imageId);
+                    cmd.Parameters.AddWithValue("@imageName",imageName);
+                    cmd.Parameters.AddWithValue("@altText",altText);
+                    using (conn)
+                    {
+                        conn.Open();
+                        ar = cmd.ExecuteNonQuery();
+                        conn.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowError(ex.Message);
+            }
+        }
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             SearchImages();
         }
-
         private void SearchImages()
         {
             grvImages.DataSource = null;
