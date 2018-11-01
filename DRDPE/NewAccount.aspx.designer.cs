@@ -202,13 +202,22 @@ namespace DRDPE {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCity;
         
         /// <summary>
-        /// txtProvince control.
+        /// ddlStates control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProvince;
+        protected global::System.Web.UI.WebControls.DropDownList ddlStates;
+        
+        /// <summary>
+        /// ddlProvices control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlProvices;
         
         /// <summary>
         /// txtPostalCode control.
@@ -220,22 +229,13 @@ namespace DRDPE {
         protected global::System.Web.UI.WebControls.TextBox txtPostalCode;
         
         /// <summary>
-        /// txtCountry control.
+        /// ddlCountry control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCountry;
-        
-        /// <summary>
-        /// rfvProvince control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvProvince;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCountry;
         
         /// <summary>
         /// rfvPostalCode control.
@@ -247,22 +247,22 @@ namespace DRDPE {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPostalCode;
         
         /// <summary>
-        /// rfvCountry control.
+        /// rexValidatorProv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCountry;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator rexValidatorProv;
         
         /// <summary>
-        /// RegularExpressionValidator1 control.
+        /// rexValidatorState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator rexValidatorState;
         
         /// <summary>
         /// txtPhoneNumber control.

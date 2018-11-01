@@ -88,6 +88,7 @@ namespace DRDPE
             {
                 using (SqlConnection conn = new SqlConnection(cnnString))
                 {
+                    
                     cmd = new SqlCommand("insertCustomer", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@email", SqlDbType.NVarChar, 50).Value = txtEmail.Text;
@@ -99,8 +100,19 @@ namespace DRDPE
                     cmd.Parameters.Add("@phone", SqlDbType.NVarChar, 14).Value = txtPhoneNumber.Text;
                     cmd.Parameters.Add("@street", SqlDbType.NVarChar, 50).Value = txtStreetAddress.Text;
                     cmd.Parameters.Add("@city", SqlDbType.NVarChar, 50).Value = txtCity.Text;
-                    cmd.Parameters.Add("@stateProv", SqlDbType.NVarChar, 15).Value = txtProvince.Text;
-                    cmd.Parameters.Add("@country", SqlDbType.NVarChar, 20).Value = txtCountry.Text;
+                    
+
+                    cmd.Parameters.Add("@country", SqlDbType.NVarChar, 20).Value = ddlCountry.SelectedItem.ToString();
+                    
+                    if (ddlCountry.SelectedIndex==0)
+                    {
+                        cmd.Parameters.Add("@stateProv", SqlDbType.NVarChar, 15).Value = ddlProvices.SelectedItem.ToString();
+                    }
+                    else
+                    {
+                        cmd.Parameters.Add("@stateProv", SqlDbType.NVarChar, 15).Value = ddlStates.SelectedItem.ToString();
+                    }
+
                     cmd.Parameters.Add("@postalCode", SqlDbType.NVarChar, 10).Value = txtPostalCode.Text;
                     cmd.Parameters.Add("@verificationToken", SqlDbType.NVarChar, 50).Value = userVerificationCode.ToString();
 
@@ -158,6 +170,25 @@ namespace DRDPE
                 log.WriteEntry(ex.Message, EventLogEntryType.Error);
 
                 errLabel.InnerText = "There was a problem with the signup process. Please reload the page or contact the web administrator via the following link" + Environment.NewLine + "<a href='mailto:admin@pastryemporium.com'>admin@pastryemporium.com</a>";
+            }
+        }
+
+        protected void ddlCountry_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlCountry.SelectedIndex == 1)
+            {
+                ddlProvices.Style.Add("Display", "none");
+                ddlStates.Style.Remove("Display");
+                rexValidatorState.Enabled = true;
+                rexValidatorProv.Enabled = false;
+            }
+            else
+            {
+                ddlStates.Style.Add("Display", "none");
+                ddlProvices.Style.Remove("Display");
+                rexValidatorState.Enabled = false;
+                rexValidatorProv.Enabled = true;
+
             }
         }
     }

@@ -39,7 +39,6 @@
                         <asp:TextBox runat="server" type="text" name="username" CssClass="form-control" ID="txtUserName"
                                placeholder="Username" />
                     </div>
-
                 </div>
             </div>
             <div class="col-md-3">
@@ -136,20 +135,90 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <asp:TextBox runat="server" type="text" name="txtProvince" class="form-control" id="txtProvince"
-                               placeholder="NB" />
+                        <asp:DropDownList ID="ddlStates" runat="server" CssClass="browser-default" style="display:none" >
+                          <asp:ListItem Value="AL">Alabama</asp:ListItem>
+                          <asp:ListItem Value="AK">Alaska</asp:ListItem>
+                          <asp:ListItem Value="AZ">Arizona</asp:ListItem>
+                          <asp:ListItem Value="AR">Arkansas</asp:ListItem>
+                          <asp:ListItem Value="CA">California</asp:ListItem>
+                          <asp:ListItem Value="CO">Colorado</asp:ListItem>
+                          <asp:ListItem Value="CT">Connecticut</asp:ListItem>
+                          <asp:ListItem Value="DC">District of Columbia</asp:ListItem>
+                          <asp:ListItem Value="DE">Delaware</asp:ListItem>
+                          <asp:ListItem Value="FL">Florida</asp:ListItem>
+                          <asp:ListItem Value="GA">Georgia</asp:ListItem>
+                          <asp:ListItem Value="HI">Hawaii</asp:ListItem>
+                          <asp:ListItem Value="ID">Idaho</asp:ListItem>
+                          <asp:ListItem Value="IL">Illinois</asp:ListItem>
+                          <asp:ListItem Value="IN">Indiana</asp:ListItem>
+                          <asp:ListItem Value="IA">Iowa</asp:ListItem>
+                          <asp:ListItem Value="KS">Kansas</asp:ListItem>
+                          <asp:ListItem Value="KY">Kentucky</asp:ListItem>
+                          <asp:ListItem Value="LA">Louisiana</asp:ListItem>
+                          <asp:ListItem Value="ME">Maine</asp:ListItem>
+                          <asp:ListItem Value="MD">Maryland</asp:ListItem>
+                          <asp:ListItem Value="MA">Massachusetts</asp:ListItem>
+                          <asp:ListItem Value="MI">Michigan</asp:ListItem>
+                          <asp:ListItem Value="MN">Minnesota</asp:ListItem>
+                          <asp:ListItem Value="MS">Mississippi</asp:ListItem>
+                          <asp:ListItem Value="MO">Missouri</asp:ListItem>
+                          <asp:ListItem Value="MT">Montana</asp:ListItem>
+                          <asp:ListItem Value="NE">Nebraska</asp:ListItem>
+                          <asp:ListItem Value="NV">Nevada</asp:ListItem>
+                          <asp:ListItem Value="NH">New Hampshire</asp:ListItem>
+                          <asp:ListItem Value="NJ">New Jersey</asp:ListItem>
+                          <asp:ListItem Value="NM">New Mexico</asp:ListItem>
+                          <asp:ListItem Value="NY">New York</asp:ListItem>
+                          <asp:ListItem Value="NC">North Carolina</asp:ListItem>
+                          <asp:ListItem Value="ND">North Dakota</asp:ListItem>
+                          <asp:ListItem Value="OH">Ohio</asp:ListItem>
+                          <asp:ListItem Value="OK">Oklahoma</asp:ListItem>
+                          <asp:ListItem Value="OR">Oregon</asp:ListItem>
+                          <asp:ListItem Value="PA">Pennsylvania</asp:ListItem>
+                          <asp:ListItem Value="RI">Rhode Island</asp:ListItem>
+                          <asp:ListItem Value="SC">South Carolina</asp:ListItem>
+                          <asp:ListItem Value="SD">South Dakota</asp:ListItem>
+                          <asp:ListItem Value="TN">Tennessee</asp:ListItem>
+                          <asp:ListItem Value="TX">Texas</asp:ListItem>
+                          <asp:ListItem Value="UT">Utah</asp:ListItem>
+                          <asp:ListItem Value="VT">Vermont</asp:ListItem>
+                          <asp:ListItem Value="VA">Virginia</asp:ListItem>
+                          <asp:ListItem Value="WA">Washington</asp:ListItem>
+                          <asp:ListItem Value="WV">West Virginia</asp:ListItem>
+                          <asp:ListItem Value="WI">Wisconsin</asp:ListItem>
+                          <asp:ListItem Value="WY">Wyoming</asp:ListItem>
+                        </asp:DropDownList>
+                        <asp:DropDownList ID="ddlProvices" runat="server" CssClass="browser-default">
+                          <asp:ListItem Value="AL">Alberta</asp:ListItem>
+                          <asp:ListItem Value="BC">British Columbia</asp:ListItem>
+                          <asp:ListItem Value="MN">Manitoba</asp:ListItem>
+                          <asp:ListItem Value="ON">Ontario</asp:ListItem>
+                          <asp:ListItem Value="QC">Quebec</asp:ListItem>
+                          <asp:ListItem Value="SK">Saskatchewan</asp:ListItem>
+                          <asp:ListItem Value="NL">Newfoundland</asp:ListItem>
+                          <asp:ListItem Value="NS">Nova Scotia</asp:ListItem>
+                          <asp:ListItem Value="NB">New Brunswick</asp:ListItem>
+                          <asp:ListItem Value="PE">Prince Edward Island</asp:ListItem>
+                          <asp:ListItem Value="YK">Yukon</asp:ListItem>
+                          <asp:ListItem Value="NW">Northwest Territories</asp:ListItem>
+                          <asp:ListItem Value="NT">Nunavut</asp:ListItem>
+                        </asp:DropDownList>
                         <asp:TextBox runat="server" type="text" name="txtPostalCode" class="form-control" ID="txtPostalCode" placeholder="E1A 0K8" Width="0.05%" />
-                        <asp:TextBox runat="server" type="text" name="txtCountry" class="form-control" ID="txtCountry" placeholder="Canada"  />
+                        <asp:DropDownList runat="server" class="form-control" ID="ddlCountry"  AutoPostBack="true" OnSelectedIndexChanged="ddlCountry_SelectedIndexChanged">
+                            <asp:ListItem Value="CA">Canada</asp:ListItem>
+                          <asp:ListItem Value="US">USA</asp:ListItem>
+                        </asp:DropDownList>
                     </div>
                 </div>
-            </div>
+            </div>            
             <div class="col-md-3">
-                <asp:RequiredFieldValidator ID="rfvProvince" runat="server" ControlToValidate="txtProvince" ErrorMessage="Province is required" ForeColor="Red">*</asp:RequiredFieldValidator>
                 <asp:RequiredFieldValidator ID="rfvPostalCode" runat="server" ControlToValidate="txtPostalCode" ErrorMessage="Postal code is required" ForeColor="Red">*</asp:RequiredFieldValidator>
-                <asp:RequiredFieldValidator ID="rfvCountry" runat="server" ControlToValidate="txtCountry" ErrorMessage="Country is required" ForeColor="Red">*</asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtPostalCode" ErrorMessage="Incorrect format for Postal Code" ForeColor="Red" ValidationExpression="[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ] ?[0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]">*</asp:RegularExpressionValidator>
+                <asp:RegularExpressionValidator ID="rexValidatorProv" runat="server" ControlToValidate="txtPostalCode" ErrorMessage="Incorrect format for Postal Code" ForeColor="Red" ValidationExpression="[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ] ?[0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]" >*</asp:RegularExpressionValidator>
+                <asp:RegularExpressionValidator ID="rexValidatorState" runat="server" ControlToValidate="txtPostalCode" ErrorMessage="Incorrect format for Postal Code" ForeColor="Red" ValidationExpression="[0-9][0-9][0-9][0-9][0-9]" Enabled="false">*</asp:RegularExpressionValidator>
             </div>
-        </div>
+
+            </div>
+
         <div class="row">
             <div class="col-md-3 field-label-responsive">
                 <label for="txtPhoneNumber">Phone Number</label>
