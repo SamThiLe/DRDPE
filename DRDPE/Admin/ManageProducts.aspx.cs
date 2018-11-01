@@ -51,8 +51,6 @@ namespace DRDPE
 
         private void GetApprovedImages()
         {
-            
-            Label myMessage = Master.FindControl("lblMessage") as Label;
             SqlDataReader dr = default(SqlDataReader);
             SqlCommand cmd = default(SqlCommand);
             try
@@ -74,15 +72,13 @@ namespace DRDPE
                     }
                     else
                     {
-                        ShowError();
-                        myMessage.Text = "No rows found.";
+                        ShowError("No rows found.");
                     }
                 }
             }
             catch (Exception ex)
             {
-                ShowError();
-                myMessage.Text = ex.Message;
+                ShowError(ex.Message);
             }
             finally
             {
@@ -107,7 +103,6 @@ namespace DRDPE
         }
         protected void getCategories()
         {
-            Label myMessage = Master.FindControl("lblMessage") as Label;
             SqlDataReader dr = default(SqlDataReader);
             SqlCommand cmd = default(SqlCommand);
             try
@@ -125,15 +120,13 @@ namespace DRDPE
                     }
                     else
                     {
-                        ShowError();
-                        myMessage.Text = "No rows found.";
+                        ShowError("No rows found.");
                     }
                 }
             }
             catch (Exception ex)
             {
-                ShowError();
-                myMessage.Text = ex.Message;
+                ShowError(ex.Message);
             }
             finally
             {
@@ -142,7 +135,6 @@ namespace DRDPE
         }
         protected void getProducts(int catId)
         {
-            Label myMessage = Master.FindControl("lblMessage") as Label;
             SqlDataReader dr = default(SqlDataReader);
             SqlCommand cmd = default(SqlCommand);
             try
@@ -160,15 +152,13 @@ namespace DRDPE
                     }
                     else
                     {
-                        ShowError();
-                        myMessage.Text = "No rows found.";
+                        ShowError("No rows found.");
                     }
                 }
             }
             catch (Exception ex)
             {
-                ShowError();
-                myMessage.Text = ex.Message;
+                ShowError(ex.Message);
             }
             finally
             {
@@ -177,7 +167,6 @@ namespace DRDPE
         }
         private void GetSearchResultsForProducts(string searchString)
         {
-            Label myMessage = Master.FindControl("lblMessage") as Label;
             SqlDataReader dr = default(SqlDataReader);
             SqlCommand cmd = default(SqlCommand);
             searchString = searchString.Replace(System.Convert.ToChar(" "), System.Convert.ToChar(";"));
@@ -185,8 +174,7 @@ namespace DRDPE
             string[] keywords = searchString.Split(System.Convert.ToChar(";"));
             if (keywords.Count() > 5)
             {
-                ShowError();
-                myMessage.Text = "You may use up to 5 keywords.";
+                ShowError("You may use up to 5 keywords.");
                 return;
             }
             try
@@ -216,8 +204,7 @@ namespace DRDPE
                     }
                     else
                     {
-                        ShowError();
-                        myMessage.Text = "No search results found.";
+                        ShowError("No search results found.");
                         rptProd.DataSource = null;
                         rptProd.DataBind();
                         lblHeader.Text = "";
@@ -227,13 +214,11 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
-                ShowError();
-                myMessage.Text = ex.Message;
+                ShowError(ex.Message);
             }
         }
         private void getProduct()
         {
-            Label myMessage = Master.FindControl("lblMessage") as Label;
             SqlDataReader dr = default(SqlDataReader);
             SqlCommand cmd = default(SqlCommand);
             try
@@ -269,8 +254,7 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
-                ShowError();
-                myMessage.Text = ex.Message;
+                ShowError(ex.Message);
             }
             finally
             {
@@ -279,7 +263,6 @@ namespace DRDPE
         }
         protected void getCategoriesForDDL()
         {
-            Label myMessage = Master.FindControl("lblMessage") as Label;
             SqlDataReader dr = default(SqlDataReader);
             SqlCommand cmd = default(SqlCommand);
 
@@ -302,14 +285,13 @@ namespace DRDPE
                     }
                     else
                     {
-                        myMessage.Text = "No rows found.";
+                        ShowError("No rows found.");
                     }
                 }
             }
             catch (Exception ex)
             {
-                ShowError();
-                myMessage.Text = ex.Message;
+                ShowError(ex.Message);
             }
             finally
             {
@@ -324,7 +306,6 @@ namespace DRDPE
         #region Update Product
         protected bool UpdateProduct()
         {
-            Label myMessage = Master.FindControl("lblMessage") as Label;
             int ar = 0;
             SqlCommand cmd = default(SqlCommand);
 
@@ -362,18 +343,15 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
-                ShowError();
-                myMessage.Text = "Some fields were not validated. Please try again";
+                ShowError("Some fields were not validated. Please try again");
                 return false;
             }
         }
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            Label myMessage = Master.FindControl("lblMessage") as Label;
             if (UpdateProduct())
             {
-                ShowError();
-                myMessage.Text = "Product Updated Successfuly";
+                ShowError("Product Updated Successfuly");
                 productContainer.Style.Add("display", "none");
                 btnSave.Visible = false;
             }
@@ -402,7 +380,6 @@ namespace DRDPE
         }
         protected bool AddProduct()
         {
-            Label myMessage = Master.FindControl("lblMessage") as Label;
             int ar = 0;
             SqlCommand cmd = default(SqlCommand);
 
@@ -437,18 +414,15 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
-                ShowError();
-                myMessage.Text = "Some fields were not correct. Please try again";
+                ShowError("Some fields were not correct. Please try again");
                 return false;
             }
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            Label myMessage = Master.FindControl("lblMessage") as Label;
             if (AddProduct())
             {
-                ShowError();
-                myMessage.Text = "Product Added Successfuly";
+                ShowError("Product Added Successfuly");
                 productContainer.Style.Add("display", "none");
             }
         }
@@ -456,11 +430,9 @@ namespace DRDPE
         #region Delete
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            Label myMessage = Master.FindControl("lblMessage") as Label;
             if (DeleteProduct())
             {
-                ShowError();
-                myMessage.Text = "Product deleted Successfuly";
+                ShowError("Product deleted Successfuly");
                 btnSave.Visible = false;
                 productContainer.Style.Add("display", "none");
 
@@ -469,7 +441,6 @@ namespace DRDPE
         }
         private bool DeleteProduct()
         {
-            Label myMessage = Master.FindControl("lblMessage") as Label;
             int ar = 0;
             SqlCommand cmd = default(SqlCommand);
 
@@ -498,15 +469,16 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
-                ShowError();
-                myMessage.Text = ex.Message;
+                ShowError(ex.Message);
                 return false;
             }
         }
         #endregion
         #region ErrorMessage
-        private void ShowError()
+        private void ShowError(string msg)
         {
+            Label myMessage = Master.FindControl("lblMessage") as Label;
+            myMessage.Text = msg;
             System.Web.UI.HtmlControls.HtmlGenericControl myError = (System.Web.UI.HtmlControls.HtmlGenericControl)Master.FindControl("errorMessage");
             myError.Style.Remove("Display");
         }
@@ -524,15 +496,14 @@ namespace DRDPE
 
         private void ImagePreview()
         {
-            Label myMessage = Master.FindControl("lblMessage") as Label;
+           
             try
             {
                 imgProd.ImageUrl = ddlImages.SelectedItem.Text;
             }
             catch (Exception ex)
             {
-                ShowError();
-                myMessage.Text = ex.Message;
+                ShowError(ex.Message);
             }
         }
     }

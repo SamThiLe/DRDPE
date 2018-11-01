@@ -36,7 +36,6 @@ namespace DRDPE
         #region Methods
         protected void getCategories()
         {
-            Label myMessage = Master.FindControl("lblMessage") as Label;
             SqlDataReader dr = default(SqlDataReader);
             SqlCommand cmd = default(SqlCommand);
             try
@@ -54,15 +53,13 @@ namespace DRDPE
                     }
                     else
                     {
-                        ShowError();
-                        myMessage.Text = "No Categories found.";
+                        ShowError("No Categories found.");
                     }
                 }
             }
             catch (Exception ex)
             {
-                ShowError();
-                myMessage.Text = ex.Message;
+                ShowError(ex.Message);
             }
             finally
             {
@@ -71,7 +68,6 @@ namespace DRDPE
         }
         protected void GetCategory(int catId)
         {
-            Label myMessage = Master.FindControl("lblMessage") as Label;
             SqlDataReader dr = default(SqlDataReader);
             SqlCommand cmd = default(SqlCommand);
 
@@ -98,15 +94,13 @@ namespace DRDPE
                     }
                     else
                     {
-                        ShowError();
-                        myMessage.Text = "No rows found.<br>";
+                        ShowError("No rows found.");
                     }
                 }
             }
             catch (Exception ex)
             {
-                ShowError();
-                myMessage.Text = ex.Message;
+                ShowError(ex.Message);
             }
             finally
             {
@@ -115,7 +109,6 @@ namespace DRDPE
         }
         protected bool AddCategory()
         {
-            Label myMessage = Master.FindControl("lblMessage") as Label;
             int ar = 0;
             SqlCommand cmd = default(SqlCommand);
 
@@ -147,14 +140,12 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
-                ShowError();
-                myMessage.Text = ex.Message.ToString();
+                ShowError(ex.Message);
                 return false;
             }
         }
         protected bool UpdateCategory()
         {
-            Label myMessage = Master.FindControl("lblMessage") as Label;
             string catDes = txtCatDescriptionUpdate.Text;
 
             int ar = 0;
@@ -187,14 +178,12 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
-                ShowError();
-                myMessage.Text = ex.Message;
+                ShowError(ex.Message);
                 return false;
             }
         }
         private bool DeleteSelectedCategory()
         {
-            Label myMessage = Master.FindControl("lblMessage") as Label;
             int ar = 0;
             SqlCommand cmd = default(SqlCommand);
 
@@ -223,8 +212,7 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
-                ShowError();
-                myMessage.Text = "Error: All Products must be removed before this Category can be deleted";
+                ShowError("Error: All Products must be removed before this Category can be deleted");
                 return false;
             }
         }
@@ -256,8 +244,7 @@ namespace DRDPE
             Label myMessage = Master.FindControl("lblMessage") as Label;
             if (AddCategory())
             {
-                ShowError();
-                myMessage.Text = "Category Added Successfuly";
+                ShowError("Category Added Successfuly");
             }
                 
         }
@@ -266,25 +253,24 @@ namespace DRDPE
             Label myMessage = Master.FindControl("lblMessage") as Label;
             if (DeleteSelectedCategory())
             {
-                ShowError();
-                myMessage.Text = "Category deleted Successfuly";
+                ShowError("Category deleted Successfuly");
             }
                 
         }
         #endregion
         protected void btnCategoryUpdate_Click(object sender, EventArgs e)
         {
-            Label myMessage = Master.FindControl("lblMessage") as Label;
             if (UpdateCategory())
             {
-                ShowError();
-                myMessage.Text = "Category updated Successfuly";
+                ShowError("Category updated Successfuly");
             }
                 
         }
         #region ErrorMessage
-        private void ShowError()
+        private void ShowError(string msg)
         {
+            Label myMessage = Master.FindControl("lblMessage") as Label;
+            myMessage.Text = msg;
             System.Web.UI.HtmlControls.HtmlGenericControl myError = (System.Web.UI.HtmlControls.HtmlGenericControl)Master.FindControl("errorMessage");
             myError.Style.Remove("Display");
         }

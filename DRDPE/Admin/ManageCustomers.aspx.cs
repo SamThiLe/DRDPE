@@ -32,23 +32,9 @@ namespace DRDPE.Admin
                 getCustomer(id);
             }
         }
-        #region ErrorMessage
-        private void ShowError()
-        {
-            System.Web.UI.HtmlControls.HtmlGenericControl myError = (System.Web.UI.HtmlControls.HtmlGenericControl)Master.FindControl("errorMessage");
-            myError.Style.Remove("Display");
-        }
-        private void HideError()
-        {
-            System.Web.UI.HtmlControls.HtmlGenericControl myError = (System.Web.UI.HtmlControls.HtmlGenericControl)Master.FindControl("errorMessage");
-            myError.Style.Add("Display", "none");
-        }
-        #endregion
-
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             HideError();
-            Label myMessage = Master.FindControl("lblMessage") as Label;
             SqlDataReader dr = default(SqlDataReader);
             SqlCommand cmd = default(SqlCommand);
             try
@@ -68,22 +54,19 @@ namespace DRDPE.Admin
                     }
                     else
                     {
-                        ShowError();
-                        myMessage.Text = "No rows found.";
+                        ShowError("No rows found.");
                     }
                 }
             }
             catch (Exception ex)
             {
-                ShowError();
-                myMessage.Text = ex.Message.ToString();
+                ShowError(ex.Message.ToString());
             }
             searchResults.Style.Remove("Display");
         }
 
         private void getCustomer(string id)
         {
-            Label myMessage = Master.FindControl("lblMessage") as Label;
             SqlDataReader dr = default(SqlDataReader);
             SqlCommand cmd = default(SqlCommand);
             try
@@ -117,14 +100,12 @@ namespace DRDPE.Admin
             }
             catch (Exception ex)
             {
-                ShowError();
-                myMessage.Text = ex.Message.ToString();
+                ShowError(ex.Message);
             }
         }
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            Label myMessage = Master.FindControl("lblMessage") as Label;
             int ar = 0;
             SqlCommand cmd = default(SqlCommand);
 
@@ -157,8 +138,7 @@ namespace DRDPE.Admin
                         conn.Close();
                     }
                     searchDiv.Style.Remove("Display");
-                    ShowError();
-                    myMessage.Text = "Update Successful";
+                    ShowError("Update Successful");
                 }
             }
             catch (Exception ex)
@@ -170,6 +150,21 @@ namespace DRDPE.Admin
                 log.Source = "Demo Error Log";
                 log.WriteEntry(ex.Message, EventLogEntryType.Error);
             }
+
         }
+        #region ErrorMessage
+        private void ShowError(string msg)
+        {
+            Label myMessage = Master.FindControl("lblMessage") as Label;
+            myMessage.Text = msg;
+            System.Web.UI.HtmlControls.HtmlGenericControl myError = (System.Web.UI.HtmlControls.HtmlGenericControl)Master.FindControl("errorMessage");
+            myError.Style.Remove("Display");
+        }
+        private void HideError()
+        {
+            System.Web.UI.HtmlControls.HtmlGenericControl myError = (System.Web.UI.HtmlControls.HtmlGenericControl)Master.FindControl("errorMessage");
+            myError.Style.Add("Display", "none");
+        }
+        #endregion
     }
 }
