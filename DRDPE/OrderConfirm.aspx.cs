@@ -15,6 +15,8 @@ namespace DRDPE
     public partial class OrderConfirm : System.Web.UI.Page
     {
         private string orderDetails = "";
+        private string moreOrderDetails = "";
+        private List<decimal> itemTotals = new List<decimal>();
         private string orderConfirmationCode;
         private string email="";
         private string cnnString = ConfigurationManager.ConnectionStrings["cnn"].ConnectionString;
@@ -70,8 +72,8 @@ namespace DRDPE
             try
             {
                 //data variables
-                string orderTotal = "";
-
+                decimal subTotal = 0m;
+                DateTime orderDate = new DateTime();
                 using (SqlConnection conn = new SqlConnection(cnnString))
                 {
                     cmd = new SqlCommand("getOrderDetails", conn);
@@ -83,8 +85,8 @@ namespace DRDPE
                     while (dr.Read())
                     {
                         orderDetails += "<tr><td>" + dr["productName"].ToString() + "&emsp;</td><td>" + dr["qty"].ToString() + "</td><td>" + dr["ItemSubtotal"].ToString() + "</tr>";
+                        orderDate = Convert.ToDateTime(dr["dateCreated"]);
                     }
-                    orderDetails += "</table>";
                 }
 
                 using (SqlConnection conn = new SqlConnection(cnnString))
@@ -96,9 +98,31 @@ namespace DRDPE
                     dr = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
                     while (dr.Read())
                     {
-                        orderTotal = dr["GrandTotal"].ToString();
+                        subTotal = Convert.ToDecimal(dr["GrandTotal"]);
                     }
                 }
+
+                decimal shippingCost = 0m;
+                decimal orderTotal = 0m;
+                decimal taxRate = 0.15m;
+                decimal taxAmount = 0m;
+
+                if (subTotal <= 35)
+                {
+                    shippingCost = 7.00m;
+
+                }
+                else if (subTotal <= 75)
+                {
+                    shippingCost = 12.00m;
+                }
+                else if (subTotal > 75)
+                {
+                    shippingCost = 0m;
+                }
+
+                taxAmount = ((subTotal + shippingCost) * taxRate);
+                orderTotal = subTotal + taxAmount;
 
                 //orderConfirmationCode
                 MailMessage mailMessage = new MailMessage();
@@ -110,9 +134,19 @@ namespace DRDPE
                     "<p>Your Payment has been processed and you pasteries are on there way</p>" +
                     "View Your Order: <a href='http://localhost:2443/OrderDetails.aspx?auth=" + orderConfirmationCode + "'>" + orderConfirmationCode + "</a><br /><br />"
                     +
+                    "<table><tr><th>Product&emsp;</th><th>Quantity&emsp;</th><th>Subtotal&emsp;</th></tr>"
+                    +
+                    "<br /> Order Date: " + orderDate + "<br />"
+                    +
                     orderDetails
+                    +
+                    "</table>"
                     + 
                     "<br /> Order Total: "+ (Convert.ToDecimal(orderTotal)).ToString("c") +
+                    "<br /> Subtotal: " + subTotal +
+                    "<br /> Shipping: " + taxAmount +
+                    "<br /> Tax: " + taxAmount +
+                    "<br /> Total " + orderTotal +
                     "<br /><br /><hr>Not sure why you're seeing this? Disregard this email.</p>";
                 SmtpClient smtpClient = new SmtpClient("localhost");
                 smtpClient.Send(mailMessage);
