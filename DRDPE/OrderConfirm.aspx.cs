@@ -108,7 +108,7 @@ namespace DRDPE
                 mailMessage.IsBodyHtml = true;
                 mailMessage.Body = "<h2>Our dear client,</h2>" +
                     "<p>Your Payment has been processed and you pasteries are on there way</p>" +
-                    "View Your Order: <a href='http://localhost:2443/OrderDetails.aspx?auth=" + orderConfirmationCode + "'>" + orderConfirmationCode + "</a><br />"
+                    "View Your Order: <a href='http://localhost:2443/OrderDetails.aspx?auth=" + orderConfirmationCode + "'>" + orderConfirmationCode + "</a><br /><br />"
                     +
                     orderDetails
                     + 
