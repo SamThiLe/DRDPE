@@ -32,9 +32,9 @@ namespace DRDPE
                 GetAccountInfo();
                 rfvShipStreetAddress.Enabled = false;
                 rfvShipCity.Enabled = false;
-                rfvShipProvince.Enabled = false;
                 rfvShipPostalCode.Enabled = false;
-                rfvShipCountry.Enabled = false;
+                revShipPostalCode.Enabled = false;
+                revShipZip.Enabled = false;
                 
             }
             if (!IsPostBack && Request.QueryString["CO"] == "1")
@@ -44,9 +44,9 @@ namespace DRDPE
                 divShippingAddressChk.Style.Remove("Display");
                 rfvShipStreetAddress.Enabled = false;
                 rfvShipCity.Enabled = false;
-                rfvShipProvince.Enabled = false;
                 rfvShipPostalCode.Enabled = false;
-                rfvShipCountry.Enabled = false;
+                revShipPostalCode.Enabled = false;
+                revShipZip.Enabled = false;
             }
         }
 
@@ -76,9 +76,9 @@ namespace DRDPE
                         txtEmail.Text = dr["email"].ToString();
                         txtStreetAddress.Text = dr["street"].ToString();
                         txtCity.Text = dr["city"].ToString();
-                        txtProvince.Text = dr["stateProv"].ToString();
+                        ddlProvices.Text = dr["stateProv"].ToString();
                         txtPostalCode.Text = dr["postalCode"].ToString();
-                        txtCountry.Text = dr["country"].ToString();
+                        ddlCountry.Text = dr["country"].ToString();
                     }
                 }
             }
@@ -201,8 +201,15 @@ namespace DRDPE
                     cmd.Parameters.Add("@customerId", SqlDbType.Int, 0).Value = customerId;
                     cmd.Parameters.Add("@street", SqlDbType.NVarChar, 50).Value = txtStreetAddress.Text;
                     cmd.Parameters.Add("@city", SqlDbType.NVarChar, 50).Value = txtCity.Text;
-                    cmd.Parameters.Add("@stateProv", SqlDbType.NVarChar, 15).Value = txtProvince.Text;
-                    cmd.Parameters.Add("@country", SqlDbType.NVarChar, 20).Value = txtCountry.Text;
+                    if (ddlCountry.SelectedIndex == 0)
+                    {
+                        cmd.Parameters.Add("@stateProv", SqlDbType.NVarChar, 15).Value = ddlProvices.SelectedItem.ToString();
+                    }
+                    else
+                    {
+                        cmd.Parameters.Add("@stateProv", SqlDbType.NVarChar, 15).Value = ddlStates.SelectedItem.ToString();
+                    }
+                    cmd.Parameters.Add("@country", SqlDbType.NVarChar, 20).Value = ddlCountry.SelectedItem.ToString();
                     cmd.Parameters.Add("@postalCode", SqlDbType.NVarChar, 10).Value = txtPostalCode.Text;
                     cmd.Parameters.Add("@addressOutput", SqlDbType.Int, 0).Direction = ParameterDirection.Output;
 
@@ -238,8 +245,15 @@ namespace DRDPE
                     cmd.Parameters.Add("@customerId", SqlDbType.Int, 0).Value = customerId;
                     cmd.Parameters.Add("@street", SqlDbType.NVarChar, 50).Value = txtShipStreetAddress.Text;
                     cmd.Parameters.Add("@city", SqlDbType.NVarChar, 50).Value = txtShipCity.Text;
-                    cmd.Parameters.Add("@stateProv", SqlDbType.NVarChar, 15).Value = txtShipProvince.Text;
-                    cmd.Parameters.Add("@country", SqlDbType.NVarChar, 20).Value = txtShipCountry.Text;
+                    if (ddlCountry.SelectedIndex == 0)
+                    {
+                        cmd.Parameters.Add("@stateProv", SqlDbType.NVarChar, 15).Value = ddlShipProv.SelectedItem.ToString();
+                    }
+                    else
+                    {
+                        cmd.Parameters.Add("@stateProv", SqlDbType.NVarChar, 15).Value = ddlShipState.SelectedItem.ToString();
+                    }
+                    cmd.Parameters.Add("@country", SqlDbType.NVarChar, 20).Value = ddlShipCountry.SelectedItem.ToString();
                     cmd.Parameters.Add("@postalCode", SqlDbType.NVarChar, 10).Value = txtShipPostalCode.Text;
                     cmd.Parameters.Add("@additionalNo", SqlDbType.NVarChar, 50).Value = txtAdditionalNotes.Text;
                     cmd.Parameters.Add("@addressOutput", SqlDbType.Int, 0).Direction = ParameterDirection.Output;
@@ -267,33 +281,72 @@ namespace DRDPE
         {
             if (!chkSameAsBilling.Checked)
             {
+                ddlCountry.SelectedIndex = 0;
+                ddlShipCountry.SelectedIndex = 0;
                 divShippingAddress.Style.Remove("display");
                 rfvShipStreetAddress.Enabled = true;
                 rfvShipCity.Enabled = true;
-                rfvShipProvince.Enabled = true;
                 rfvShipPostalCode.Enabled = true;
-                rfvShipCountry.Enabled = true;
 
                 rfvStreetAddress.Enabled = true;
                 rfvCity.Enabled = true;
-                rfvProvince.Enabled = true;
                 rfvPostalCode.Enabled = true;
-                rfvCountry.Enabled = true;
+                revPostalCode.Enabled = true;
+                revZip.Enabled = false;
             }
             else
             {
+                ddlCountry.SelectedIndex = 0;
+                ddlShipCountry.SelectedIndex = 0;
                 divShippingAddress.Style.Add("display", "none");
                 rfvShipStreetAddress.Enabled = false;
                 rfvShipCity.Enabled = false;
-                rfvShipProvince.Enabled = false;
                 rfvShipPostalCode.Enabled = false;
-                rfvShipCountry.Enabled = false;
+                revShipZip.Enabled = false;
+                revShipPostalCode.Enabled = false;
 
                 rfvStreetAddress.Enabled = true;
                 rfvCity.Enabled = true;
-                rfvProvince.Enabled = true;
                 rfvPostalCode.Enabled = true;
-                rfvCountry.Enabled = true;
+                revPostalCode.Enabled = true;
+                revZip.Enabled = false;
+            }
+        }
+
+        protected void ddlCountry_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlCountry.SelectedIndex == 1)
+            {
+                ddlProvices.Style.Add("Display", "none");
+                ddlStates.Style.Remove("Display");
+                revPostalCode.Enabled = false;
+                revZip.Enabled = true;
+            }
+            else
+            {
+                ddlStates.Style.Add("Display", "none");
+                ddlProvices.Style.Remove("Display");
+                revZip.Enabled = false;
+                revPostalCode.Enabled = true;
+            }
+        }
+
+        protected void ddlShipCountry_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlShipCountry.SelectedIndex == 1)
+            {
+                ddlShipProv.Style.Add("Display", "none");
+                ddlShipState.Style.Remove("Display");
+                revShipPostalCode.Enabled = false;
+                revShipZip.Enabled = true;
+            }
+            else
+            {
+                ddlShipState.Style.Add("Display", "none");
+                ddlShipProv.Style.Remove("Display");
+                revShipZip.Enabled = false;
+                revShipPostalCode.Enabled = true;
+
             }
         }
     }
