@@ -21,7 +21,9 @@ namespace DRDPE
 
         private void GetOrderDetails()
         {
+            string addressId = "";
             SqlDataReader dr = default(SqlDataReader);
+            SqlDataReader dr2 = default(SqlDataReader);
             SqlCommand cmd = default(SqlCommand);
             try
             {
@@ -62,6 +64,7 @@ namespace DRDPE
                         lblStreetAddress.Text = dr["street"].ToString();
                         lblCity.Text = dr["city"].ToString();
                         lblProvPostCount.Text = dr["stateProv"] + ", " + dr["postalCode"] + ", " + dr["country"];
+                        addressId = dr["addressId"].ToString();
                     }
                     conn.Close();
                     cmd = new SqlCommand("getOrderTotal", conn);
@@ -72,6 +75,18 @@ namespace DRDPE
                     while (dr.Read())
                     {
                         lblOrderTotal.Text = (Convert.ToDecimal(dr["GrandTotal"]).ToString("c"));
+                    }
+                    conn.Close();
+                    cmd = new SqlCommand("checkBillingReturnBilling", conn);
+                    cmd.Parameters.Add("@addressId", SqlDbType.Int, 0).Value = Convert.ToInt32(addressId);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    conn.Open();
+                    dr2 = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                    while (dr.Read())
+                    {
+                        lblBillStreetAddress.Text = dr["street"].ToString();
+                        lblBillCity.Text = dr["city"].ToString();
+                        lblBillProvPostCount.Text = dr["stateProv"].ToString() + ", " + dr["postalCode"].ToString() + ", " + dr["country"];
                     }
                 }
             }

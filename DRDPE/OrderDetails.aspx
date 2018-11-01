@@ -29,5 +29,14 @@
             <asp:Table runat="server" ID="tblItems">
             </asp:Table>
         </div>
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-3">
+            <h3>Billing Address</h3>
+            <asp:Label runat="server" ID="lblBillStreetAddress"></asp:Label><br />
+            <asp:Label runat="server" ID="lblBillCity"></asp:Label><br />
+            <asp:Label runat="server" ID="lblBillProvPostCount"></asp:Label>
+        </div>
     </div>
 </asp:Content>
