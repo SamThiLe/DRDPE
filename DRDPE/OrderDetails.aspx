@@ -26,8 +26,8 @@
     <div class="row">
         <div class="col-md-3">
             <h3>Items</h3>
-            <table runat="server" id="tblItems">
-            </table>
+            <asp:Table runat="server" ID="tblItems">
+            </asp:Table>
         </div>
     </div>
 </asp:Content>
