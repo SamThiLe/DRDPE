@@ -22,15 +22,6 @@ namespace DRDPE {
         protected global::System.Web.UI.WebControls.Label lblOrderStatus;
         
         /// <summary>
-        /// lblStreetAddress control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblStreetAddress;
-        
-        /// <summary>
         /// lblOrderDate control.
         /// </summary>
         /// <remarks>
@@ -38,15 +29,6 @@ namespace DRDPE {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblOrderDate;
-        
-        /// <summary>
-        /// lblCity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCity;
         
         /// <summary>
         /// lblOrderTotal control.
@@ -58,6 +40,24 @@ namespace DRDPE {
         protected global::System.Web.UI.WebControls.Label lblOrderTotal;
         
         /// <summary>
+        /// lblStreetAddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStreetAddress;
+        
+        /// <summary>
+        /// lblCity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCity;
+        
+        /// <summary>
         /// lblProvPostCount control.
         /// </summary>
         /// <remarks>
@@ -67,12 +67,12 @@ namespace DRDPE {
         protected global::System.Web.UI.WebControls.Label lblProvPostCount;
         
         /// <summary>
-        /// lblItems control.
+        /// tblItems control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblItems;
+        protected global::System.Web.UI.HtmlControls.HtmlTable tblItems;
     }
 }
