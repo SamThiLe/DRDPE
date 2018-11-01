@@ -4,6 +4,12 @@
 	width:80%;
 	margin:auto;
 }
+/*footer{
+    position:absolute;
+    width:80%;
+    clear:both;
+    bottom:0;
+}*/
 .card-deck{
     width:100%;
     padding:2em;

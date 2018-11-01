@@ -21,7 +21,9 @@ namespace DRDPE
 
         private void GetOrderDetails()
         {
+            string addressId = "";
             SqlDataReader dr = default(SqlDataReader);
+            SqlDataReader dr2 = default(SqlDataReader);
             SqlCommand cmd = default(SqlCommand);
             try
             {
@@ -32,13 +34,37 @@ namespace DRDPE
                     cmd.CommandType = CommandType.StoredProcedure;
                     conn.Open();
                     dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                    TableRow tableHead = new TableRow();
+                    TableCell header1 = new TableCell();
+                    TableCell header2 = new TableCell();
+                    TableCell header3 = new TableCell();
+                    header1.Text = "<b>Product</b>&emsp;";
+                    header2.Text = "<b>Quantity</b>&emsp;";
+                    header3.Text = "<b>Subtotal</b>";
+                    tableHead.Cells.Add(header1);
+                    tableHead.Cells.Add(header2);
+                    tableHead.Cells.Add(header3);
+                    tblItems.Rows.Add(tableHead);
                     while (dr.Read())
                     {
+                        TableRow row = new TableRow();
+                        TableCell cell1 = new TableCell();
+                        TableCell cell2 = new TableCell();
+                        TableCell cell3 = new TableCell();
+                        cell1.Text = dr["productName"].ToString();
+                        cell2.Text = dr["qty"].ToString();
+                        cell3.Text = dr["ItemSubtotal"].ToString();
+                        row.Cells.Add(cell1);
+                        row.Cells.Add(cell2);
+                        row.Cells.Add(cell3);
+                        tblItems.Rows.Add(row);
+
                         lblOrderStatus.Text = ((OrderStatus)(Convert.ToInt32(dr["orderStatus"]))).ToString();
                         lblOrderDate.Text = DateTime.Parse(dr["orderDate"].ToString()).ToString();
                         lblStreetAddress.Text = dr["street"].ToString();
                         lblCity.Text = dr["city"].ToString();
                         lblProvPostCount.Text = dr["stateProv"] + ", " + dr["postalCode"] + ", " + dr["country"];
+                        addressId = dr["addressId"].ToString();
                     }
                     conn.Close();
                     cmd = new SqlCommand("getOrderTotal", conn);
@@ -49,6 +75,18 @@ namespace DRDPE
                     while (dr.Read())
                     {
                         lblOrderTotal.Text = (Convert.ToDecimal(dr["GrandTotal"]).ToString("c"));
+                    }
+                    conn.Close();
+                    cmd = new SqlCommand("checkBillingReturnBilling", conn);
+                    cmd.Parameters.Add("@addressId", SqlDbType.Int, 0).Value = Convert.ToInt32(addressId);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    conn.Open();
+                    dr2 = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                    while (dr.Read())
+                    {
+                        lblBillStreetAddress.Text = dr["street"].ToString();
+                        lblBillCity.Text = dr["city"].ToString();
+                        lblBillProvPostCount.Text = dr["stateProv"].ToString() + ", " + dr["postalCode"].ToString() + ", " + dr["country"];
                     }
                 }
             }

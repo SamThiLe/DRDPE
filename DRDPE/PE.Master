@@ -49,8 +49,9 @@
             </nav>
         </header>
         <hr />
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+    </asp:ContentPlaceHolder><br />
+
         <footer class="modal-footer">
             <hr class="bg-light" />
           <asp:Label ID="lblDate" runat="server"></asp:Label>

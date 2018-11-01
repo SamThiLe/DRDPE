@@ -3,64 +3,40 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
             <h3>Your Order</h3>
-        </div>
-        <div class="col-md-5">
-
-        </div>
-        <div class="col-md-2">
-            <h3>Shipping Address</h3>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-2">
             <label runat="server">Order Status: </label>
-        </div>
-        <div class="col-md-2">
-            <asp:Label runat="server" ID="lblOrderStatus"></asp:Label>
-        </div>
-        <div class="col-md-3">
-
-        </div>
-        <div class="col-md-2">
-            <asp:Label runat="server" ID="lblStreetAddress"></asp:Label>
-        </div>
-    </div>    
-    <div class="row">
-        <div class="col-md-2">
+            <asp:Label runat="server" ID="lblOrderStatus"></asp:Label><br />
             <label runat="server">Order Placed On: </label>
-        </div>
-        <div class="col-md-2">
-            <asp:Label runat="server" ID="lblOrderDate"></asp:Label>
-        </div>
-        <div class="col-md-3">
-
-        </div>
-        <div class="col-md-2">
-            <asp:Label runat="server" ID="lblCity"></asp:Label>
-        </div>
-    </div>    
-    <div class="row">
-        <div class="col-md-2">
+            <asp:Label runat="server" ID="lblOrderDate"></asp:Label><br />
             <label runat="server">Order Total:</label>
-        </div>
-        <div class="col-md-2">
             <asp:Label runat="server" ID="lblOrderTotal"></asp:Label>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
 
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
+            <h3>Shipping Address</h3>
+            <asp:Label runat="server" ID="lblStreetAddress"></asp:Label><br />
+            <asp:Label runat="server" ID="lblCity"></asp:Label><br />
             <asp:Label runat="server" ID="lblProvPostCount"></asp:Label>
         </div>
     </div>
+    <br />
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
             <h3>Items</h3>
+            <asp:Table runat="server" ID="tblItems">
+            </asp:Table>
         </div>
-    </div>
-    <div class="col-md-4">
-        <asp:Label runat="server" ID="lblItems"></asp:Label>
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-3">
+            <h3>Billing Address</h3>
+            <asp:Label runat="server" ID="lblBillStreetAddress"></asp:Label><br />
+            <asp:Label runat="server" ID="lblBillCity"></asp:Label><br />
+            <asp:Label runat="server" ID="lblBillProvPostCount"></asp:Label>
+        </div>
     </div>
 </asp:Content>

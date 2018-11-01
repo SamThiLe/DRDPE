@@ -323,6 +323,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Admin\tempImages\" />
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
