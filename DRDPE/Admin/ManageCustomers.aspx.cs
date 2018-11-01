@@ -60,6 +60,9 @@ namespace DRDPE.Admin
             }
             catch (Exception ex)
             {
+                EventLog log = new EventLog();
+                log.Source = "Pastry Emporium";
+                log.WriteEntry(ex.Message, EventLogEntryType.Error);
                 ShowError(ex.Message.ToString());
             }
             searchResults.Style.Remove("Display");
@@ -100,6 +103,9 @@ namespace DRDPE.Admin
             }
             catch (Exception ex)
             {
+                EventLog log = new EventLog();
+                log.Source = "Pastry Emporium";
+                log.WriteEntry(ex.Message, EventLogEntryType.Error);
                 ShowError(ex.Message);
             }
         }
@@ -146,8 +152,7 @@ namespace DRDPE.Admin
                 //logging
 
                 EventLog log = new EventLog();
-
-                log.Source = "Demo Error Log";
+                log.Source = "Pastry Emporium";
                 log.WriteEntry(ex.Message, EventLogEntryType.Error);
             }
 

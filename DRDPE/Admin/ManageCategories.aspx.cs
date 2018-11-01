@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -59,6 +60,9 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
+                EventLog log = new EventLog();
+                log.Source = "Pastry Emporium";
+                log.WriteEntry(ex.Message, EventLogEntryType.Error);
                 ShowError(ex.Message);
             }
             finally
@@ -100,6 +104,9 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
+                EventLog log = new EventLog();
+                log.Source = "Pastry Emporium";
+                log.WriteEntry(ex.Message, EventLogEntryType.Error);
                 ShowError(ex.Message);
             }
             finally
@@ -140,6 +147,9 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
+                EventLog log = new EventLog();
+                log.Source = "Pastry Emporium";
+                log.WriteEntry(ex.Message, EventLogEntryType.Error);
                 ShowError(ex.Message);
                 return false;
             }
@@ -178,6 +188,9 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
+                EventLog log = new EventLog();
+                log.Source = "Pastry Emporium";
+                log.WriteEntry(ex.Message, EventLogEntryType.Error);
                 ShowError(ex.Message);
                 return false;
             }

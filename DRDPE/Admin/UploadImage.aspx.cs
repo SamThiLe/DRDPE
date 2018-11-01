@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
@@ -75,6 +76,9 @@ namespace DRDPE.Admin
                 }
                 else
                 {
+                    EventLog log = new EventLog();
+                    log.Source = "Pastry Emporium";
+                    log.WriteEntry(ex.Message, EventLogEntryType.Error);
                     ShowError(ex.Message);
                 }
             }
@@ -116,6 +120,9 @@ namespace DRDPE.Admin
                     catch (Exception ex)
                     {
                         conn.Close();
+                        EventLog log = new EventLog();
+                        log.Source = "Pastry Emporium";
+                        log.WriteEntry(ex.Message, EventLogEntryType.Error);
                         ShowError(ex.Message);
                     }
                 }

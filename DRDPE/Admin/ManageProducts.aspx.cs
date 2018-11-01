@@ -9,6 +9,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
 using System.Drawing.Imaging;
+using System.Diagnostics;
 
 namespace DRDPE
 {
@@ -78,6 +79,9 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
+                EventLog log = new EventLog();
+                log.Source = "Pastry Emporium";
+                log.WriteEntry(ex.Message, EventLogEntryType.Error);
                 ShowError(ex.Message);
             }
             finally
@@ -126,6 +130,9 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
+                EventLog log = new EventLog();
+                log.Source = "Pastry Emporium";
+                log.WriteEntry(ex.Message, EventLogEntryType.Error);
                 ShowError(ex.Message);
             }
             finally
@@ -158,6 +165,9 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
+                EventLog log = new EventLog();
+                log.Source = "Pastry Emporium";
+                log.WriteEntry(ex.Message, EventLogEntryType.Error);
                 ShowError(ex.Message);
             }
             finally
@@ -214,6 +224,9 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
+                EventLog log = new EventLog();
+                log.Source = "Pastry Emporium";
+                log.WriteEntry(ex.Message, EventLogEntryType.Error);
                 ShowError(ex.Message);
             }
         }
@@ -254,6 +267,9 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
+                EventLog log = new EventLog();
+                log.Source = "Pastry Emporium";
+                log.WriteEntry(ex.Message, EventLogEntryType.Error);
                 ShowError(ex.Message);
             }
             finally
@@ -291,6 +307,9 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
+                EventLog log = new EventLog();
+                log.Source = "Pastry Emporium";
+                log.WriteEntry(ex.Message, EventLogEntryType.Error);
                 ShowError(ex.Message);
             }
             finally
@@ -343,6 +362,9 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
+                EventLog log = new EventLog();
+                log.Source = "Pastry Emporium";
+                log.WriteEntry(ex.Message, EventLogEntryType.Error);
                 ShowError("Some fields were not validated. Please try again");
                 return false;
             }
@@ -414,6 +436,9 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
+                EventLog log = new EventLog();
+                log.Source = "Pastry Emporium";
+                log.WriteEntry(ex.Message, EventLogEntryType.Error);
                 ShowError("Some fields were not correct. Please try again");
                 return false;
             }
@@ -469,6 +494,9 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
+                EventLog log = new EventLog();
+                log.Source = "Pastry Emporium";
+                log.WriteEntry(ex.Message, EventLogEntryType.Error);
                 ShowError(ex.Message);
                 return false;
             }
@@ -503,6 +531,9 @@ namespace DRDPE
             }
             catch (Exception ex)
             {
+                EventLog log = new EventLog();
+                log.Source = "Pastry Emporium";
+                log.WriteEntry(ex.Message, EventLogEntryType.Error);
                 ShowError(ex.Message);
             }
         }

@@ -65,12 +65,10 @@ namespace DRDPE.Admin
             }
             catch (Exception ex)
             {
-                
-                ////logging
-                //EventLog log = new EventLog();
 
-                //log.Source = "Demo Error Log";
-                //log.WriteEntry(ex.Message, EventLogEntryType.Error);
+                EventLog log = new EventLog();
+                log.Source = "Pastry Emporium";
+                log.WriteEntry(ex.Message, EventLogEntryType.Error);
                 return false;
             }
         }
