@@ -19,8 +19,10 @@ namespace DRDPE.Admin
         }
 
         #region ErrorMessage
-        private void ShowError()
+        private void ShowError(string msg)
         {
+            Label myMessage = Master.FindControl("lblMessage") as Label;
+            myMessage.Text = msg;
             System.Web.UI.HtmlControls.HtmlGenericControl myError = (System.Web.UI.HtmlControls.HtmlGenericControl)Master.FindControl("errorMessage");
             myError.Style.Remove("Display");
         }

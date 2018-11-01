@@ -23,10 +23,8 @@ namespace DRDPE.Admin
                 HideError();
             }
         }
-
         protected void btnChoseImage_Click(object sender, EventArgs e)
         {
-            Label myMessage = Master.FindControl("lblMessage") as Label;
             try
             {
                 int intSizeLimit = 1048576;
@@ -83,8 +81,6 @@ namespace DRDPE.Admin
         }
         private bool SaveImage(string strPath, string extension)
         {
-            Label myMessage = Master.FindControl("lblMessage") as Label;
-
             if (File.Exists(strPath))
             {
                 ShowError("File Already Exists... try again!");
@@ -93,7 +89,6 @@ namespace DRDPE.Admin
             else
             {
                 uplPics.SaveAs(Server.MapPath("~/Admin/tempImages/" + txtImgName.Text + extension));
-                myMessage.Text = "File upload to:" + strPath;
                 imgProd.ImageUrl = "~/Admin/tempImages/" + txtImgName.Text+extension;
                 int intLength = uplPics.FileName.Length;
                 int intRem = intLength - 4;
