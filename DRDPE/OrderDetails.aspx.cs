@@ -23,7 +23,6 @@ namespace DRDPE
         {
             string addressId = "";
             SqlDataReader dr = default(SqlDataReader);
-            SqlDataReader dr2 = default(SqlDataReader);
             SqlCommand cmd = default(SqlCommand);
             try
             {
@@ -81,13 +80,21 @@ namespace DRDPE
                     cmd.Parameters.Add("@addressId", SqlDbType.Int, 0).Value = Convert.ToInt32(addressId);
                     cmd.CommandType = CommandType.StoredProcedure;
                     conn.Open();
-                    dr2 = cmd.ExecuteReader(CommandBehavior.CloseConnection);
-                    while (dr.Read())
+                    dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                    if (dr.HasRows)
                     {
-                        lblBillStreetAddress.Text = dr["street"].ToString();
-                        lblBillCity.Text = dr["city"].ToString();
-                        lblBillProvPostCount.Text = dr["stateProv"].ToString() + ", " + dr["postalCode"].ToString() + ", " + dr["country"];
+                        while (dr.Read())
+                        {
+                            lblBillStreetAddress.Text = dr["street"].ToString();
+                            lblBillCity.Text = dr["city"].ToString();
+                            lblBillProvPostCount.Text = dr["stateProv"].ToString() + ", " + dr["postalCode"].ToString() + ", " + dr["country"];
+                        }
                     }
+                    else
+                    {
+                        headerBilling.Visible = false;
+                    }
+
                 }
             }
             catch (Exception Kowalski)

@@ -33,7 +33,7 @@
 
         </div>
         <div class="col-md-3">
-            <h3>Billing Address</h3>
+            <h3 runat="server" id="headerBilling">Billing Address</h3>
             <asp:Label runat="server" ID="lblBillStreetAddress"></asp:Label><br />
             <asp:Label runat="server" ID="lblBillCity"></asp:Label><br />
             <asp:Label runat="server" ID="lblBillProvPostCount"></asp:Label>
