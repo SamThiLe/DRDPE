@@ -49,19 +49,21 @@
     <RowStyle CssClass="CartListItem"></RowStyle>
       </asp:GridView>
     <br />
-    <span><b>Subtotal:</b></span>
-    <asp:Label ID="lblGSubtotal" runat="server"></asp:Label>
-    <br />
-    <span><b>Shipping:</b></span>
-    <asp:Label ID="lblShipping" runat="server"></asp:Label>
-    <br />
-    <span><b>Tax:</b></span>
-    <asp:Label ID="lblTax" runat="server"></asp:Label>
-    <br />
-    <span><b>Total:</b></span>
-    <asp:Label ID="lblGrandTotal" runat="server"></asp:Label>
-    <br />
-    <br />
+    <div id="totalContainer" style="display:none" runat="server">
+        <span><b>Subtotal:</b></span>
+        <asp:Label ID="lblGSubtotal" runat="server"></asp:Label>
+        <br />
+        <span><b>Shipping:</b></span>
+        <asp:Label ID="lblShipping" runat="server"></asp:Label>
+        <br />
+        <span><b>Tax:</b></span>
+        <asp:Label ID="lblTax" runat="server"></asp:Label>
+        <br />
+        <span><b>Total:</b></span>
+        <asp:Label ID="lblGrandTotal" runat="server"></asp:Label>
+        <br />
+        <br />
+    </div>
     <asp:Button ID="btnUpdate"  class="btn btn-outline-light" runat="server" Text="Update Cart" OnClick="btnUpdate_Click" />
     <asp:Button ID="btnContinue"  class="btn btn-outline-light" runat="server" Text="Continue Shopping" OnClick="btnContinue_Click"  />
     <asp:Button ID="btnCheckOut"  class="btn btn-outline-light" runat="server" Text="Check Out" OnClick="btnCheckOut_Click" />
