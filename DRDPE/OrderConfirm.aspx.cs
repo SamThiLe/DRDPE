@@ -141,11 +141,11 @@ namespace DRDPE
                     orderDetails
                     +
                     "</table>"
-                    + 
-                    "<br /> Subtotal: " + subTotal.ToString("c") +
-                    "<br /> Shipping: " + shippingCost.ToString("c") +
-                    "<br /> Tax: " + taxAmount.ToString("c") +
-                    "<br /> Total " + orderTotal.ToString("c") +
+                    +
+                    "<br /> <table><tr><td>Subtotal:</td> <td>" + subTotal.ToString("c") + "</td></tr>" +
+                    "<tr><td> Shipping: </td><td>" + shippingCost.ToString("c") + "</td></tr>" +
+                    "<tr><td> Tax: </td><td>" + taxAmount.ToString("c") + " </td></tr> "  +
+                    "<tr><td> Total </td><td>" + orderTotal.ToString("c") + " </td></tr> </table>" +
                     "<br /><br /><hr>Not sure why you're seeing this? Disregard this email.</p>";
                 SmtpClient smtpClient = new SmtpClient("localhost");
                 smtpClient.Send(mailMessage);
