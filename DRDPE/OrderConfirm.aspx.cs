@@ -81,7 +81,7 @@ namespace DRDPE
                     cmd.CommandType = CommandType.StoredProcedure;
                     conn.Open();
                     dr = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-                    orderDetails = "<table><tr><th>Product&emsp;</th><th>Quantity&emsp;</th><th>Subtotal&emsp;</th></tr>";
+                    orderDetails = "";
                     while (dr.Read())
                     {
                         orderDetails += "<tr><td>" + dr["productName"].ToString() + "&emsp;</td><td>" + dr["qty"].ToString() + "</td><td>" + dr["ItemSubtotal"].ToString() + "</tr>";
@@ -120,9 +120,9 @@ namespace DRDPE
                 {
                     shippingCost = 0m;
                 }
-
+                
                 taxAmount = ((subTotal + shippingCost) * taxRate);
-                orderTotal = subTotal + taxAmount;
+                orderTotal = subTotal + taxAmount + shippingCost;
 
                 //orderConfirmationCode
                 MailMessage mailMessage = new MailMessage();
@@ -136,17 +136,16 @@ namespace DRDPE
                     +
                     "<table><tr><th>Product&emsp;</th><th>Quantity&emsp;</th><th>Subtotal&emsp;</th></tr>"
                     +
-                    "<br /> Order Date: " + orderDate + "<br />"
+                    "<br /> Order Date: " + orderDate.ToString("yyyy/MM/dd") + "<br /><br />"
                     +
                     orderDetails
                     +
                     "</table>"
                     + 
-                    "<br /> Order Total: "+ (Convert.ToDecimal(orderTotal)).ToString("c") +
-                    "<br /> Subtotal: " + subTotal +
-                    "<br /> Shipping: " + taxAmount +
-                    "<br /> Tax: " + taxAmount +
-                    "<br /> Total " + orderTotal +
+                    "<br /> Subtotal: " + subTotal.ToString("c") +
+                    "<br /> Shipping: " + shippingCost.ToString("c") +
+                    "<br /> Tax: " + taxAmount.ToString("c") +
+                    "<br /> Total " + orderTotal.ToString("c") +
                     "<br /><br /><hr>Not sure why you're seeing this? Disregard this email.</p>";
                 SmtpClient smtpClient = new SmtpClient("localhost");
                 smtpClient.Send(mailMessage);
