@@ -48,80 +48,80 @@ DBCC CHECKIDENT ('adminLogin', RESEED, 0)
 GO
 
 --bread images
-insert into SiteImages VALUES ('Place Holder', '~/images/placeholder.jpg', GETDATE(), 'Placeholder image', 1, 1);
-insert into SiteImages VALUES ('White Bread', '~/images/whitebread.jpg', GETDATE(), 'A loaf of white bread', 1, 1);
-insert into SiteImages VALUES ('Brown Bread', '~/images/brownbread.jpg', GETDATE(), 'A loaf of Brown bread', 1, 1);
-insert into SiteImages VALUES ('Rye Bread', '~/images/ryebread.jpg', GETDATE(), 'A loaf of Rye bread', 1, 1);
-insert into SiteImages VALUES ('Sour Bread', '~/images/sourbread.jpg', GETDATE(), 'A loaf of Sourdough bread', 1, 1);
-insert into SiteImages VALUES ('Whole Wheat Bread', '~/images/wholewheatbread.jpg', GETDATE(), 'A loaf of whole wheat bread', 1, 1);
-insert into SiteImages VALUES ('Multigrain Bread', '~/images/multigrainbread.jpg', GETDATE(), 'A loaf of multigrain bread', 1, 1);
-insert into SiteImages VALUES ('Maple Bread', '~/images/maplebread.jpg', GETDATE(), 'A loaf of maple bread', 1, 1);
+insert into SiteImages VALUES ('Place Holder', '~/images/placeholder.jpg', GETDATE(), 'Placeholder image', 1, 1, 1);
+insert into SiteImages VALUES ('White Bread', '~/images/whitebread.jpg', GETDATE(), 'A loaf of white bread', 1, 1, 1);
+insert into SiteImages VALUES ('Brown Bread', '~/images/brownbread.jpg', GETDATE(), 'A loaf of Brown bread', 1, 1, 1);
+insert into SiteImages VALUES ('Rye Bread', '~/images/ryebread.jpg', GETDATE(), 'A loaf of Rye bread', 1, 1, 1);
+insert into SiteImages VALUES ('Sour Bread', '~/images/sourbread.jpg', GETDATE(), 'A loaf of Sourdough bread', 1, 1, 1);
+insert into SiteImages VALUES ('Whole Wheat Bread', '~/images/wholewheatbread.jpg', GETDATE(), 'A loaf of whole wheat bread', 1, 1, 1);
+insert into SiteImages VALUES ('Multigrain Bread', '~/images/multigrainbread.jpg', GETDATE(), 'A loaf of multigrain bread', 1, 1, 1);
+insert into SiteImages VALUES ('Maple Bread', '~/images/maplebread.jpg', GETDATE(), 'A loaf of maple bread', 1, 1, 1);
 
 --Square images
-insert into SiteImages VALUES ('Nanimo Square', '~/images/nanaimosquare.jpg', GETDATE(), 'A pack of nanaimo squares', 1, 1);
-insert into SiteImages VALUES ('Marshmallow Square', '~/images/marshmallowsquare.jpg', GETDATE(), 'A pack of marshmallow squares', 1, 1);
-insert into SiteImages VALUES ('Date Square', '~/images/datesquare.jpg', GETDATE(), 'A pack of date squares', 1, 1);
-insert into SiteImages VALUES ('Blueberry Square', '~/images/blueberrysquare.jpg', GETDATE(), 'A pack of blueberry squares', 1, 1);
-insert into SiteImages VALUES ('Lemon Square', '~/images/lemonsquare.jpg', GETDATE(), 'A pack of lemon squares', 1, 1);
-insert into SiteImages VALUES ('Pecan Square', '~/images/pecansquare.jpg', GETDATE(), 'A pack of pecan squares', 1, 1);
-insert into SiteImages VALUES ('Peanutbutter Square', '~/images/peanutbuttersquare.jpg', GETDATE(), 'A pack of peanut butter squares', 1, 1);
+insert into SiteImages VALUES ('Nanimo Square', '~/images/nanaimosquare.jpg', GETDATE(), 'A pack of nanaimo squares', 1, 1, 1);
+insert into SiteImages VALUES ('Marshmallow Square', '~/images/marshmallowsquare.jpg', GETDATE(), 'A pack of marshmallow squares', 1, 1, 1);
+insert into SiteImages VALUES ('Date Square', '~/images/datesquare.jpg', GETDATE(), 'A pack of date squares', 1, 1, 1);
+insert into SiteImages VALUES ('Blueberry Square', '~/images/blueberrysquare.jpg', GETDATE(), 'A pack of blueberry squares', 1, 1, 1);
+insert into SiteImages VALUES ('Lemon Square', '~/images/lemonsquare.jpg', GETDATE(), 'A pack of lemon squares', 1, 1, 1);
+insert into SiteImages VALUES ('Pecan Square', '~/images/pecansquare.jpg', GETDATE(), 'A pack of pecan squares', 1, 1, 1);
+insert into SiteImages VALUES ('Peanutbutter Square', '~/images/peanutbuttersquare.jpg', GETDATE(), 'A pack of peanut butter squares', 1, 1, 1);
 
 --Cake images
-insert into SiteImages VALUES ('Triple Chocolate Cake', '~/images/triplechocolatecake.jpg', GETDATE(), 'A triple chocolate cake', 1, 1);
-insert into SiteImages VALUES ('Devils Foodcake', '~/images/devilsfoodcake.jpg', GETDATE(), 'A devils food cake', 1, 1);
-insert into SiteImages VALUES ('Angel Foodcake', '~/images/angelfoodcake.jpg', GETDATE(), 'A angel food cake', 1, 1);
-insert into SiteImages VALUES ('Cheesecake', '~/images/cheesecake.jpg', GETDATE(), 'A cheesecake', 1, 1);
-insert into SiteImages VALUES ('Lemon Meringue Cake', '~/images/lemonmeringuecake.jpg', GETDATE(), 'A lemon meringue cake', 1, 1);
-insert into SiteImages VALUES ('Black Forest Cake', '~/images/blackforestcake.jpg', GETDATE(), 'A black forest cake', 1, 1);
-insert into SiteImages VALUES ('Chocolate Mousse Cake', '~/images/chocolatemoussecake.jpg', GETDATE(), 'A chocolate mousse cake', 1, 1);
-insert into SiteImages VALUES ('Pound Cake', '~/images/poundcake.jpg', GETDATE(), 'A pound cake', 1, 1);
+insert into SiteImages VALUES ('Triple Chocolate Cake', '~/images/triplechocolatecake.jpg', GETDATE(), 'A triple chocolate cake', 1, 1, 1);
+insert into SiteImages VALUES ('Devils Foodcake', '~/images/devilsfoodcake.jpg', GETDATE(), 'A devils food cake', 1, 1, 1);
+insert into SiteImages VALUES ('Angel Foodcake', '~/images/angelfoodcake.jpg', GETDATE(), 'A angel food cake', 1, 1, 1);
+insert into SiteImages VALUES ('Cheesecake', '~/images/cheesecake.jpg', GETDATE(), 'A cheesecake', 1, 1, 1);
+insert into SiteImages VALUES ('Lemon Meringue Cake', '~/images/lemonmeringuecake.jpg', GETDATE(), 'A lemon meringue cake', 1, 1, 1);
+insert into SiteImages VALUES ('Black Forest Cake', '~/images/blackforestcake.jpg', GETDATE(), 'A black forest cake', 1, 1, 1);
+insert into SiteImages VALUES ('Chocolate Mousse Cake', '~/images/chocolatemoussecake.jpg', GETDATE(), 'A chocolate mousse cake', 1, 1, 1);
+insert into SiteImages VALUES ('Pound Cake', '~/images/poundcake.jpg', GETDATE(), 'A pound cake', 1, 1, 1);
 
 --Bun images
-insert into SiteImages VALUES ('White Bun', '~/images/whitebun.jpg', GETDATE(), 'A white bun', 1, 1);
-insert into SiteImages VALUES ('Brown Bun', '~/images/brownbun.jpg', GETDATE(), 'A brown bun', 1, 1);
-insert into SiteImages VALUES ('Rye Bun', '~/images/ryebun.jpg', GETDATE(), 'A rye bun', 1, 1);
-insert into SiteImages VALUES ('Sourdough Bun', '~/images/sourdoughbun.jpg', GETDATE(), 'A sourdough bun', 1, 1);
-insert into SiteImages VALUES ('Wholewheat Bun', '~/images/wholewheatbun.jpg', GETDATE(), 'A whole wheat bun', 1, 1);
-insert into SiteImages VALUES ('Multigrain Bun', '~/images/multigrainbun.jpg', GETDATE(), 'A multigrain bun', 1, 1);
+insert into SiteImages VALUES ('White Bun', '~/images/whitebun.jpg', GETDATE(), 'A white bun', 1, 1, 1);
+insert into SiteImages VALUES ('Brown Bun', '~/images/brownbun.jpg', GETDATE(), 'A brown bun', 1, 1, 1);
+insert into SiteImages VALUES ('Rye Bun', '~/images/ryebun.jpg', GETDATE(), 'A rye bun', 1, 1, 1);
+insert into SiteImages VALUES ('Sourdough Bun', '~/images/sourdoughbun.jpg', GETDATE(), 'A sourdough bun', 1, 1, 1);
+insert into SiteImages VALUES ('Wholewheat Bun', '~/images/wholewheatbun.jpg', GETDATE(), 'A whole wheat bun', 1, 1, 1);
+insert into SiteImages VALUES ('Multigrain Bun', '~/images/multigrainbun.jpg', GETDATE(), 'A multigrain bun', 1, 1, 1);
 
 --Danish images
-insert into SiteImages VALUES ('Blueberry Danish', '~/images/blueberrydanish.jpg', GETDATE(), 'A blueberry danish', 1, 1);
-insert into SiteImages VALUES ('Raspberry Danish', '~/images/raspberrydanish.jpg', GETDATE(), 'A raspberry danish', 1, 1);
-insert into SiteImages VALUES ('Strawberry Danish', '~/images/strawberrydanish.jpg', GETDATE(), 'A strawberry danish', 1, 1);
-insert into SiteImages VALUES ('Caramel Danish', '~/images/carameldanish.jpg', GETDATE(), 'A caramel danish', 1, 1);
-insert into SiteImages VALUES ('Chocolate Danish', '~/images/chocolatedanish.jpg', GETDATE(), 'A chocolate danish', 1, 1);
-insert into SiteImages VALUES ('Butter Danish', '~/images/butterdanish.jpg', GETDATE(), 'A butter danish', 1, 1);
-insert into SiteImages VALUES ('Creamcheese Danish', '~/images/creamcheesedanish.jpg', GETDATE(), 'A cream cheese danish', 1, 1);
+insert into SiteImages VALUES ('Blueberry Danish', '~/images/blueberrydanish.jpg', GETDATE(), 'A blueberry danish', 1, 1, 1);
+insert into SiteImages VALUES ('Raspberry Danish', '~/images/raspberrydanish.jpg', GETDATE(), 'A raspberry danish', 1, 1, 1);
+insert into SiteImages VALUES ('Strawberry Danish', '~/images/strawberrydanish.jpg', GETDATE(), 'A strawberry danish', 1, 1, 1);
+insert into SiteImages VALUES ('Caramel Danish', '~/images/carameldanish.jpg', GETDATE(), 'A caramel danish', 1, 1, 1);
+insert into SiteImages VALUES ('Chocolate Danish', '~/images/chocolatedanish.jpg', GETDATE(), 'A chocolate danish', 1, 1, 1);
+insert into SiteImages VALUES ('Butter Danish', '~/images/butterdanish.jpg', GETDATE(), 'A butter danish', 1, 1, 1);
+insert into SiteImages VALUES ('Creamcheese Danish', '~/images/creamcheesedanish.jpg', GETDATE(), 'A cream cheese danish', 1, 1, 1);
 
 --Muffin images
-insert into SiteImages VALUES ('Blueberry Muffin', '~/images/blueberrymuffin.jpg', GETDATE(), 'A blueberry muffin', 1, 1);
-insert into SiteImages VALUES ('Raspberry Muffin', '~/images/raspberrymuffin.jpg', GETDATE(), 'A raspberry muffin', 1, 1);
-insert into SiteImages VALUES ('Strawberry Muffin', '~/images/strawberrymuffin.jpg', GETDATE(), 'A strawberry muffin', 1, 1);
-insert into SiteImages VALUES ('Caramel Muffin', '~/images/caramelmuffin.jpg', GETDATE(), 'A caramel muffin', 1, 1);
-insert into SiteImages VALUES ('Chocolate Muffin', '~/images/chocolatemuffin.jpg', GETDATE(), 'A chocolate muffin', 1, 1);
-insert into SiteImages VALUES ('Pecan Muffin', '~/images/butterpecanmuffin.jpg', GETDATE(), 'A butter pecan muffin', 1, 1);
+insert into SiteImages VALUES ('Blueberry Muffin', '~/images/blueberrymuffin.jpg', GETDATE(), 'A blueberry muffin', 1, 1, 1);
+insert into SiteImages VALUES ('Raspberry Muffin', '~/images/raspberrymuffin.jpg', GETDATE(), 'A raspberry muffin', 1, 1, 1);
+insert into SiteImages VALUES ('Strawberry Muffin', '~/images/strawberrymuffin.jpg', GETDATE(), 'A strawberry muffin', 1, 1, 1);
+insert into SiteImages VALUES ('Caramel Muffin', '~/images/caramelmuffin.jpg', GETDATE(), 'A caramel muffin', 1, 1, 1);
+insert into SiteImages VALUES ('Chocolate Muffin', '~/images/chocolatemuffin.jpg', GETDATE(), 'A chocolate muffin', 1, 1, 1);
+insert into SiteImages VALUES ('Pecan Muffin', '~/images/butterpecanmuffin.jpg', GETDATE(), 'A butter pecan muffin', 1, 1, 1);
 
 --Croissant images
-insert into SiteImages VALUES ('Cheese Croissant', '~/images/cheesecroissant.jpg', GETDATE(), 'A butter cheese croissant', 1, 1);
-insert into SiteImages VALUES ('Butter Croissant', '~/images/buttercroissant.jpg', GETDATE(), 'A butter croissant', 1, 1);
-insert into SiteImages VALUES ('Chocolate Croissant', '~/images/chocolatecroissant.jpg', GETDATE(), 'A chocolate croissant', 1, 1);
-insert into SiteImages VALUES ('Almond Croissant', '~/images/almondcroissant.jpg', GETDATE(), 'A almond croissant', 1, 1);
-insert into SiteImages VALUES ('Ham and Cheese Croissant', '~/images/hamandcheesecroissant.jpg', GETDATE(), 'A ham and cheese croissant', 1, 1);
-insert into SiteImages VALUES ('Bacon Croissant', '~/images/baconcroissant.jpg', GETDATE(), 'A bacon croissant', 1, 1);
+insert into SiteImages VALUES ('Cheese Croissant', '~/images/cheesecroissant.jpg', GETDATE(), 'A butter cheese croissant', 1, 1, 1);
+insert into SiteImages VALUES ('Butter Croissant', '~/images/buttercroissant.jpg', GETDATE(), 'A butter croissant', 1, 1, 1);
+insert into SiteImages VALUES ('Chocolate Croissant', '~/images/chocolatecroissant.jpg', GETDATE(), 'A chocolate croissant', 1, 1, 1);
+insert into SiteImages VALUES ('Almond Croissant', '~/images/almondcroissant.jpg', GETDATE(), 'A almond croissant', 1, 1, 1);
+insert into SiteImages VALUES ('Ham and Cheese Croissant', '~/images/hamandcheesecroissant.jpg', GETDATE(), 'A ham and cheese croissant', 1, 1, 1);
+insert into SiteImages VALUES ('Bacon Croissant', '~/images/baconcroissant.jpg', GETDATE(), 'A bacon croissant', 1, 1, 1);
 
 --Donut images
-insert into SiteImages VALUES ('Blueberry Filled Donut', '~/images/blueberryfilleddonut.jpg', GETDATE(), 'A blueberry filled donut', 1, 1);
-insert into SiteImages VALUES ('Raspberry Filled Donut', '~/images/raspberryfilleddonut.jpg', GETDATE(), 'A raspberry filled donut', 1, 1);
-insert into SiteImages VALUES ('Strawberry Filled Donut', '~/images/strawberryfilleddonut.jpg', GETDATE(), 'A strawberry filled donut', 1, 1);
-insert into SiteImages VALUES ('Caramel Donut', '~/images/carameldonut.jpg', GETDATE(), 'A caramel donut', 1, 1);
-insert into SiteImages VALUES ('Chocolate Glazed Donut', '~/images/chocolateglazeddonut.jpg', GETDATE(), 'A chocolate glazed donut', 1, 1);
-insert into SiteImages VALUES ('Sugar Donut', '~/images/sugardonut.jpg', GETDATE(), 'A sugar donut', 1, 1);
-insert into SiteImages VALUES ('Boston Cream Donut', '~/images/bostoncreamdonut.jpg', GETDATE(), 'A boston cream donut', 1, 1);
+insert into SiteImages VALUES ('Blueberry Filled Donut', '~/images/blueberryfilleddonut.jpg', GETDATE(), 'A blueberry filled donut', 1, 1, 1);
+insert into SiteImages VALUES ('Raspberry Filled Donut', '~/images/raspberryfilleddonut.jpg', GETDATE(), 'A raspberry filled donut', 1, 1, 1);
+insert into SiteImages VALUES ('Strawberry Filled Donut', '~/images/strawberryfilleddonut.jpg', GETDATE(), 'A strawberry filled donut', 1, 1, 1);
+insert into SiteImages VALUES ('Caramel Donut', '~/images/carameldonut.jpg', GETDATE(), 'A caramel donut', 1, 1, 1);
+insert into SiteImages VALUES ('Chocolate Glazed Donut', '~/images/chocolateglazeddonut.jpg', GETDATE(), 'A chocolate glazed donut', 1, 1, 1);
+insert into SiteImages VALUES ('Sugar Donut', '~/images/sugardonut.jpg', GETDATE(), 'A sugar donut', 1, 1, 1);
+insert into SiteImages VALUES ('Boston Cream Donut', '~/images/bostoncreamdonut.jpg', GETDATE(), 'A boston cream donut', 1, 1, 1);
 
 --Testing images
-insert into SiteImages VALUES ('White Bread 2', '~/images/whitebread2.jpg', GETDATE(), 'A loaf of white bread', 1, 1);
-insert into SiteImages VALUES ('White Bread 3', '~/images/whitebread3.jpg', GETDATE(), 'A loaf of white bread', 1, 1);
-insert into SiteImages VALUES ('White Bread 4', '~/images/whitebread4.jpg', GETDATE(), 'A loaf of white bread', 1, 1);
+insert into SiteImages VALUES ('White Bread 2', '~/images/whitebread2.jpg', GETDATE(), 'A loaf of white bread', 1, 1, 1);
+insert into SiteImages VALUES ('White Bread 3', '~/images/whitebread3.jpg', GETDATE(), 'A loaf of white bread', 1, 1, 1);
+insert into SiteImages VALUES ('White Bread 4', '~/images/whitebread4.jpg', GETDATE(), 'A loaf of white bread', 1, 1, 1);
 GO
 
 
@@ -234,6 +234,8 @@ BEGIN
     -- interfering with SELECT statements.
     -- 1 is true, 0 is false.   OR  Any Words is 0, All words is 1
     SET NOCOUNT ON;
+	DECLARE @tempURL VARCHAR(200)
+	SET @tempURL = '~/images/placeholder.jpg'
     DECLARE @WordCount int =0;
     IF @Word1 IS NOT NULL
 		SET @WordCount = @WordCount + 1
@@ -247,55 +249,260 @@ BEGIN
 		SET @WordCount = @WordCount + 1
     IF @WordCount=1
 		BEGIN
-        SELECT productId, productName, imageUrl, briefDescription, price , featured, fullDescription
-        FROM Products INNER JOIN
-		SiteImages ON products.imageId = SiteImages.imageId
-        WHERE (productName like '%' + @Word1 + '%' OR briefDescription like '%' + @Word1 + '%' OR fullDescription like '%' + @Word1 + '%' )
-        Return
-    END
+			SELECT
+				SiteImages.imageId,
+				imageName,
+				imageURL,
+				uploadDate,
+				altText,
+				approved,
+				active,
+				uploadedBy,
+				productId,
+				productName,
+				briefDescription,
+				fullDescription,
+				statusCode,
+				price,
+				featured,
+				categoryId
+			FROM
+				Products INNER JOIN
+				SiteImages ON products.imageId = SiteImages.imageId
+			WHERE ((productName like '%' + @Word1 + '%' OR briefDescription like '%' + @Word1 + '%' OR fullDescription like '%' + @Word1 + '%' ) AND active = 1)
+			UNION
+				SELECT
+				SiteImages.imageId,
+				imageName,
+				@tempURL AS imageURL,
+				uploadDate,
+				altText,
+				approved,
+				active,
+				uploadedBy,
+				productId,
+				productName,
+				briefDescription,
+				fullDescription,
+				statusCode,
+				price,
+				featured,
+				categoryId
+			FROM
+				Products INNER JOIN
+				SiteImages ON products.imageId = SiteImages.imageId
+			WHERE ((productName like '%' + @Word1 + '%' OR briefDescription like '%' + @Word1 + '%' OR fullDescription like '%' + @Word1 + '%' ) AND active = 0)
+				Return
+		END
 	ELSE 
 	IF @WordCount=2
 		BEGIN
-        SELECT productId, productName, imageUrl, briefDescription, price , featured, fullDescription
-        FROM Products INNER JOIN
-		SiteImages ON products.imageId = SiteImages.imageId
-        WHERE (productName like '%' + @Word1 + '%' OR briefDescription like '%' + @Word1 + '%' OR fullDescription like '%' + @Word1 + '%' )
-            AND(productName like '%' + @Word2 + '%' OR briefDescription like '%' + @Word2 + '%' OR fullDescription like '%' + @Word2 + '%')
-        Return
-    END
+			SELECT
+				SiteImages.imageId,
+				imageName,
+				imageURL,
+				uploadDate,
+				altText,
+				approved,
+				active,
+				uploadedBy,
+				productId,
+				productName,
+				briefDescription,
+				fullDescription,
+				statusCode,
+				price,
+				featured,
+				categoryId
+			FROM
+				Products INNER JOIN
+				SiteImages ON products.imageId = SiteImages.imageId
+			WHERE ((productName like '%' + @Word1 + '%' OR briefDescription like '%' + @Word1 + '%' OR fullDescription like '%' + @Word1 + '%' ) AND active = 1)
+				AND((productName like '%' + @Word2 + '%' OR briefDescription like '%' + @Word2 + '%' OR fullDescription like '%' + @Word2 + '%') AND active = 1)
+			UNION
+				SELECT
+				SiteImages.imageId,
+				imageName,
+				@tempURL AS imageURL,
+				uploadDate,
+				altText,
+				approved,
+				active,
+				uploadedBy,
+				productId,
+				productName,
+				briefDescription,
+				fullDescription,
+				statusCode,
+				price,
+				featured,
+				categoryId
+			FROM
+				Products INNER JOIN
+				SiteImages ON products.imageId = SiteImages.imageId
+			WHERE ((productName like '%' + @Word1 + '%' OR briefDescription like '%' + @Word1 + '%' OR fullDescription like '%' + @Word1 + '%' ) AND active = 0)
+				AND((productName like '%' + @Word2 + '%' OR briefDescription like '%' + @Word2 + '%' OR fullDescription like '%' + @Word2 + '%') AND active = 0)
+				Return
+		END
 	ELSE 
 		IF @WordCount=3
 		BEGIN
-        SELECT productId, productName, imageUrl, briefDescription, price , featured, fullDescription
-        FROM Products INNER JOIN
-		SiteImages ON products.imageId = SiteImages.imageId
-        WHERE (productName like '%' + @Word1 + '%' OR briefDescription like '%' + @Word1 + '%' OR fullDescription like '%' + @Word1 + '%' )
-            AND(productName like '%' + @Word2 + '%' OR briefDescription like '%' + @Word2 + '%' OR fullDescription like '%' + @Word2 + '%')
-            AND(productName like '%' + @Word3 + '%' OR briefDescription like '%' + @Word3 + '%' OR fullDescription like '%' + @Word3 + '%')
-        Return
-    END
+			SELECT
+				SiteImages.imageId,
+				imageName,
+				imageURL,
+				uploadDate,
+				altText,
+				approved,
+				active,
+				uploadedBy,
+				productId,
+				productName,
+				briefDescription,
+				fullDescription,
+				statusCode,
+				price,
+				featured,
+				categoryId
+			FROM
+				Products INNER JOIN
+				SiteImages ON products.imageId = SiteImages.imageId
+			WHERE ((productName like '%' + @Word1 + '%' OR briefDescription like '%' + @Word1 + '%' OR fullDescription like '%' + @Word1 + '%' ) AND active = 1)
+				AND((productName like '%' + @Word2 + '%' OR briefDescription like '%' + @Word2 + '%' OR fullDescription like '%' + @Word2 + '%') AND active = 1)
+				AND((productName like '%' + @Word3 + '%' OR briefDescription like '%' + @Word3 + '%' OR fullDescription like '%' + @Word3 + '%') AND active = 1)
+			UNION
+				SELECT
+				SiteImages.imageId,
+				imageName,
+				@tempURL AS imageURL,
+				uploadDate,
+				altText,
+				approved,
+				active,
+				uploadedBy,
+				productId,
+				productName,
+				briefDescription,
+				fullDescription,
+				statusCode,
+				price,
+				featured,
+				categoryId
+			FROM
+				Products INNER JOIN
+				SiteImages ON products.imageId = SiteImages.imageId
+			WHERE ((productName like '%' + @Word1 + '%' OR briefDescription like '%' + @Word1 + '%' OR fullDescription like '%' + @Word1 + '%' ) AND active = 0)
+				AND((productName like '%' + @Word2 + '%' OR briefDescription like '%' + @Word2 + '%' OR fullDescription like '%' + @Word2 + '%') AND active = 0)
+				AND((productName like '%' + @Word3 + '%' OR briefDescription like '%' + @Word3 + '%' OR fullDescription like '%' + @Word3 + '%') AND active = 0)
+				Return
+		END
 	ELSE 
 		IF @WordCount=4
 		BEGIN
-        SELECT productId, productName, imageUrl, briefDescription, price , featured, fullDescription
-        FROM Products INNER JOIN
-		SiteImages ON products.imageId = SiteImages.imageId
-        WHERE (productName like '%' + @Word1 + '%' OR briefDescription like '%' + @Word1 + '%' OR fullDescription like '%' + @Word1 + '%' )
-            AND(productName like '%' + @Word2 + '%' OR briefDescription like '%' + @Word2 + '%' OR fullDescription like '%' + @Word2 + '%')
-            AND(productName like '%' + @Word3 + '%' OR briefDescription like '%' + @Word3 + '%' OR fullDescription like '%' + @Word3 + '%')
-            AND(productName like '%' + @Word4 + '%' OR briefDescription like '%' + @Word4 + '%' OR fullDescription like '%' + @Word4 + '%')
-        Return
-    END
+			SELECT
+				SiteImages.imageId,
+				imageName,
+				imageURL,
+				uploadDate,
+				altText,
+				approved,
+				active,
+				uploadedBy,
+				productId,
+				productName,
+				briefDescription,
+				fullDescription,
+				statusCode,
+				price,
+				featured,
+				categoryId
+			FROM
+				Products INNER JOIN
+				SiteImages ON products.imageId = SiteImages.imageId
+			WHERE ((productName like '%' + @Word1 + '%' OR briefDescription like '%' + @Word1 + '%' OR fullDescription like '%' + @Word1 + '%' ) AND active = 1)
+				AND((productName like '%' + @Word2 + '%' OR briefDescription like '%' + @Word2 + '%' OR fullDescription like '%' + @Word2 + '%') AND active = 1)
+				AND((productName like '%' + @Word3 + '%' OR briefDescription like '%' + @Word3 + '%' OR fullDescription like '%' + @Word3 + '%') AND active = 1)
+				AND((productName like '%' + @Word4 + '%' OR briefDescription like '%' + @Word4 + '%' OR fullDescription like '%' + @Word4 + '%') AND active = 1)
+			UNION
+				SELECT
+				SiteImages.imageId,
+				imageName,
+				@tempURL AS imageURL,
+				uploadDate,
+				altText,
+				approved,
+				active,
+				uploadedBy,
+				productId,
+				productName,
+				briefDescription,
+				fullDescription,
+				statusCode,
+				price,
+				featured,
+				categoryId
+			FROM
+				Products INNER JOIN
+				SiteImages ON products.imageId = SiteImages.imageId
+			WHERE ((productName like '%' + @Word1 + '%' OR briefDescription like '%' + @Word1 + '%' OR fullDescription like '%' + @Word1 + '%' ) AND active = 0)
+				AND((productName like '%' + @Word2 + '%' OR briefDescription like '%' + @Word2 + '%' OR fullDescription like '%' + @Word2 + '%') AND active = 0)
+				AND((productName like '%' + @Word3 + '%' OR briefDescription like '%' + @Word3 + '%' OR fullDescription like '%' + @Word3 + '%') AND active = 0)
+				AND((productName like '%' + @Word4 + '%' OR briefDescription like '%' + @Word4 + '%' OR fullDescription like '%' + @Word4 + '%') AND active = 0)
+				Return
+		END
 	ELSE 
 	IF @WordCount=5
-		SELECT productId, productName, imageUrl, briefDescription, price , featured, fullDescription
-    FROM Products INNER JOIN
+    SELECT
+        SiteImages.imageId,
+		imageName,
+		imageURL,
+		uploadDate,
+		altText,
+		approved,
+		active,
+		uploadedBy,
+		productId,
+		productName,
+		briefDescription,
+		fullDescription,
+		statusCode,
+		price,
+		featured,
+		categoryId
+    FROM
+        Products INNER JOIN
 		SiteImages ON products.imageId = SiteImages.imageId
-    WHERE (productName like '%' + @Word1 + '%' OR briefDescription like '%' + @Word1 + '%' OR fullDescription like '%' + @Word1 + '%' )
-        AND(productName like '%' + @Word2 + '%' OR briefDescription like '%' + @Word2 + '%' OR fullDescription like '%' + @Word2 + '%')
-        AND(productName like '%' + @Word3 + '%' OR briefDescription like '%' + @Word3 + '%' OR fullDescription like '%' + @Word3 + '%')
-        AND(productName like '%' + @Word4 + '%' OR briefDescription like '%' + @Word4 + '%' OR fullDescription like '%' + @Word4 + '%')
-        AND(productName like '%' + @Word5 + '%' OR briefDescription like '%' + @Word5 + '%' OR fullDescription like '%' + @Word5 + '%')
+    WHERE ((productName like '%' + @Word1 + '%' OR briefDescription like '%' + @Word1 + '%' OR fullDescription like '%' + @Word1 + '%' ) AND active = 1)
+        AND((productName like '%' + @Word2 + '%' OR briefDescription like '%' + @Word2 + '%' OR fullDescription like '%' + @Word2 + '%') AND active = 1)
+        AND((productName like '%' + @Word3 + '%' OR briefDescription like '%' + @Word3 + '%' OR fullDescription like '%' + @Word3 + '%') AND active = 1)
+        AND((productName like '%' + @Word4 + '%' OR briefDescription like '%' + @Word4 + '%' OR fullDescription like '%' + @Word4 + '%') AND active = 1)
+        AND((productName like '%' + @Word5 + '%' OR briefDescription like '%' + @Word5 + '%' OR fullDescription like '%' + @Word5 + '%') AND active = 1)
+	UNION
+	    SELECT
+        SiteImages.imageId,
+		imageName,
+		@tempURL AS imageURL,
+		uploadDate,
+		altText,
+		approved,
+		active,
+		uploadedBy,
+		productId,
+		productName,
+		briefDescription,
+		fullDescription,
+		statusCode,
+		price,
+		featured,
+		categoryId
+    FROM
+        Products INNER JOIN
+		SiteImages ON products.imageId = SiteImages.imageId
+    WHERE ((productName like '%' + @Word1 + '%' OR briefDescription like '%' + @Word1 + '%' OR fullDescription like '%' + @Word1 + '%' ) AND active = 0)
+        AND((productName like '%' + @Word2 + '%' OR briefDescription like '%' + @Word2 + '%' OR fullDescription like '%' + @Word2 + '%') AND active = 0)
+        AND((productName like '%' + @Word3 + '%' OR briefDescription like '%' + @Word3 + '%' OR fullDescription like '%' + @Word3 + '%') AND active = 0)
+        AND((productName like '%' + @Word4 + '%' OR briefDescription like '%' + @Word4 + '%' OR fullDescription like '%' + @Word4 + '%') AND active = 0)
+        AND((productName like '%' + @Word5 + '%' OR briefDescription like '%' + @Word5 + '%' OR fullDescription like '%' + @Word5 + '%') AND active = 0)
     Return
 END
 GO
@@ -317,14 +524,59 @@ BEGIN
     -- interfering with SELECT statements.
     -- 1 is true, 0 is false.   OR  Any Words is 0, All words is 1
     SET NOCOUNT ON;
-	SELECT productId, productName, imageUrl, briefDescription, price , featured, fullDescription
-    FROM Products INNER JOIN
+	DECLARE @tempURL VARCHAR(200)
+	SET @tempURL = '~/images/placeholder.jpg'
+    SELECT
+        SiteImages.imageId,
+		imageName,
+		imageURL,
+		uploadDate,
+		altText,
+		approved,
+		active,
+		uploadedBy,
+		productId,
+		productName,
+		briefDescription,
+		fullDescription,
+		statusCode,
+		price,
+		featured,
+		categoryId
+    FROM
+        Products INNER JOIN
 		SiteImages ON products.imageId = SiteImages.imageId
-    WHERE (productName like '%' + @Word1 + '%' OR briefDescription like '%' + @Word1 + '%' OR fullDescription like '%' + @Word1 + '%' )
-        OR(productName like '%' + @Word2 + '%' OR briefDescription like '%' + @Word2 + '%' OR fullDescription like '%' + @Word2 + '%')
-        OR(productName like '%' + @Word3 + '%' OR briefDescription like '%' + @Word3 + '%' OR fullDescription like '%' + @Word3 + '%')
-        OR(productName like '%' + @Word4 + '%' OR briefDescription like '%' + @Word4 + '%' OR fullDescription like '%' + @Word4 + '%')
-        OR(productName like '%' + @Word5 + '%' OR briefDescription like '%' + @Word5 + '%' OR fullDescription like '%' + @Word5 + '%')
+    WHERE ((productName like '%' + @Word1 + '%' OR briefDescription like '%' + @Word1 + '%' OR fullDescription like '%' + @Word1 + '%') AND active = 1)
+        OR((productName like '%' + @Word2 + '%' OR briefDescription like '%' + @Word2 + '%' OR fullDescription like '%' + @Word2 + '%') AND active = 1)
+        OR((productName like '%' + @Word3 + '%' OR briefDescription like '%' + @Word3 + '%' OR fullDescription like '%' + @Word3 + '%') AND active = 1)
+        OR((productName like '%' + @Word4 + '%' OR briefDescription like '%' + @Word4 + '%' OR fullDescription like '%' + @Word4 + '%') AND active = 1)
+        OR((productName like '%' + @Word5 + '%' OR briefDescription like '%' + @Word5 + '%' OR fullDescription like '%' + @Word5 + '%') AND active = 1)
+	UNION
+    SELECT
+        SiteImages.imageId,
+		imageName,
+		@tempURL AS imageURL,
+		uploadDate,
+		altText,
+		approved,
+		active,
+		uploadedBy,
+		productId,
+		productName,
+		briefDescription,
+		fullDescription,
+		statusCode,
+		price,
+		featured,
+		categoryId
+    FROM
+        Products INNER JOIN
+		SiteImages ON products.imageId = SiteImages.imageId
+    WHERE ((productName like '%' + @Word1 + '%' OR briefDescription like '%' + @Word1 + '%' OR fullDescription like '%' + @Word1 + '%') AND active = 0)
+        OR((productName like '%' + @Word2 + '%' OR briefDescription like '%' + @Word2 + '%' OR fullDescription like '%' + @Word2 + '%') AND active = 0)
+        OR((productName like '%' + @Word3 + '%' OR briefDescription like '%' + @Word3 + '%' OR fullDescription like '%' + @Word3 + '%') AND active = 0)
+        OR((productName like '%' + @Word4 + '%' OR briefDescription like '%' + @Word4 + '%' OR fullDescription like '%' + @Word4 + '%') AND active = 0)
+        OR((productName like '%' + @Word5 + '%' OR briefDescription like '%' + @Word5 + '%' OR fullDescription like '%' + @Word5 + '%') AND active = 0)
 END
 GO
 
@@ -335,17 +587,55 @@ GO
 CREATE PROCEDURE getFeatured
 AS
 BEGIN
+	DECLARE @tempURL VARCHAR(200)
+	SET @tempURL = '~/images/placeholder.jpg'
     SELECT
-        productId,
-        productName,
-        price,
-        briefDescription,
-        imageUrl
+        SiteImages.imageId,
+		imageName,
+		imageURL,
+		uploadDate,
+		altText,
+		approved,
+		active,
+		uploadedBy,
+		productId,
+		productName,
+		briefDescription,
+		fullDescription,
+		statusCode,
+		price,
+		featured,
+		categoryId
     FROM
         Products INNER JOIN
 		SiteImages ON products.imageId = SiteImages.imageId
     WHERE
-        featured = 1;
+        featured = 1 AND
+		active = 1
+	UNION
+	SELECT
+        SiteImages.imageId,
+		imageName,
+		@tempURL AS imageURL,
+		uploadDate,
+		altText,
+		approved,
+		active,
+		uploadedBy,
+		productId,
+		productName,
+		briefDescription,
+		fullDescription,
+		statusCode,
+		price,
+		featured,
+		categoryId
+    FROM
+        Products INNER JOIN
+		SiteImages ON products.imageId = SiteImages.imageId
+    WHERE
+        featured = 1 AND
+		active = 0
 END
 GO
 
@@ -390,13 +680,54 @@ CREATE PROCEDURE getProducts
     @category INT
 AS
 BEGIN
+	DECLARE @tempURL VARCHAR(200)
+	SET @tempURL = '~/images/placeholder.jpg'
     SELECT
-        *
+        SiteImages.imageId,
+		imageName,
+		imageURL,
+		uploadDate,
+		altText,
+		approved,
+		active,
+		uploadedBy,
+		productId,
+		productName,
+		briefDescription,
+		fullDescription,
+		statusCode,
+		price,
+		featured,
+		categoryId
     FROM
         Products  INNER JOIN
 		SiteImages ON products.imageId = SiteImages.imageId
     WHERE
-        categoryId = @category
+        categoryId = @category AND
+		active = 1
+	UNION
+	SELECT
+		SiteImages.imageId,
+		imageName,
+		@tempURL AS imageURL,
+		uploadDate,
+		altText,
+		approved,
+		active,
+		uploadedBy,
+		productId,
+		productName,
+		briefDescription,
+		fullDescription,
+		statusCode,
+		price,
+		featured,
+		categoryId    FROM
+        Products  INNER JOIN
+		SiteImages ON products.imageId = SiteImages.imageId
+    WHERE
+        categoryId = @category AND
+		active = 0
 END
 GO
 
@@ -408,14 +739,61 @@ CREATE PROCEDURE getSingleProduct
     @productId  INT
 AS
 BEGIN
+	DECLARE @tempURL VARCHAR(200)
+	SET @tempURL = '~/images/placeholder.jpg'
     SELECT
-        *
+        SiteImages.imageId,
+		imageName,
+		imageURL,
+		uploadDate,
+		altText,
+		approved,
+		active,
+		uploadedBy,
+		productId,
+		productName,
+		briefDescription,
+		fullDescription,
+		statusCode,
+		price,
+		featured,
+		Categories.categoryId,
+		[name],
+		[description]
     FROM
         Products INNER JOIN
 		Categories ON Products.categoryId = Categories.categoryId  INNER JOIN
 		SiteImages ON products.imageId = SiteImages.imageId
     WHERE
-        productId = @productId;
+        productId = @productId AND
+		active = 1
+	UNION
+	    SELECT
+        SiteImages.imageId,
+		imageName,
+		@tempURL AS imageURL,
+		uploadDate,
+		altText,
+		approved,
+		active,
+		uploadedBy,
+		productId,
+		productName,
+		briefDescription,
+		fullDescription,
+		statusCode,
+		price,
+		featured,
+		Categories.categoryId,
+		[name],
+		[description]
+    FROM
+        Products INNER JOIN
+		Categories ON Products.categoryId = Categories.categoryId  INNER JOIN
+		SiteImages ON products.imageId = SiteImages.imageId
+    WHERE
+        productId = @productId AND
+		active = 0;
 END
 GO
 
@@ -983,7 +1361,7 @@ CREATE PROCEDURE getAllImages
 AS
 BEGIN
     SELECT
-		imageName, imageId, imageUrl, uploadDate, altText, approved, uploadedBy, email
+		imageName, imageId, imageUrl, uploadDate, altText, approved, uploadedBy, email, active
 	FROM
 		SiteImages INNER JOIN adminLogin ON SiteImages.uploadedBy = adminLogin.id;
 END
@@ -1039,7 +1417,8 @@ BEGIN
 			GETDATE(),
 			@altText,
 			0,
-			@uploadedBy
+			@uploadedBy,
+			1
 		);
 END
 GO
@@ -1050,14 +1429,16 @@ GO
 CREATE PROCEDURE updateImage
 	@imageId	INT,
 	@imageName	NVARCHAR(50),
-	@altText	NVARCHAR(50)
+	@altText	NVARCHAR(50),
+	@active		BIT
 AS
 BEGIN
     UPDATE
 		SiteImages
 	SET
 		imageName = @imageName,
-		altText = @altText
+		altText = @altText,
+		active = @active
 	WHERE
 		imageId = @imageId;
 END
@@ -1075,7 +1456,7 @@ BEGIN
     FROM
         SiteImages LEFT JOIN Products ON SiteImages.imageId = products.imageId
     WHERE
-        Products.imageId IS NULL AND SiteImages.approved = 1 OR productId = @ProdId OR SiteImages.ImageID = 1
+        (Products.imageId IS NULL AND SiteImages.approved = 1 AND SiteImages.active = 1) OR (productId = @ProdId AND SiteImages.active = 1) OR (SiteImages.ImageID = 1)
 END
 GO
 
