@@ -283,7 +283,11 @@ namespace DRDPE.Admin
                         string imageId = lblId.Text;
                         TextBox txtImageName = (TextBox)grvImages.Rows[i].FindControl("txtName");
                         string imageName = txtImageName.Text;
-                        UpdateImage(imageId, imageName, altText);
+
+                        CheckBox chkActive = (CheckBox)grvImages.Rows[i].FindControl("chkActive");
+                        bool active = chkActive.Checked;
+
+                        UpdateImage(imageId, imageName, altText , active);
                         ShowError("The Image data was Updated Successfully");
                     }
                 }
@@ -291,7 +295,7 @@ namespace DRDPE.Admin
             ReloadGrid();
         }
 
-        private void UpdateImage(string imageId, string imageName, string altText)
+        private void UpdateImage(string imageId, string imageName, string altText, bool active)
         {
             int ar = 0;
             SqlCommand cmd = default(SqlCommand);
@@ -304,6 +308,8 @@ namespace DRDPE.Admin
                     cmd.Parameters.AddWithValue("@imageId",imageId);
                     cmd.Parameters.AddWithValue("@imageName",imageName);
                     cmd.Parameters.AddWithValue("@altText",altText);
+                    cmd.Parameters.AddWithValue("@active", active);
+
                     using (conn)
                     {
                         conn.Open();

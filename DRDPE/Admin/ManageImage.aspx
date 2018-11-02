@@ -62,6 +62,7 @@
             <ItemStyle Wrap="False" />
             </asp:BoundField>
             <asp:TemplateField HeaderText="Is Approved">
+
             <ItemTemplate>
                 <span style="text-align: center">
                     <asp:CheckBox ID="CheckBox1" Enabled="false" Checked='<%#Eval("approved")%>' runat="server" />
@@ -69,6 +70,14 @@
             </ItemTemplate>
                 <ItemStyle Wrap="False" />
             </asp:TemplateField>
+            <asp:TemplateField HeaderText="Active">
+                <ItemTemplate>
+                    <span style="text-align: center">
+                        <asp:CheckBox ID="chkActive" Checked='<%#Eval("active")%>' runat="server" />
+                    </span>
+                </ItemTemplate>
+            </asp:TemplateField>
+
             <asp:TemplateField HeaderText="Modify">
             <ItemTemplate>
                 <span style="text-align: center">
