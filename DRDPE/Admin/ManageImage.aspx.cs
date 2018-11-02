@@ -196,7 +196,7 @@ namespace DRDPE.Admin
             Label lblId = (Label)grvImages.Rows[row].FindControl("lblAdminId");
             if (Session["AdminId"].ToString()==lblId.Text)
             {
-                ShowError("You can't not approve an Image you uploaded yourself");
+                ShowError("You can't approve an Image you uploaded yourself");
                 return false;
             }
             else
