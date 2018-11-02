@@ -462,7 +462,8 @@ CREATE PROCEDURE insertProduct
     @statusCode         CHAR(1),
     @price              MONEY,
     @featured           BIT,
-    @categoryId         INT
+    @categoryId         INT,
+	@imageId			INT
 AS
 BEGIN
     INSERT INTO
@@ -476,7 +477,7 @@ BEGIN
             @price,
             @featured,
             @categoryId,
-            1
+            @imageId
         );
 END
 GO
@@ -578,15 +579,29 @@ CREATE PROCEDURE loginCustomer
     @password   NVARCHAR(15)
 AS
 BEGIN
-        --Returns customer ID on success - Returns 0 on fail
-        SELECT
-            customerId
-        FROM
-            Customers
-        WHERE
-            username = @username AND
-            [password] = @password AND
-            verified = 1;
+	IF EXISTS	(	SELECT customerId
+					FROM Customers
+					WHERE username = @username AND [password] = @password AND verified = 1
+				)
+		BEGIN
+			SELECT
+				customerId
+			FROM
+				Customers
+			WHERE
+				username = @username AND
+				[password] = @password AND
+				verified = 1
+		END
+	IF EXISTS	(	SELECT customerId
+					FROM Customers
+					WHERE username = @username AND [password] = @password AND verified = 0
+				)
+		BEGIN
+			RAISERROR('Account has not been verified',16,1)
+		END
+	ELSE
+		RAISERROR('Login unsuccessful. No existing user with those matching credentials.', 16, 1)
 END
 GO
 
@@ -617,6 +632,19 @@ BEGIN
 END
 GO
 
+--Delete Cart
+DROP PROCEDURE IF EXISTS dbo.deleteCart
+GO
+CREATE PROCEDURE [dbo].[deleteCart]
+	@cartId		INT
+AS
+BEGIN
+	DELETE FROM
+		Cart
+	WHERE
+		cartId = @cartId;
+END
+GO
 
 --Get Product Price
 DROP PROCEDURE IF EXISTS dbo.getProductPrice
@@ -1021,12 +1049,14 @@ DROP PROCEDURE IF EXISTS dbo.updateImage
 GO
 CREATE PROCEDURE updateImage
 	@imageId	INT,
+	@imageName	NVARCHAR(50),
 	@altText	NVARCHAR(50)
 AS
 BEGIN
     UPDATE
 		SiteImages
 	SET
+		imageName = @imageName,
 		altText = @altText
 	WHERE
 		imageId = @imageId;
@@ -1043,27 +1073,9 @@ BEGIN
     SELECT
         *
     FROM
-        SiteImages
+        SiteImages LEFT JOIN Products ON SiteImages.imageId = products.imageId
     WHERE
-        imageId NOT IN	(
-						SELECT
-							imageId
-						FROM
-							Products
-						WHERE
-							imageId <> 1
-						) 
-					OR 
-						imageId =	(
-									SELECT
-										SiteImages.imageId
-									FROM
-										SiteImages INNER JOIN Products
-											ON SiteImages.imageId = Products.imageId 
-									WHERE
-										productId = @ProdId AND
-										SiteImages.imageId <> 1
-									)
+        Products.imageId IS NULL AND SiteImages.approved = 1 OR productId = @ProdId OR SiteImages.ImageID = 1
 END
 GO
 
@@ -1126,7 +1138,7 @@ BEGIN
         FROM
         SiteImages INNER JOIN adminLogin ON SiteImages.uploadedBy = adminLogin.id
         WHERE
-            imageUrl LIKE '%' + @searchText + '%';
+            imageUrl LIKE '%' + @searchText + '%' OR imageName LIKE '%' + @searchText + '%';
     END
 END
 GO
@@ -1248,22 +1260,31 @@ GO
 DROP PROCEDURE IF EXISTS dbo.InsertOrder
 GO
 CREATE PROCEDURE InsertOrder
-	@cartId				INT,
-	@shippingAddress	INT,
-	@payType			NVARCHAR(2),
-	@authNumber			NVARCHAR(50)
+    @cartId             INT,
+    @shippingAddress    INT,
+    @payType            NVARCHAR(2),
+    @authNumber         NVARCHAR(50),
+    @customerId         INT
 AS
 BEGIN
-	--DB for Debit / CR for Credit
+    --DB for Debit / CR for Credit
     INSERT INTO
-		OrderHistory
-	VALUES
-		(
-		@cartId,
-		@shippingAddress,
-		@payType,
-		@authNumber
-		);
+        OrderHistory
+    VALUES
+        (
+        @cartId,
+        @shippingAddress,
+        @payType,
+        @authNumber
+        );
+
+    UPDATE 
+        Cart
+    SET
+        customerId = @customerId,
+        orderDate = GETDATE()
+    WHERE
+        cartId = @cartId;
 END
 GO
 
@@ -1271,24 +1292,66 @@ GO
 DROP PROCEDURE IF EXISTS dbo.getOrderDetails
 GO
 CREATE PROCEDURE getOrderDetails
-	@cartId		int
+    @authNumber        NVARCHAR(50)
 AS
 BEGIN
     SELECT
-		*
+		*, CartItems.qty * CartItems.historicalPrice as ItemSubtotal
 	FROM
-		Cart INNER JOIN CartItems
-			ON Cart.cartId = CartItems.cartId
-		INNER JOIN OrderHistory
-			ON CartItems.cartId = OrderHistory.cartId
-	WHERE
-		Cart.cartId = @cartId;
+		OrderHistory 
+			INNER JOIN Cart ON OrderHistory.cartId = Cart.cartId 
+			INNER JOIN CartItems ON Cart.cartId = CartItems.cartId
+			INNER JOIN Addresses ON OrderHistory.shippingAddress = Addresses.addressId
+			INNER JOIN Products ON CartItems.productId = Products.productId
+    WHERE
+		authNumber = @authNumber
+END
+GO
+
+--Check if billing address, if not return billing address
+DROP PROCEDURE IF EXISTS dbo.checkBillingReturnBilling
+GO
+CREATE PROCEDURE checkBillingReturnBilling
+    @addressId        INT
+AS
+BEGIN
+    DECLARE @customerId INT
+    SET @customerId = (SELECT customerId FROM Addresses WHERE addressId = @addressId);
+
+    IF 
+        ((SELECT addressId FROM Addresses WHERE customerId = @customerId AND addressType = 'Billing') != @addressId)
+
+    SELECT
+        *
+    FROM
+        Addresses
+    WHERE
+        customerId = @customerId AND
+        addressType = 'Billing'
+END
+GO
+
+--Get Order Total
+DROP PROCEDURE IF EXISTS dbo.getOrderTotal
+GO
+CREATE PROCEDURE getOrderTotal
+    @authNumber        NVARCHAR(50)
+AS
+BEGIN
+    SELECT
+		SUM(CartItems.qty * CartItems.historicalPrice) AS GrandTotal
+	FROM
+		OrderHistory 
+			INNER JOIN Cart ON OrderHistory.cartId = Cart.cartId 
+			INNER JOIN CartItems ON Cart.cartId = CartItems.cartId
+    WHERE
+		authNumber = @authNumber
 END
 GO
 
 
 
-
+--
 --all cart rows
 --customer id
 --no billing address or personal info
