@@ -12,7 +12,7 @@
     <form id="form1" runat="server">
         <div class="row">
         <div class="col-md-6">
-            <h2>User Login</h2>
+            <h2>Admin Login</h2>
             <hr />
             <asp:Label runat="server" ID="lblSuccess"></asp:Label>
         </div>
