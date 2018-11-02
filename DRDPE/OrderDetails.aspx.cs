@@ -52,7 +52,7 @@ namespace DRDPE
                         TableCell cell3 = new TableCell();
                         cell1.Text = dr["productName"].ToString();
                         cell2.Text = dr["qty"].ToString();
-                        cell3.Text = dr["ItemSubtotal"].ToString();
+                        cell3.Text = Convert.ToDecimal(dr["ItemSubtotal"]).ToString("c");
                         row.Cells.Add(cell1);
                         row.Cells.Add(cell2);
                         row.Cells.Add(cell3);
@@ -71,10 +71,33 @@ namespace DRDPE
                     cmd.CommandType = CommandType.StoredProcedure;
                     conn.Open();
                     dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                    decimal subTotal = 0m;
                     while (dr.Read())
                     {
-                        lblOrderTotal.Text = (Convert.ToDecimal(dr["GrandTotal"]).ToString("c"));
+                         subTotal = Convert.ToDecimal(dr["GrandTotal"]);
                     }
+                    decimal shippingCost = 0m;
+                    decimal orderTotal = 0m;
+                    decimal taxRate = 0.15m;
+                    decimal taxAmount = 0m;
+
+                    if (subTotal <= 35)
+                    {
+                        shippingCost = 7.00m;
+
+                    }
+                    else if (subTotal <= 75)
+                    {
+                        shippingCost = 12.00m;
+                    }
+                    else if (subTotal > 75)
+                    {
+                        shippingCost = 0m;
+                    }
+
+                    taxAmount = ((subTotal + shippingCost) * taxRate);
+                    orderTotal = subTotal + taxAmount + shippingCost;
+                    lblOrderTotal.Text = orderTotal.ToString("c");
                     conn.Close();
                     cmd = new SqlCommand("checkBillingReturnBilling", conn);
                     cmd.Parameters.Add("@addressId", SqlDbType.Int, 0).Value = Convert.ToInt32(addressId);
