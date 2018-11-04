@@ -1417,8 +1417,8 @@ BEGIN
 			GETDATE(),
 			@altText,
 			0,
-			@uploadedBy,
-			1
+			1,
+			@uploadedBy
 		);
 END
 GO
@@ -1731,12 +1731,6 @@ END
 GO
 
 
-
---
---all cart rows
---customer id
---no billing address or personal info
---
 
 /*
 DROP PROCEDURE IF EXISTS dbo.procedureName
