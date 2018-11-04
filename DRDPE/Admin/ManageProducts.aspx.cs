@@ -148,7 +148,8 @@ namespace DRDPE
             {
                 using (SqlConnection conn = new SqlConnection(cnnString))
                 {
-                    cmd = new SqlCommand("SELECT * FROM Products WHERE categoryId = @category", conn);
+                    cmd = new SqlCommand("getProducts", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@category", catId);
                     conn.Open();
                     dr = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);

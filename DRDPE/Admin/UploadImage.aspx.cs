@@ -103,6 +103,7 @@ namespace DRDPE.Admin
                 SqlCommand cmd = default(SqlCommand);
                 using (SqlConnection conn = new SqlConnection(cnnString))
                 {
+                    string admin = Session["adminId"].ToString();
                     cmd = new SqlCommand("insertImage", conn);
                     cmd.Parameters.AddWithValue("@imageUrl", imgProd.ImageUrl);
                     cmd.Parameters.AddWithValue("@imageName", txtImgName.Text);

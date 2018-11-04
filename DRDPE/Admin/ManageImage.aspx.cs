@@ -86,7 +86,7 @@ namespace DRDPE.Admin
                         {
                             Label lblImageUrl = (Label)grvImages.Rows[i].FindControl("imageUrl");
                             string strPath = lblImageUrl.Text;
-                            DeleteImage(imageId, Server.MapPath(strPath.Substring(2)));
+                            DeleteImage(imageId, Server.MapPath("../"+strPath.Substring(2)));
                         }
                             
                         else
