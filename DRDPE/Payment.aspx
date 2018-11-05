@@ -68,10 +68,10 @@
         <asp:ListItem Value="1">Credit</asp:ListItem>
     </asp:RadioButtonList>
     <div id="debitContainer" style="display:none" runat="server">
-        <label>PayPal User Debit:</label>
+        <label>PayPal User Debit</label>
     </div>
     <div id="creditContainer" style="display:none" runat="server">
-        <label>PayPal User Credit:</label>
+        <label>PayPal User Credit</label>
     </div>
     <br />
     <asp:Button ID="btnFinish" class="btn btn-outline-light" runat="server" Text="Finalize Order" OnClick="btnFinish_Click" />

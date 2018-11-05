@@ -120,7 +120,7 @@ namespace DRDPE
 
                     if (dr.HasRows)
                     {
-                        lblHeader.Text = "Featured Product";
+                        lblHeader.Text = "Featured Products";
                         rptProd.DataSource = dr;
                         rptProd.DataBind();
                     }
