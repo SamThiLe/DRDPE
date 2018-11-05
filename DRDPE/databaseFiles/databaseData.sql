@@ -1515,7 +1515,7 @@ BEGIN
     --Search by text
     BEGIN
         SELECT
-        imageId, imageUrl, uploadDate, altText, approved, uploadedBy, email
+        imageId, imageName, imageUrl, uploadDate, altText, approved, uploadedBy, email, active
         FROM
         SiteImages INNER JOIN adminLogin ON SiteImages.uploadedBy = adminLogin.id
         WHERE
